@@ -1,0 +1,16 @@
+﻿{
+	"name": "Star Fox Adventures AP",
+	"game_name": "Star Fox Adventures",
+	"package_version": "0.0.0",
+	"package_uid": "starfox_dino_ap",
+	"platform": "gcn",
+	"author": "OmegaZeron",
+	"min_poptracker_version": "0.32.0",
+	"variants": {
+		"standard": {
+			"display_name": "AP Autotracker v0.0.0",
+			"flags": ["ap"]
+		}
+	},
+	"versions_url": "https://raw.githubusercontent.com/OmegaZeron/Star-Fox-Adventures-AP-Poptracker-Pack/versions/versions.json"
+}

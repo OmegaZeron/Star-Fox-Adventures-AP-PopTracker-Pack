@@ -1,0 +1,28 @@
+[
+	{
+		"name": "LightFoot Village",
+		"access_rules": ["@ThornTail Hollow, staff"],
+		"children": [
+			{
+				"name": "Cape Claw Entrance 1",
+				"sections": [{}]
+			},
+			{
+				"name": "Cape Claw Entrance 2",
+				"sections": [{}]
+			},
+			{
+				"name": "Entrance Booster Ledge 1",
+				"sections": [{}]
+			},
+			{
+				"name": "Entrance Booster Ledge 2",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Cape Claw Entrance",
+				"sections": [{}]
+			}
+		]
+	}
+]

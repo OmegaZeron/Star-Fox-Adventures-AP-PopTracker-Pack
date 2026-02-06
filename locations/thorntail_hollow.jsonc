@@ -1,0 +1,158 @@
+[
+	{
+		"name": "ThornTail Hollow",
+		"access_rules": ["@Fly to ThornTail Hollow"],
+		"children": [
+			{
+				"name": "Fire Blaster Upgrade",
+				"sections": [{}]
+			},
+			{
+				"name": "Rocket Booster Upgrade",
+				"sections": [{}]
+			},
+			{
+				"name": "Shop",
+				"sections": [
+					{"name": "Rock Candy", "access_rules": ["$CanBuy|10"]},
+					{"name": "Hi-Tech Display Device", "access_rules": ["$CanBuy|20"]},
+					{"name": "Tricky's Ball", "access_rules": ["$CanBuy|15"]},
+					{"name": "Bafomdad Holder", "access_rules": ["$CanBuy|20"]},
+					{"name": "FireFly Landern", "access_rules": ["$CanBuy|20"]},
+					{"name": "Snowhorn Artifact", "access_rules": ["$CanBuy|130"]},
+					{"name": "Cape Claw Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "Ocean Force Point Map", "access_rules": ["$CanBuy|10"]},
+					{"name": "Krazoa Palace Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "Dragon Rock Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "ThornTail Hollow Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "Moon Pass Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "LightFoot Village Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "DarkIce Mines Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "CloudRunner Fortress Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "Walled City Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "SnowHorn Wastes Map", "access_rules": ["$CanBuy|5"]},
+					{"name": "Volcano Force Point Map", "access_rules": ["$CanBuy|10"]}
+				]
+			},
+			{
+				"name": "Queen Cave Fuel Cell",
+				"sections": [{"access_rules": ["$HasBlaster"]}]
+			},
+			{
+				"name": "Pillar Fuel Cell",
+				"sections": [
+					{"name": "Left"},
+					{"name": "Right"}
+				]
+			},
+			{
+				"name": "Beside Warpstone Fuel Cell",
+				"access_rules": ["$CanExplodeBombPlant"],
+				"sections": [
+					{"name": "Left"},
+					{"name": "Right"}
+				]
+			},
+			{
+				"name": "Waterfall Cave 1",
+				"sections": [{"access_rules": ["$CanExplodeBombPlant"]}]
+			},
+			{
+				"name": "Waterfall Cave 2",
+				"sections": [{"access_rules": ["@ThornTail Hollow/Waterfall Cave 1"]}]
+			},
+			{
+				"name": "Waterfall Cave 3",
+				"sections": [{"access_rules": ["@ThornTail Hollow/Waterfall Cave 1"]}]
+			},
+			{
+				"name": "Waterfall Cave Back",
+				"sections": [{"access_rules": ["@ThornTail Hollow/Waterfall Cave 1"]}]
+			},
+			{
+				"name": "South Cave 1",
+				"sections": [{"access_rules": ["$CanExplodeBombPlant"]}]
+			},
+			{
+				"name": "South Cave 2",
+				"sections": [{"access_rules": ["@ThornTail Hollow/South Cave 1"]}]
+			},
+			{
+				"name": "South Cave 3",
+				"sections": [{"access_rules": ["@ThornTail Hollow/South Cave 1"]}]
+			},
+			{
+				"name": "Shop Booster Ledge 1",
+				"sections": [{"access_rules": ["$HasBooster"]}]
+			},
+			{
+				"name": "Shop Booster Ledge 2",
+				"sections": [{"access_rules": ["@ThornTail Hollow/Shop Booster Ledge 1"]}]
+			},
+			{
+				"name": "Above Shop Magic Upgrade",
+				"sections": [{"access_rules": ["$HasBooster, $CanExplodeBombPlant"]}]
+			},
+			{
+				"name": "Queen Gave White GrubTubs",
+				"sections": [{"access_rules": ["grubtub:6"]}]
+			},
+			{
+				"name": "Dig Near Shop",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Near Queen Cave",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Cape Claw Entrance",
+				"sections": [{}]
+			}
+		]
+	},
+	{
+		"name": "Ancient Well",
+		"access_rules": ["@ThornTail Hollow, tricky"],
+		"children": [
+			{
+				"name": "Well Booster Ledge 1",
+				"sections": [{"access_rules": ["$HasBooster"]}]
+			},
+			{
+				"name": "Well Booster Ledge 2",
+				"sections": [{"access_rules": ["@Ancient Well/Well Booster Ledge 1"]}]
+			}
+		]
+	},
+	{
+		"name": "Dark Ancient Well",
+		"access_rules": ["@Ancient Well, rocket_booster, lantern, $CanExplodeBombPlant"],
+		"children": [
+			{
+				"name": "Dark Well Shroom 1",
+				"sections": [{}]
+			},
+			{
+				"name": "Dark Well Shroom 2",
+				"sections": [{}]
+			},
+			{
+				"name": "Dark Well Shroom 3",
+				"sections": [{"access_rules": ["$CanExplodeBombPlant"]}]
+			},
+			{
+				"name": "Dark Well Shroom 4",
+				"sections": [{"access_rules": ["$HasBooster"]}]
+			},
+			{
+				"name": "Dark Well Shroom 5",
+				"sections": [{"access_rules": ["@Dark Ancient Well/Dark Well Shroom 3, @Dark Ancient Well/Dark Well Shroom 4"]}]
+			},
+			{
+				"name": "Dark Well Shroom 6",
+				"sections": [{"access_rules": ["@Dark Ancient Well/Dark Well Shroom 5"]}]
+			}
+		]
+	}
+]

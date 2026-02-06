@@ -1,0 +1,20 @@
+[
+	{
+		"name": "Moon Mountain Pass",
+		"access_rules": ["@ThornTail Hollow, $CanExplodeBombPlant"],
+		"children": [
+			{
+				"name": "Windy Path In",
+				"sections": [{}]
+			},
+			{
+				"name": "Windy Path Out",
+				"sections": [{}]
+			},
+			{
+				"name": "Barrel Hill",
+				"sections": [{}]
+			}
+		]
+	}
+]

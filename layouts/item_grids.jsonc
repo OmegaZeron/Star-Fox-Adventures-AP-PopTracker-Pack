@@ -1,0 +1,16 @@
+{
+	"items": {
+		"type": "itemgrid",
+		"rows": [
+			["staff", "fire_blaster", "rocket_boost", "ice_blaster", "ground_quake"],
+			["disguise", "portal", "tricky", "scarab_bag", "bomb_plant"],
+			["alpine_root", "grubtub", "rock_candy", "lantern", "snowhorn_artifact"]
+		]
+	}
+	// "settings": {
+	// 	"type": "itemgrid",
+	// 	"rows": [
+
+	// 	]
+	// }	
+}

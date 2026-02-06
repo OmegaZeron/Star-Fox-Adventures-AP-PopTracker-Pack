@@ -1,0 +1,114 @@
+[
+	{
+		"name": "SnowHorn Wastes Water Spout",
+		"access_rules": ["@Ice Mountain, tricky"],
+		"children": [
+			{
+				"name": "Magic Upgrade",
+				"sections": [{"access_rules": ["tricky"]}]
+			},
+			{
+				"name": "Give Alpine Root",
+				"sections": [
+					{"name": "1", "access_rules": ["alpine_root:1"]},
+					{"name": "2", "access_rules": ["alpine_root:2"]}
+				]
+			},
+			{
+				"name": "Ice Block Left",
+				"sections": [{}]
+			},
+			{
+				"name": "Ice Block Right",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Alpine Root 1",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Alpine Root 2",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Water Spout Egg",
+				"sections": [{}]
+			}
+		]
+	},
+	{
+		"name": "SnowHorn Wastes Entrance",
+		"access_rules": [
+			"@SnowHorn Wastes Water Spout",
+			"@ThornTail Hollow, tricky"
+		],
+		"children": [
+			{
+				"name": "Rescue Gate Keeper",
+				"sections": [{}]
+			},
+			{
+				"name": "Cold Water Left",
+				"sections": [{}]
+			},
+			{
+				"name": "Cold Water Right/Dig Cave Right",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Cave Left",
+				"sections": [{}]
+			},
+			{
+				"name": "Transition Booster Left",
+				"sections": [{}]
+			},
+			{
+				"name": "Transition Booster Right",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Bafomdad",
+				"sections": [{}]
+			}
+		]
+	},
+	{
+		"name": "SnowHorn Wastes Behind Gate",
+		"access_rules": ["SnowHorn Wastes Entrance, gate_key"],
+		"children": [
+			{
+				"name": "After Tree 1",
+				"sections": [{}]
+			},
+			{
+				"name": "After Tree 2",
+				"sections": [{}]
+			},
+			{
+				"name": "River Cheat Well",
+				"sections": [{}]
+			},
+			{
+				"name": "River Ledge 1",
+				"sections": [{}]
+			},
+			{
+				"name": "River Ledge 2",
+				"sections": [{}]
+			},
+			{
+				"name": "River Ledge 3",
+				"sections": [{}]
+			},
+			{
+				"name": "After Tree 2",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig Cave",
+				"sections": [{}]
+			}
+		]
+	}
+]
