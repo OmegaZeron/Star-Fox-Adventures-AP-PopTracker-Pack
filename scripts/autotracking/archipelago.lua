@@ -46,10 +46,8 @@ function PreOnClear()
 end
 
 function OnClear(slotData)
-	-- print("called OnClear, slot_data:", dump(slot_data))
+	-- print("called OnClear, slot_data:", dump(slotData))
 	SlotData = slotData
-
-	print(dump(Archipelago.MissingLocations), dump(Archipelago.CheckedLocations))
 
 	IsManualClick = false
 	if Tracker:FindObjectForCode(ManualStorageCode) == nil then

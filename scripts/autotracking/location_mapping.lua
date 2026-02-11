@@ -2,7 +2,7 @@ local baseID = 0
 LOCATION_MAPPING = {
 	-- staff upgrades
 	[baseID + 1] = {"@ThornTail Hollow/Fire Blaster Upgrade/"},
-	[baseID + 2] = {"@Ancient Well/Rocket Boost Upgrade/"},
+	[baseID + 2] = {"@Ancient Well/Staff Rocket Boost Upgrade/"},
 	-- store
 	[baseID + 200] = {"@ThornTail Hollow/ThornTail Store/Rock Candy"},
 	[baseID + 201] = {"@ThornTail Hollow/ThornTail Store/Hi-Tech Display Device"},
