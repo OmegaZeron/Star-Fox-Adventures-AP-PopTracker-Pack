@@ -127,7 +127,7 @@
 		"codes": "lantern"
 	},
 	{
-		"name": "Snowhorn Artifact",
+		"name": "SnowHorn Artifact",
 		"type": "toggle",
 		"img": "images/items/lantern.png",
 		"codes": "snowhorn_artifact"
