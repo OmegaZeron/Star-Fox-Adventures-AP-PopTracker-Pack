@@ -1,19 +1,40 @@
 [
 	{
 		"name": "Moon Mountain Pass",
-		"access_rules": ["@ThornTail Hollow, $CanExplodeBombPlant"],
+		"access_rules": ["@ThornTail Hollow/Reach Area/, $CanExplodeBombPlant"],
 		"children": [
 			{
-				"name": "Windy Path In",
-				"sections": [{}]
+				"name": "Windy Path In Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 56,
+						"y": 101
+					}
+				]
 			},
 			{
-				"name": "Windy Path Out",
-				"sections": [{}]
+				"name": "Windy Path Out Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 56,
+						"y": 4
+					}
+				]
 			},
 			{
-				"name": "Barrel Hill",
-				"sections": [{}]
+				"name": "Barrel Hill Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 147,
+						"y": 21
+					}
+				]
 			}
 		]
 	}

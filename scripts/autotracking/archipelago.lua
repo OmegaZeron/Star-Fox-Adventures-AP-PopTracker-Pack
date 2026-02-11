@@ -49,6 +49,8 @@ function OnClear(slotData)
 	-- print("called OnClear, slot_data:", dump(slot_data))
 	SlotData = slotData
 
+	print(dump(Archipelago.MissingLocations), dump(Archipelago.CheckedLocations))
+
 	IsManualClick = false
 	if Tracker:FindObjectForCode(ManualStorageCode) == nil then
 		CreateLuaManualLocationStorage(ManualStorageCode)
@@ -124,7 +126,7 @@ function OnItem(index, item_id, item_name, player_number)
 	CurIndex = index;
 	local itemData = ITEM_MAPPING[item_id]
 	if not itemData then
-		print("onItem: could not find item mapping for id", item_id)
+		-- print("onItem: could not find item mapping for id", item_id)
 		return
 	end
 	-- print(string.format("onItem: code: %s, type %s", itemData[1], itemData[2]))

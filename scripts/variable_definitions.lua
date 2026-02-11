@@ -22,6 +22,19 @@ SnowhornArtifact = "snowhorn_artifact"
 -- helpers
 ManualStorageCode = "manual_location_storage"
 
+-- autotab
+MapIDToTab = {
+	[0x07] = {"ThornTail Hollow"},
+	[0x43] = {"ThornTail Hollow"}, -- connector from snowhorn wastes
+	[0x17] = {"SnowHorn Wastes"}, -- ice mountain
+	[0x38] = {"SnowHorn Wastes"}, -- snowy path
+	[0x0a] = {"SnowHorn Wastes"},
+	[0x0e] = {"LightFoot Village"},
+	[0x45] = {"Moon Mountain Pass"}, -- connector from thorntail hollow
+	[0x12] = {"Moon Mountain Pass"},
+	[0x13] = {"DarkIce Mines"},
+}
+
 PriorityToHighlight = {
 	[0] = Highlight.Unspecified,
 	[10] = Highlight.NoPriority,

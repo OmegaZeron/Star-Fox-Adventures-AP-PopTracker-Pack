@@ -2,25 +2,25 @@
 	{
 		"name": "Staff",
 		"type": "static",
-		"img": "/images/staff.png",
+		"img": "images/items/staff.png",
 		"codes": "staff, weapon"
 	},
 	{
 		"name": "Fire Blaster",
 		"type": "toggle",
-		"img": "/images/fire_blaster.png",
+		"img": "images/items/fire_blaster.png",
 		"codes": "fire_blaster, weapon, ranged_weapon"
 	},
 	{
-		"name": "Rocket Boost",
+		"name": "Staff Rocket Boost",
 		"type": "toggle",
-		"img": "/images/rocket_boost.png",
+		"img": "images/items/rocket_boost.png",
 		"codes": "rocket_boost"
 	},
 	{
 		"name": "Ice Blaster",
 		"type": "toggle",
-		"img": "/images/ice_blaster.png",
+		"img": "images/items/ice_blaster.png",
 		"codes": "ice_blaster, weapon, ranged_weapon"
 	},
 	{
@@ -29,12 +29,12 @@
 		"stages": [
 			{
 				"name": "Ground Quake",
-				"img": "/images/ground_quake.png",
+				"img": "images/items/ground_quake.png",
 				"codes": "ground_quake"
 			},
 			{
 				"name": "Super Ground Quake",
-				"img": "/images/super_quake.png",
+				"img": "images/items/super_quake.png",
 				"codes": "super_quake"
 			}
 		]
@@ -42,13 +42,13 @@
 	{
 		"name": "SharpClaw Disguise",
 		"type": "toggle",
-		"img": "/images/disguise.png",
+		"img": "images/items/disguise.png",
 		"codes": "disguise"
 	},
 	{
 		"name": "Portal Opener",
 		"type": "toggle",
-		"img": "/images/portal.png",
+		"img": "images/items/portal.png",
 		"codes": "portal"
 	},
 	{
@@ -56,13 +56,13 @@
 		"type": "progressive",
 		"stages": [
 			{
-				"name": "Tricky (Dig, Stay, Call)",
-				"img": "/images/tricky.png",
-				"codes": "tricky, dig, stay, call"
+				"name": "Tricky (Dig, Stay)",
+				"img": "images/items/tricky.png",
+				"codes": "tricky, dig, stay"
 			},
 			{
-				"name": "Tricky (Dig, Stay, Call, Flame)",
-				"img": "/images/flame.png",
+				"name": "Tricky (Dig, Stay, Flame)",
+				"img": "images/items/flame.png",
 				"codes": "flame"
 			}
 		]
@@ -72,18 +72,18 @@
 		"type": "progressive",
 		"stages": [
 			{
-				"name": "Scarab Bag 1",
-				"img": "/images/scarab_bag_1.png",
+				"name": "Small Scarab Bag",
+				"img": "images/items/scarab_bag_1.png",
 				"codes": "scarab_bag, scarab_bag_1"
 			},
 			{
-				"name": "Scarab Bag 2",
-				"img": "/images/scarab_bag_2.png",
+				"name": "Medium Scarab Bag",
+				"img": "images/items/scarab_bag_2.png",
 				"codes": "scarab_bag_2"
 			},
 			{
-				"name": "Scarab Bag 3",
-				"img": "/images/scarab_bag_3.png",
+				"name": "Large Scarab Bag",
+				"img": "images/items/scarab_bag_3.png",
 				"codes": "scarab_bag_3"
 			}
 		]
@@ -91,45 +91,45 @@
 	{
 		"name": "Bomb Plant",
 		"type": "static",
-		"img": "/images/bomb_plant.png",
+		"img": "images/items/bomb_plant.png",
 		"codes": "bomb_plant"
 	},
 	{
 		"name": "Alpine Root",
 		"type": "consumable",
-		"img": "/images/alpine_root.png",
+		"img": "images/items/alpine_root.png",
 		"max_quantity": 2,
 		"codes": "alpine_root"
 	},
 	{
 		"name": "White GrubTub Fungus",
 		"type": "consumable",
-		"img": "/images/",
+		"img": "images/items/grubtub.png",
 		"max_quantity": 6,
 		"codes": "grubtub"
 	},
 	{
 		"name": "SharpClaw Prison Key",
 		"type": "toggle",
-		"img": "/images/gate_key.png",
+		"img": "images/items/gate_key.png",
 		"codes": "gate_key"
 	},
 	{
 		"name": "Rock Candy",
 		"type": "toggle",
-		"img": "/images/rock_candy.png",
+		"img": "images/items/rock_candy.png",
 		"codes": "rock_candy"
 	},
 	{
 		"name": "FireFly Lantern",
 		"type": "toggle",
-		"img": "/images/lantern.png",
+		"img": "images/items/lantern.png",
 		"codes": "lantern"
 	},
 	{
 		"name": "Snowhorn Artifact",
 		"type": "toggle",
-		"img": "/images/lantern.png",
+		"img": "images/items/lantern.png",
 		"codes": "snowhorn_artifact"
 	}
 ]	

@@ -1,0 +1,27 @@
+[
+	{
+		"name": "Shop Setting",
+		"type": "progressive",
+		"allow_disabled": false,
+		"stages": [
+			{
+				"name": "No Maps in Shop",
+				"codes": "shop_setting, shop_enabled",
+				"img": "images/settings/shop_no_maps.png",
+				"inherit_codes": false
+			},
+			{
+				"name": "All Items in Shop",
+				"codes": "shop_setting, shop_enabled, shop_maps",
+				"img": "images/settings/shop_enabled.png",
+				"inherit_codes": false
+			},
+			{
+				"name": "Shop Disabled",
+				"codes": "shop_setting, shop_disabled",
+				"img": "images/settings/shop_disabled.png",
+				"inherit_codes": false
+			}
+		]
+	}
+]	

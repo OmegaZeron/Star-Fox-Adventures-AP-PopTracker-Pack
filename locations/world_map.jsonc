@@ -2,5 +2,9 @@
 	{
 		"name": "Fly to ThornTail Hollow",
 		"sections": [{}]
+	},
+	{
+		"name": "Fly to DarkIce Mines",
+		"sections": [{"access_rules": ["@SnowHorn Wastes Behind Gate/Rescue Gate Keeper/"]}]
 	}
 ]

@@ -1,0 +1,99 @@
+{
+	"tracker_default": {
+		"type": "container",
+		"background": "#212121",
+		"content": {
+			"type": "dock",
+			"dropshadow": true,
+			"content": [
+				{
+					"type": "group",
+					"dock": "left",
+					"header": "Items",
+					"content": {
+						"type": "layout",
+						"key": "items"
+					}
+				},
+				{
+					"type": "group",
+					"v_alignment": "stretch",
+					"header": "Maps",
+					"content": {
+						"type": "tabbed",
+						"tabs": [
+							// {
+							// 	"title": "Sauria",
+							// 	"content": {
+							// 		"type": "map",
+							// 		"maps": ["sauria"]
+							// 	}
+							// },
+							{
+								"title": "ThornTail Hollow",
+								"content": {
+									"type": "map",
+									"maps": ["thorntail"]
+								}
+							},
+							{
+								"title": "Ancient Well",
+								"content": {
+									"type": "map",
+									"maps": ["ancient_well"]
+								}
+							},
+							{
+								"title": "SnowHorn Wastes",
+								"content": {
+									"type": "map",
+									"maps": ["snowhorn"]
+								}
+							},
+							{
+								"title": "LightFoot Village",
+								"content": {
+									"type": "map",
+									"maps": ["lightfoot"]
+								}
+							},
+							{
+								"title": "Moon Mountain Pass",
+								"content": {
+									"type": "map",
+									"maps": ["moon"]
+								}
+							},
+							{
+								"title": "DarkIce Mines",
+								"content": {
+									"type": "map",
+									"maps": ["darkice"]
+								}
+							},
+						]
+					}
+				}
+			]
+		}
+	},
+	"tracker_broadcast": {
+		"type": "layout",
+		"key": "items"
+	},
+	"settings_popup": {
+		"type": "array",
+		"orientation": "horizontal",
+		"h_alignment": "left",
+		"content": [
+			{
+				"type": "group",
+				"header": "settings",
+				"content": {
+					"type": "layout",
+					"key": "settings"
+				}	
+			}
+		]
+	}
+}

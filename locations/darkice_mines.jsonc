@@ -1,7 +1,7 @@
 [
 	{
-		"name": "LightFoot Village",
-		"access_rules": ["@ThornTail Hollow/Reach Area/, staff"],
+		"name": "DarkIce Mines",
+		"access_rules": ["@Fly to DarkIce Mines/"],
 		"children": [
 			{
 				"name": "Entrance Booster Ledge Fuel Cells",

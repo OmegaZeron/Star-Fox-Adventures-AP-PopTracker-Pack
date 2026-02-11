@@ -1,113 +1,251 @@
 [
 	{
-		"name": "SnowHorn Wastes Water Spout",
-		"access_rules": ["@Ice Mountain, tricky"],
+		"name": "Ice Mountain",
+		"access_rules": ["@ThornTail Hollow/Reach Area/, rock_candy"],
 		"children": [
 			{
-				"name": "Magic Upgrade",
-				"sections": [{"access_rules": ["tricky"]}]
+				"name": "Reach Area",
+				"sections": [{}]
 			},
 			{
-				"name": "Give Alpine Root",
+				"name": "Ice Mountain",
 				"sections": [
-					{"name": "1", "access_rules": ["alpine_root:1"]},
-					{"name": "2", "access_rules": ["alpine_root:2"]}
+					{
+						"name": "Cheat Well Cave",
+						"access_rules": ["$CanExplodeBombPlant"]
+					},
+					{
+						"name": "Race Cave Front",
+						"access_rules": ["$HasBlaster"]
+					},
+					{
+						"name": "Race Cave Back",
+						"access_rules": ["@Ice Mountain/Ice Mountain/Race Cave Front"]
+					}
+				],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 4,
+						"y": 80
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "SnowHorn Wastes Water Spout",
+		"access_rules": ["@Ice Mountain/Reach Area/, tricky"],
+		"children": [
+			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Magic Upgrade",
+				"sections": [{"access_rules": ["tricky"]}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 173,
+						"y": 120
+					}
 				]
 			},
 			{
-				"name": "Ice Block Left",
-				"sections": [{}]
+				"name": "Give Alpine Roots",
+				"sections": [
+					{"name": "1", "access_rules": ["alpine_root:1"]},
+					{"name": "2", "access_rules": ["alpine_root:2"]}
+				],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 193,
+						"y": 126
+					}
+				]
 			},
 			{
-				"name": "Ice Block Right",
-				"sections": [{}]
+				"name": "Ice Block Fuel Cells", // requires alpine_root:2 when SW isn't open
+				"sections": [
+					{"name": "Left"},
+					{"name": "Right"}
+				],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 165,
+						"y": 115
+					}
+				]
 			},
 			{
 				"name": "Dig Alpine Root 1",
-				"sections": [{}]
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 161,
+						"y": 158
+					}
+				]
 			},
 			{
 				"name": "Dig Alpine Root 2",
-				"sections": [{}]
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 147,
+						"y": 128
+					}
+				]
 			},
 			{
 				"name": "Dig Water Spout Egg",
-				"sections": [{}]
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 178,
+						"y": 157
+					}
+				]
 			}
 		]
 	},
 	{
 		"name": "SnowHorn Wastes Entrance",
 		"access_rules": [
-			"@SnowHorn Wastes Water Spout",
-			"@ThornTail Hollow, tricky"
+			"@SnowHorn Wastes Water Spout/Reach Area/",
+			"@ThornTail Hollow/Reach Area/, tricky"
 		],
 		"children": [
 			{
-				"name": "Rescue Gate Keeper",
+				"name": "Reach Area",
 				"sections": [{}]
 			},
 			{
-				"name": "Cold Water Left",
-				"sections": [{}]
+				"name": "Cold Water Fuel Cells",
+				"sections": [
+					{"name": "Left"},
+					{"name": "Right (Also Dig Cave Right)"}
+				],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 223,
+						"y": 102
+					}
+				]
 			},
 			{
-				"name": "Cold Water Right/Dig Cave Right",
-				"sections": [{}]
+				"name": "Dig Cave Fuel Cells",
+				"sections": [
+					{"name": "Left"},
+					{"name": "Right (Also Cold Water Right)", "ref": "SnowHorn Wastes Entrance/Cold Water Fuel Cells/Right (Also Cold Water Right)"} // vanilla links these on accident
+				],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 264,
+						"y": 113
+					}
+				]
 			},
 			{
-				"name": "Dig Cave Left",
-				"sections": [{}]
+				"name": "Transition Booster Fuel Cells",
+				"sections": [
+					{"name": "Left"},
+					{"name": "Right"}
+				],
+				"map_locations": [
+					{
+						"map": "thorntail",
+						"x": 122,
+						"y": 33
+					}
+				]
 			},
 			{
-				"name": "Transition Booster Left",
-				"sections": [{}]
-			},
-			{
-				"name": "Transition Booster Right",
-				"sections": [{}]
-			},
-			{
-				"name": "Dig Bafomdad",
-				"sections": [{}]
+				"name": "Dig BafomDad",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 245,
+						"y": 155
+					}
+				]
 			}
 		]
 	},
 	{
 		"name": "SnowHorn Wastes Behind Gate",
-		"access_rules": ["SnowHorn Wastes Entrance, gate_key"],
+		"access_rules": ["@SnowHorn Wastes Entrance/Reach Area/, gate_key"],
 		"children": [
 			{
-				"name": "After Tree 1",
-				"sections": [{}]
+				"name": "Rescue Gate Keeper",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 284,
+						"y": 116
+					}
+				]
 			},
 			{
-				"name": "After Tree 2",
-				"sections": [{}]
+				"name": "After Tree Fuel Cells",
+				"sections": [
+					{"name": "1"},
+					{"name": "2"}
+				],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 274,
+						"y": 50
+					}
+				]
 			},
 			{
-				"name": "River Cheat Well",
-				"sections": [{}]
+				"name": "River Cheat Well Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 344,
+						"y": 121
+					}
+				]
 			},
 			{
-				"name": "River Ledge 1",
-				"sections": [{}]
+				"name": "River Ledge Fuel Cells",
+				"sections": [
+					{"name": "1"},
+					{"name": "2 (Use Blaster in Nearby Cave)", "access_rules": ["$HasBlaster"]},
+					{"name": "3 (Use Blaster in Nearby Cave)", "access_rules": ["$HasBlaster"]}
+				],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 322,
+						"y": 72
+					}
+				]
 			},
 			{
-				"name": "River Ledge 2",
-				"sections": [{}]
-			},
-			{
-				"name": "River Ledge 3",
-				"sections": [{}]
-			},
-			{
-				"name": "After Tree 2",
-				"sections": [{}]
-			},
-			{
-				"name": "Dig Cave",
-				"sections": [{}]
+				"name": "Dig Cave Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "snowhorn",
+						"x": 311,
+						"y": 38
+					}
+				]
 			}
 		]
 	}
