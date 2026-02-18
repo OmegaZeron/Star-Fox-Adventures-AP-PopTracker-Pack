@@ -4,13 +4,17 @@
 		"access_rules": ["@ThornTail Hollow/Reach Area/, $CanExplodeBombPlant"],
 		"children": [
 			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
 				"name": "Windy Path In Fuel Cell",
 				"sections": [{}],
 				"map_locations": [
 					{
 						"map": "moon",
-						"x": 56,
-						"y": 101
+						"x": 66,
+						"y": 131
 					}
 				]
 			},
@@ -20,19 +24,297 @@
 				"map_locations": [
 					{
 						"map": "moon",
-						"x": 56,
-						"y": 4
+						"x": 66,
+						"y": 14
+					}
+				]
+			},
+			// {
+			// 	"name": "Barrel Hill Fuel Cell",
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 217,
+			// 			"y": 27
+			// 		}
+			// 	]
+			// }
+		]
+	},
+	{
+		"name": "Moon Mountain Pass Past Gate",
+		"access_rules": ["@Moon Mountain Pass/Reach Area/, moon_key"],
+		"children": [
+			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Gate Fuel Cell",
+				"sections": [{"access_rules": ["staff"]}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 321,
+						"y": 31
 					}
 				]
 			},
 			{
-				"name": "Barrel Hill Fuel Cell",
+				"name": "Ground Quake Upgrade",
+				"sections": [{}], // something about beating force point temple?
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 398,
+						"y": 66
+					}
+				]
+			},
+			// {
+			// 	"name": "MoonSeed",
+			// 	"sections": [{"access_rules": ["$CanGroundQuake"]}], // something about beating force point temple?
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 359,
+			// 			"y": 34
+			// 		}
+			// 	]
+			// },
+			{
+				"name": "Left Fuel Cells",
+				"access_rules": ["$HasBooster, ???"],
+				"sections": [
+					{"name": "1"},
+					{"name": "2"},
+					{"name": "BafomDad"}
+				],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 181,
+						"y": 105
+					}
+				]
+			},
+			{
+				"name": "Middle Fuel Cells",
+				"access_rules": ["$HasBooster, ice_blaster"],
+				"sections": [
+					{"name": "1"},
+					{"name": "2"}
+				],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 198,
+						"y": 105
+					}
+				]
+			},
+			{
+				"name": "VFP BafomDad",
+				"access_rules": ["$HasBooster"],
 				"sections": [{}],
 				"map_locations": [
 					{
 						"map": "moon",
-						"x": 147,
-						"y": 21
+						"x": 215,
+						"y": 105
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "Moon Mountain Pass Middle",
+		"access_rules": ["@Moon Mountain Pass Past Gate/Reach Area/, moonseed, flame"],
+		"children": [
+			// {
+			// 	"name": "Another MoonSeed",
+			// 	"access_rules": ["$CanGroundQuake"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 225,
+			// 			"y": 68
+			// 		}
+			// 	]
+			// },
+			// {
+			// 	"name": "Yet Another MoonSeed",
+			// 	"access_rules": ["$CanGroundQuake"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 346,
+			// 			"y": 175
+			// 		}
+			// 	]
+			// },
+			// {
+			// 	"name": "And Another MoonSeed",
+			// 	"access_rules": ["$CanGroundQuake, moonseed:3, flame"],
+			// 	"sections": [
+			// 		{"name": "MoonSeed"},
+			// 		{"name": "BafomDad"}
+			// 	],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 345,
+			// 			"y": 109
+			// 		}
+			// 	]
+			// },
+			// {
+			// 	"name": "Why Another MoonSeed",
+			// 	"access_rules": ["$CanGroundQuake"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 415,
+			// 			"y": 168
+			// 		}
+			// 	]
+			// },
+			// {
+			// 	"name": "Stop With the MoonSeed",
+			// 	"access_rules": ["$CanGroundQuake"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 459,
+			// 			"y": 162
+			// 		}
+			// 	]
+			// },
+			// {
+			// 	"name": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+			// 	"access_rules": ["$CanGroundQuake"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 465,
+			// 			"y": 239
+			// 		}
+			// 	]
+			// },
+			{
+				"name": "Some Fuel Cell",
+				// "access_rules": [""],
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 398,
+						"y": 201
+					}
+				]
+			},
+			// {
+			// 	"name": "Dig Rock 1",
+			// 	"access_rules": ["tricky"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 405,
+			// 			"y": 221
+			// 		}
+			// 	]
+			// },
+			// {
+			// 	"name": "Dig Rock 2",
+			// 	"access_rules": ["tricky"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 466,
+			// 			"y": 266
+			// 		}
+			// 	]
+			// },
+			{
+				"name": "Cheat Well Fuel Cell",
+				"access_rules": ["moonseed:6, flame"],
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 390,
+						"y": 322
+					}
+				]
+			},
+			// {
+			// 	"name": "BafomDad",
+			// 	"access_rules": ["moonseed:3, flame"],
+			// 	"sections": [{}],
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "moon",
+			// 			"x": 212,
+			// 			"y": 27
+			// 		}
+			// 	]
+			// },
+		]
+	},
+	{
+		"name": "Volcano Force Point Temple Entrance",
+		"access_rules": ["@Moon Mountain Pass Past Gate/Reach Area/, $CanFight, volcano_spellstone"],
+		"children": [
+			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Freeze Blast Upgrade",
+				"access_rules": ["flame"],
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "volcano",
+						"x": 211,
+						"y": 139
+					}
+				]
+			},
+			{
+				"name": "Main Room Fuel Cell",
+				"access_rules": ["staff, ice_blaster"], // ?
+				"sections": [{}],
+				// "map_locations": [
+				// 	{
+				// 		"map": "volcano",
+				// 		"x": 114,
+				// 		"y": 64
+				// 	}
+				// ]
+			}
+		]
+	},
+	{
+		"name": "Volcano Force Point Temple Upper Floor",
+		"access_rules": ["@Volcano Force Point Temple Entrance/Reach Area/, ice_blaster, $HasBlaster, flame"],
+		"children": [
+			{
+				"name": "Upper Floor Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "volcano",
+						"x": 185,
+						"y": 51
 					}
 				]
 			}

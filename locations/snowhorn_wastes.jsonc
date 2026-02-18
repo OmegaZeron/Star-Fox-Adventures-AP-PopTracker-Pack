@@ -27,7 +27,7 @@
 					{
 						"map": "snowhorn",
 						"x": 4,
-						"y": 80
+						"y": 100
 					}
 				]
 			}
@@ -47,27 +47,27 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 173,
-						"y": 120
+						"x": 233,
+						"y": 144
 					}
 				]
 			},
 			{
 				"name": "Give Alpine Roots",
 				"sections": [
-					{"name": "1", "access_rules": ["alpine_root:1"]},
-					{"name": "2", "access_rules": ["alpine_root:2"]}
+					{"name": "1", "access_rules": ["_shw:1"]},
+					{"name": "2", "access_rules": ["alpine_root_shw:2"]}
 				],
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 193,
-						"y": 126
+						"x": 260,
+						"y": 149
 					}
 				]
 			},
 			{
-				"name": "Ice Block Fuel Cells", // requires alpine_root:2 when SW isn't open
+				"name": "Ice Block Fuel Cells", // requires alpine_root_shw:2 when SW isn't open
 				"sections": [
 					{"name": "Left"},
 					{"name": "Right"}
@@ -75,8 +75,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 165,
-						"y": 115
+						"x": 214,
+						"y": 138
 					}
 				]
 			},
@@ -86,8 +86,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 161,
-						"y": 158
+						"x": 218,
+						"y": 188
 					}
 				]
 			},
@@ -97,8 +97,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 147,
-						"y": 128
+						"x": 201,
+						"y": 154
 					}
 				]
 			},
@@ -108,8 +108,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 178,
-						"y": 157
+						"x": 243,
+						"y": 147
 					}
 				]
 			}
@@ -117,10 +117,7 @@
 	},
 	{
 		"name": "SnowHorn Wastes Entrance",
-		"access_rules": [
-			"@SnowHorn Wastes Water Spout/Reach Area/",
-			"@ThornTail Hollow/Reach Area/, tricky"
-		],
+		"access_rules": ["@SnowHorn Wastes Water Spout/Reach Area/"],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -135,8 +132,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 223,
-						"y": 102
+						"x": 299,
+						"y": 124
 					}
 				]
 			},
@@ -144,13 +141,13 @@
 				"name": "Dig Cave Fuel Cells",
 				"sections": [
 					{"name": "Left"},
-					{"name": "Right (Also Cold Water Right)", "ref": "SnowHorn Wastes Entrance/Cold Water Fuel Cells/Right (Also Cold Water Right)"} // vanilla links these on accident
+					{"name": "Right (Also Cold Water Right)", "ref": "SnowHorn Wastes Entrance/Cold Water Fuel Cells/Right (Also Dig Cave Right)"} // vanilla links these on accident
 				],
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 264,
-						"y": 113
+						"x": 349,
+						"y": 136
 					}
 				]
 			},
@@ -163,8 +160,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 122,
-						"y": 33
+						"x": 224,
+						"y": 72
 					}
 				]
 			},
@@ -174,8 +171,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 245,
-						"y": 155
+						"x": 326,
+						"y": 184
 					}
 				]
 			}
@@ -191,8 +188,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 284,
-						"y": 116
+						"x": 376,
+						"y": 139
 					}
 				]
 			},
@@ -205,8 +202,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 274,
-						"y": 50
+						"x": 364,
+						"y": 72
 					}
 				]
 			},
@@ -216,8 +213,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 344,
-						"y": 121
+						"x": 455,
+						"y": 145
 					}
 				]
 			},
@@ -231,8 +228,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 322,
-						"y": 72
+						"x": 426,
+						"y": 90
 					}
 				]
 			},
@@ -242,8 +239,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 311,
-						"y": 38
+						"x": 410,
+						"y": 53
 					}
 				]
 			}

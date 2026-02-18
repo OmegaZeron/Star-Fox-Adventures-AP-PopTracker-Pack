@@ -13,8 +13,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 131,
-						"y": 81
+						"x": 229,
+						"y": 173
 					}
 				]
 			},
@@ -92,8 +92,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 94,
-						"y": 140
+						"x": 159,
+						"y": 274
 					}
 				]
 			},
@@ -103,8 +103,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 161,
-						"y": 210
+						"x": 280,
+						"y": 401
 					}
 				]
 			},
@@ -117,8 +117,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 97,
-						"y": 193
+						"x": 168,
+						"y": 369
 					}
 				]
 			},
@@ -132,8 +132,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 84,
-						"y": 129
+						"x": 144,
+						"y": 256
 					}
 				]
 			},
@@ -149,8 +149,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 66,
-						"y": 141
+						"x": 114,
+						"y": 276
 					}
 				]
 			},
@@ -165,8 +165,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 99,
-						"y": 210
+						"x": 172,
+						"y": 399
 					}
 				]
 			},
@@ -180,8 +180,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 107,
-						"y": 112
+						"x": 183,
+						"y": 229
 					}
 				]
 			},
@@ -191,8 +191,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 90,
-						"y": 116
+						"x": 157,
+						"y": 235
 					}
 				]
 			},
@@ -202,8 +202,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 161,
-						"y": 178
+						"x": 279,
+						"y": 340
 					}
 				]
 			},
@@ -213,8 +213,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 100,
-						"y": 153
+						"x": 176,
+						"y": 296
 					}
 				]
 			},
@@ -224,8 +224,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 136,
-						"y": 190
+						"x": 237,
+						"y": 364
 					}
 				]
 			},
@@ -244,8 +244,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 22,
-						"y": 204
+						"x": 37,
+						"y": 388
 					}
 				]
 			},
@@ -255,11 +255,40 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 13,
-						"y": 199
+						"x": 22,
+						"y": 379
 					}
 				]
 			},
+			// {
+			// 	"name": "Light the Torches",
+			// 	"sections": [{"access_rules": ["flame"]}], // fire weed? spellstone?
+			// 	"map_locations": [
+			// 		{
+			// 			"map": "thorntail",
+			// 			"x": 151,
+			// 			"y": 355
+			// 		},
+			// 		{
+			// 			"map": "thorntail",
+			// 			"x": 237,
+			// 			"y": 292,
+			// 			"shape": "diamond"
+			// 		},
+			// 		{
+			// 			"map": "thorntail",
+			// 			"x": 132,
+			// 			"y": 219,
+			// 			"shape": "diamond"
+			// 		},
+			// 		{
+			// 			"map": "thorntail",
+			// 			"x": 17,
+			// 			"y": 392,
+			// 			"shape": "diamond"
+			// 		}
+			// 	]
+			// },
 			{
 				"name": "Ancient Well",
 				"sections": [
@@ -303,8 +332,8 @@
 				"map_locations": [
 					{
 						"map": "thorntail",
-						"x": 127,
-						"y": 116
+						"x": 221,
+						"y": 233
 					}
 				]
 			}
@@ -324,8 +353,8 @@
 				"map_locations": [
 					{
 						"map": "ancient_well",
-						"x": 158,
-						"y": 173
+						"x": 105,
+						"y": 113
 					}
 				]
 			},
@@ -339,8 +368,8 @@
 				"map_locations": [
 					{
 						"map": "ancient_well",
-						"x": 16,
-						"y": 216
+						"x": 9,
+						"y": 141
 					}
 				]
 			}
@@ -356,8 +385,8 @@
 				"map_locations": [
 					{
 						"map": "ancient_well",
-						"x": 31,
-						"y": 50
+						"x": 19,
+						"y": 33
 					}
 				]
 			},
@@ -367,8 +396,8 @@
 				"map_locations": [
 					{
 						"map": "ancient_well",
-						"x": 169,
-						"y": 15
+						"x": 116,
+						"y": 11
 					}
 				]
 			},
@@ -378,8 +407,8 @@
 				"map_locations": [
 					{
 						"map": "ancient_well",
-						"x": 19,
-						"y": 173
+						"x": 12,
+						"y": 114
 					}
 				]
 			},
@@ -389,8 +418,8 @@
 				"map_locations": [
 					{
 						"map": "ancient_well",
-						"x": 106,
-						"y": 54
+						"x": 73,
+						"y": 36
 					}
 				]
 			},
@@ -404,8 +433,8 @@
 				"map_locations": [
 					{
 						"map": "ancient_well",
-						"x": 200,
-						"y": 185
+						"x": 135,
+						"y": 122
 					}
 				]
 			}

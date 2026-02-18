@@ -9,6 +9,7 @@ local IsManualClick = true
 local DEFAULT_SEED <const> = "default"
 local RoomSeed = DEFAULT_SEED
 local HintsID = nil
+local IsHighlightUpdate = false
 
 function PreOnClear()
 	PlayerID = Archipelago.PlayerNumber or -1
@@ -216,6 +217,7 @@ function UpdateHints(locationID, status)
 		local section = Tracker:FindObjectForCode(location)
 		if section then
 			---@cast section LocationSection
+			IsHighlightUpdate = true
 			section.Highlight = status
 		else
 			print(string.format("No object found for code: %s", location))
@@ -225,6 +227,10 @@ end
 
 ---@param location LocationSection
 function ManualLocationHandler(location)
+	if IsHighlightUpdate then
+		IsHighlightUpdate =  false
+		return
+	end
 	if IsManualClick then
 		local manualStorageItem = Tracker:FindObjectForCode(ManualStorageCode)
 		if not manualStorageItem then

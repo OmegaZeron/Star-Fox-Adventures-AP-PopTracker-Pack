@@ -51,26 +51,33 @@
 								}
 							},
 							{
-								"title": "LightFoot Village",
-								"content": {
-									"type": "map",
-									"maps": ["lightfoot"]
-								}
-							},
-							{
-								"title": "Moon Mountain Pass",
-								"content": {
-									"type": "map",
-									"maps": ["moon"]
-								}
-							},
-							{
 								"title": "DarkIce Mines",
 								"content": {
 									"type": "map",
 									"maps": ["darkice"]
 								}
 							},
+							// {
+							// 	"title": "Moon Mountain Pass",
+							// 	"content": {
+							// 		"type": "map",
+							// 		"maps": ["moon"]
+							// 	}
+							// },
+							// {
+							// 	"title": "Volcano Force Point Temple",
+							// 	"content": {
+							// 		"type": "map",
+							// 		"maps": ["volcano"]
+							// 	}
+							// },
+							// {
+							// 	"title": "LightFoot Village",
+							// 	"content": {
+							// 		"type": "map",
+							// 		"maps": ["lightfoot"]
+							// 	}
+							// },
 						]
 					}
 				}

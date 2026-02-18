@@ -57,7 +57,7 @@
 		"stages": [
 			{
 				"name": "Tricky (Dig, Stay)",
-				"img": "images/items/tricky.png",
+				"img": "images/items/find.png",
 				"codes": "tricky, dig, stay"
 			},
 			{
@@ -95,11 +95,18 @@
 		"codes": "bomb_plant"
 	},
 	{
-		"name": "Alpine Root",
+		"name": "Alpine Root (SnowHorn Wastes)",
 		"type": "consumable",
-		"img": "images/items/alpine_root.png",
+		"img": "images/items/alpine_root_shw.png",
 		"max_quantity": 2,
-		"codes": "alpine_root"
+		"codes": "alpine_root_shw"
+	},
+	{
+		"name": "Alpine Root (DarkIce Mines)",
+		"type": "consumable",
+		"img": "images/items/alpine_root_dim.png",
+		"max_quantity": 2,
+		"codes": "alpine_root_dim"
 	},
 	{
 		"name": "White GrubTub Fungus",
@@ -131,5 +138,48 @@
 		"type": "toggle",
 		"img": "images/items/lantern.png",
 		"codes": "snowhorn_artifact"
-	}
+	},
+	{
+		"name": "Bridge Cog",
+		"type": "consumable",
+		"img": "images/items/cog.png",
+		"codes": "cog",
+		"max_quantity": 4
+	},
+	{
+		"name": "Dinosaur Horn",
+		"type": "toggle",
+		"img": "images/items/lantern.png",
+		"codes": "dinosaur_horn"
+	},
+	{
+		"name": "Silver Key",
+		"type": "toggle",
+		"img": "images/items/silver_key.png",
+		"codes": "silver_key"
+	},
+	{
+		"name": "Gold Key",
+		"type": "toggle",
+		"img": "images/items/lantern.png",
+		"codes": "gold_key"
+	},
+	{
+		"name": "Moon Pass Key",
+		"type": "toggle",
+		"img": "images/items/moon_key.png",
+		"codes": "moon_key"
+	},
+	{
+		"name": "Volcano SpellStone",
+		"type": "toggle",
+		"img": "images/items/lantern.png",
+		"codes": "volcano_spellstone"
+	},
+	{
+		"name": "MoonSeed",
+		"type": "toggle",
+		"img": "images/items/lantern.png",
+		"codes": "moonseed"
+	},
 ]	

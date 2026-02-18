@@ -7,6 +7,16 @@ function Has(item, amount)
 	return amount and count >= amount
 end
 
+---@return accessibilityLevel
+function CanFight()
+	if Has(Staff) then
+		return AccessibilityLevel.Normal
+	end
+	if HasBlaster() then
+		return AccessibilityLevel.SequenceBreak
+	end
+	return AccessibilityLevel.None
+end
 function HasBlaster()
 	return Has(Staff) and Has(FireBlaster)
 end
@@ -17,6 +27,10 @@ end
 
 function CanExplodeBombPlant()
 	return HasBlaster() and Has(BombPlant)
+end
+
+function CanGroundQuake()
+	return Has(Staff) and Has(GroundQuake)
 end
 
 ---@param price number|string?
