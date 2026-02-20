@@ -8,34 +8,21 @@
 				"sections": [{}]
 			},
 			{
-				"name": "Entrance Booster Ledge Fuel Cells",
-				"sections": [
-					{"name": "1"},
-					{"name": "2"}
-				],
-				"map_locations": [
-					{
-						"map": "lightfoot",
-						"x": 108,
-						"y": 101
-					}
-				]
-			},
-			{
 				"name": "Shackle Key",
 				"access_rules": ["staff, tricky"],
-				"sections": [{}],
-				"map_locations": [
-					{
-						"map": "darkice",
-						"x": 35,
-						"y": 205
-					}
-				]
+				"sections": [{}]
+				// "map_locations": [
+				// 	{
+				// 		"map": "darkice",
+				// 		"x": 35,
+				// 		"y": 205
+				// 	}
+				// ]
 			},
 			{
-				"name": "Free SnowHorn",
-				"access_rules": ["shackle_key"],
+				"name": "Release SnowHorn",
+				// should require shackle_key item, but it isn't rando'd
+				"access_rules": ["@DarkIce Mines Entrance/Shackle Key/"],
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -45,36 +32,39 @@
 					}
 				]
 			},
+			{
+				"name": "Dig Alpine Root 1",
+				"access_rules": ["flame"],
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "darkice",
+						"x": 89,
+						"y": 220
+					}
+				]
+			}	
 		]
 	},
 	{
 		"name": "DarkIce Mines Past First Bridge",
-		"access_rules": ["@DarkIce Mines Entrance/Reach Area/, cog"],
+		"access_rules": ["@DarkIce Mines Entrance/Reach Area/, cog1"],
 		"children": [
 			{
 				"name": "Reach Area",
 				"sections": [{}]
 			},
 			{
-				"name": "Save SnowHorn from SharpClaw",
-				"sections": [{}],
+				"name": "Injured SnowHorn",
+				"sections": [
+					{"name": "Rescue"},
+					{"name": "Feed", "access_rules": ["alpine_root_dim:2"]}
+				],
 				"map_locations": [
 					{
 						"map": "darkice",
 						"x": 35,
 						"y": 148
-					}
-				]
-			},
-			{
-				"name": "Dig Alpine Root 1",
-				"access_rules": ["tricky"], // flame?
-				"sections": [{}],
-				"map_locations": [
-					{
-						"map": "darkice",
-						"x": 79,
-						"y": 113
 					}
 				]
 			},
@@ -85,16 +75,16 @@
 				"map_locations": [
 					{
 						"map": "darkice",
-						"x": 89,
-						"y": 220
+						"x": 79,
+						"y": 113
 					}
 				]
-			}			
+			}
 		]
 	},
 	{
 		"name": "DarkIce Mines Past Gate",
-		"access_rules": ["@DarkIce Mines Past First Bridge/Reach Area/, alpine_root_dim:2"],
+		"access_rules": ["@DarkIce Mines Past First Bridge/Reach Area/, alpine_root_dim:2, flame"],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -102,7 +92,7 @@
 			},
 			{
 				"name": "Cog Chest",
-				"sections": [{}],
+				"sections": [{"access_rules": ["$HasBooster"]}],
 				"map_locations": [
 					{
 						"map": "darkice",
@@ -113,7 +103,7 @@
 			},
 			{
 				"name": "SharpClaw Hut Chest",
-				"sections": [{}],
+				"sections": [{"access_rules": ["$HasBooster"]}],
 				"map_locations": [
 					{
 						"map": "darkice",
@@ -124,7 +114,7 @@
 			},
 			{
 				"name": "Ice Cog Chest",
-				"sections": [{"access_rules": ["flame"]}],
+				"sections": [{"access_rules": ["$HasBooster"]}],
 				"map_locations": [
 					{
 						"map": "darkice",
@@ -135,13 +125,20 @@
 			},
 			{
 				"name": "Fire Puzzle Reward",
-				"sections": [{"access_rules": ["cog:4, flame, tricky, $HasBlaster"]}]
+				"sections": [{"access_rules": ["cog2:3, $HasBlaster"]}],
+				"map_locations": [
+					{
+						"map": "darkice",
+						"x": 8,
+						"y": 109
+					}
+				]
 			}
 		]
 	},
 	{
 		"name": "DarkIce Mines Dungeon",
-		"access_rules": ["@DarkIce Mines Past Gate/Reach Area/, dinosaur_horn, ^$CanFight"],
+		"access_rules": ["@DarkIce Mines Past Gate/Reach Area/, dinosaur_horn, $HasBooster"],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -149,7 +146,7 @@
 			},
 			{
 				"name": "Fire Wall Chest",
-				"sections": [{"access_rules": ["rocket_boost, $HasBlaster"]}],
+				"sections": [{"access_rules": ["$HasBlaster"]}],
 				"map_locations": [
 					{
 						"map": "darkice",
@@ -160,18 +157,19 @@
 			},
 			{
 				"name": "Ice Wall Chest",
-				"sections": [{"access_rules": ["flame"]}], // silver key?
-				"map_locations": [
-					{
-						"map": "darkice",
-						"x": 273,
-						"y": 40
-					}
-				]
+				"sections": [{"access_rules": ["flame, silver_key"]}]
+				// "map_locations": [
+				// 	{
+				// 		"map": "darkice",
+				// 		"x": 273,
+				// 		"y": 40
+				// 	}
+				// ]
 			},
 			{
 				"name": "Galdon",
-				"access_rules": ["gold_key, tricky, $HasBooster, flame"],
+				// should require gold_key instead of @ice wall chest, but isn't rando'd
+				"access_rules": ["@DarkIce Mines Dungeon/Ice Wall Chest/, $HasBlaster, flame"],
 				"sections": [{}],
 				"map_locations": [
 					{

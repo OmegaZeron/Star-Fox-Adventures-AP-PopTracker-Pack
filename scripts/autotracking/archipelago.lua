@@ -101,10 +101,11 @@ function OnClear(slotData)
 	end
 
 	if Archipelago.PlayerNumber > -1 then
+		CurrentLocID = "SFA_current_map_"..TeamNumber.."_"..PlayerID
 		HintsID = "_read_hints_"..TeamNumber.."_"..PlayerID
 
-		Archipelago:SetNotify({HintsID})
-		Archipelago:Get({HintsID})
+		Archipelago:SetNotify({CurrentLocID, HintsID})
+		Archipelago:Get({CurrentLocID, HintsID})
 	end
 
 	-- TODO slot data here
@@ -114,7 +115,7 @@ end
 
 -- called when an item gets collected
 function OnItem(index, item_id, item_name, player_number)
-	-- print(string.format("called onItem: %s, %s, %s, %s, %s", index, item_id, item_name, player_number, CUR_INDEX))
+	-- print(string.format("called onItem: %s, %s, %s, %s", index, item_id, item_name, player_number))
 	if not AUTOTRACKER_ENABLE_ITEM_TRACKING then
 		return
 	end
@@ -159,13 +160,13 @@ end
 
 -- called when a location gets cleared
 function OnLocation(location_id, location_name)
-	IsManualClick = false
-
 	local location_array = LOCATION_MAPPING[location_id]
 	if not location_array or not location_array[1] then
 		print(string.format("onLocation: could not find location mapping for id %s", location_id))
 		return
 	end
+
+	IsManualClick = false
 
 	for _, location in pairs(location_array) do
 		local obj = Tracker:FindObjectForCode(location)
@@ -186,7 +187,7 @@ function OnLocation(location_id, location_name)
 end
 
 function OnNotify(key, value, old_value)
-	-- print(string.format("called onNotify: %s, %s, %s", key, dump(value), old_value))
+	-- print(string.format("called onNotify: %s, %s", key, dump(value)))
 	if value == nil or value == old_value then
 		return
 	end
@@ -197,6 +198,12 @@ function OnNotify(key, value, old_value)
 				UpdateHints(hint.location, PriorityToHighlight[hint.status])
 			else
 				UpdateHints(hint.location, Highlight.None)
+			end
+		end
+	elseif key == CurrentLocID then
+		if MapIDToTab[value] then
+			for _, room in ipairs(MapIDToTab[value]) do
+				Tracker:UiHint("ActivateTab", room)
 			end
 		end
 	end

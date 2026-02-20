@@ -1,4 +1,5 @@
 [
+	// staff
 	{
 		"name": "Staff",
 		"type": "static",
@@ -51,6 +52,7 @@
 		"img": "images/items/portal.png",
 		"codes": "portal"
 	},
+	// tricky
 	{
 		"name": "Tricky",
 		"type": "progressive",
@@ -67,6 +69,38 @@
 			}
 		]
 	},
+	// planet
+	{
+		"name": "Dinosaur Planet Access",
+		"type": "toggle",
+		"img": "images/items/dinosaur_planet.png",
+		"codes": "dinosaur_planet"
+	},
+	{
+		"name": "DarkIce Mines Access",
+		"type": "toggle",
+		"img": "images/items/darkice_mines.png",
+		"codes": "darkice_mines"
+	},
+	// {
+	// 	"name": "CloudRunner Fortress Access",
+	// 	"type": "toggle",
+	// 	"img": "images/items/cloudrunner_fortress.png",
+	// 	"codes": "cloudrunner_fortress"
+	// },
+	// {
+	// 	"name": "Walled City Access",
+	// 	"type": "toggle",
+	// 	"img": "images/items/walled_city.png",
+	// 	"codes": "walled_city"
+	// },
+	// {
+	// 	"name": "Dragon Rock Access",
+	// 	"type": "toggle",
+	// 	"img": "images/items/dragon_rock.png",
+	// 	"codes": "dragon_rock"
+	// },
+	// inventory
 	{
 		"name": "Scarab Bag",
 		"type": "progressive",
@@ -122,6 +156,31 @@
 		"codes": "gate_key"
 	},
 	{
+		"name": "Bridge Cog 1",
+		"type": "toggle",
+		"img": "images/items/cog.png",
+		"codes": "cog1"
+	},
+	{
+		"name": "Bridge Cog 2/3/4",
+		"type": "consumable",
+		"img": "images/items/cog2.png",
+		"codes": "cog2",
+		"max_quantity": 3
+	},
+	{
+		"name": "Dinosaur Horn",
+		"type": "toggle",
+		"img": "images/items/lantern.png",
+		"codes": "dinosaur_horn"
+	},
+	{
+		"name": "Silver Key",
+		"type": "toggle",
+		"img": "images/items/shackle_silver_key.png",
+		"codes": "silver_key"
+	},
+	{
 		"name": "Rock Candy",
 		"type": "toggle",
 		"img": "images/items/rock_candy.png",
@@ -138,48 +197,30 @@
 		"type": "toggle",
 		"img": "images/items/lantern.png",
 		"codes": "snowhorn_artifact"
-	},
-	{
-		"name": "Bridge Cog",
-		"type": "consumable",
-		"img": "images/items/cog.png",
-		"codes": "cog",
-		"max_quantity": 4
-	},
-	{
-		"name": "Dinosaur Horn",
-		"type": "toggle",
-		"img": "images/items/lantern.png",
-		"codes": "dinosaur_horn"
-	},
-	{
-		"name": "Silver Key",
-		"type": "toggle",
-		"img": "images/items/silver_key.png",
-		"codes": "silver_key"
-	},
-	{
-		"name": "Gold Key",
-		"type": "toggle",
-		"img": "images/items/lantern.png",
-		"codes": "gold_key"
-	},
-	{
-		"name": "Moon Pass Key",
-		"type": "toggle",
-		"img": "images/items/moon_key.png",
-		"codes": "moon_key"
-	},
-	{
-		"name": "Volcano SpellStone",
-		"type": "toggle",
-		"img": "images/items/lantern.png",
-		"codes": "volcano_spellstone"
-	},
-	{
-		"name": "MoonSeed",
-		"type": "toggle",
-		"img": "images/items/lantern.png",
-		"codes": "moonseed"
-	},
+	}
+	// not created yet
+	// {
+	// 	"name": "Moon Pass Key",
+	// 	"type": "toggle",
+	// 	"img": "images/items/moon_key.png",
+	// 	"codes": "moon_key"
+	// },
+	// {
+	// 	"name": "Volcano SpellStone",
+	// 	"type": "toggle",
+	// 	"img": "images/items/lantern.png",
+	// 	"codes": "volcano_spellstone"
+	// },
+	// {
+	// 	"name": "MoonSeed",
+	// 	"type": "toggle",
+	// 	"img": "images/items/lantern.png",
+	// 	"codes": "moonseed"
+	// },
+	// {
+	// 	"name": "Gold Key",
+	// 	"type": "toggle",
+	// 	"img": "images/items/lantern.png",
+	// 	"codes": "gold_key"
+	// },
 ]	

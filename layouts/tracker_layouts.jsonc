@@ -56,7 +56,7 @@
 									"type": "map",
 									"maps": ["darkice"]
 								}
-							},
+							}
 							// {
 							// 	"title": "Moon Mountain Pass",
 							// 	"content": {
@@ -89,18 +89,20 @@
 		"key": "items"
 	},
 	"settings_popup": {
-		"type": "array",
-		"orientation": "horizontal",
-		"h_alignment": "left",
-		"content": [
-			{
-				"type": "group",
-				"header": "settings",
-				"content": {
-					"type": "layout",
-					"key": "settings"
-				}	
-			}
-		]
+		"type": "container",
+		"background": "#212121",
+		"content": {
+			"type": "dock",
+			"content": [
+				{
+					"type": "group",
+					"header": "settings",
+					"content": {
+						"type": "layout",
+						"key": "settings"
+					}	
+				}
+			]
+		}
 	}
 }

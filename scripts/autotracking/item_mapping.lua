@@ -1,15 +1,30 @@
-local baseID = 0
 ITEM_MAPPING = {
-	[baseID + 1] = {Staff, "toggle"},
-	[baseID + 2] = {FireBlaster, "toggle"},
-	[baseID + 3] = {RocketBoost, "toggle"},
-	[baseID + 10] = {Tricky, "progressive"},
-	[baseID + 100] = {ScarabBag, "progressive"},
-	[baseID + 101] = {BombPlant, "toggle"},
-	[baseID + 102] = {AlpineRootSHW, "consumable"},
-	[baseID + 103] = {WhiteGrubTubFungus, "consumable"},
-	[baseID + 104] = {SharpClawPrisonKey, "toggle"},
-	[baseID + 200] = {RockCandy, "toggle"},
-	[baseID + 204] = {FireFlyLantern, "toggle"},
-	-- [baseID + 205] = {SnowhornArtifact, "toggle"},
+	-- staff
+	[1] = {Staff, "toggle"},
+	[2] = {FireBlaster, "toggle"},
+	[3] = {RocketBoost, "toggle"},
+	-- tricky
+	[10] = {Tricky, "progressive"},
+	-- planet
+	[50] = {DinosaurPlanet, "toggle"},
+	[51] = {DarkIceMines, "toggle"},
+	-- [52] = {CloudRunnerFortress, "toggle"},
+	-- [53] = {WalledCity, "toggle"},
+	-- [54] = {DragonRock, "toggle"},
+	-- inventory
+	[100] = {ScarabBag, "progressive"},
+	[101] = {BombPlant, "toggle"},
+	[102] = {AlpineRootSHW, "consumable"},
+	[103] = {WhiteGrubTubFungus, "consumable"},
+	[104] = {SharpClawPrisonKey, "toggle"},
+	[105] = {Cog1, "toggle"},
+	[106] = {AlpineRootDIM, "consumable"},
+	[107] = {Cog2, "consumable"},
+	[110] = {DinosaurHorn, "toggle"},
+	[111] = {SilverKey, "toggle"},
+	-- [112] = {VolcanoSpellstone, "toggle"},
+	-- shop
+	[200] = {RockCandy, "toggle"},
+	[204] = {FireFlyLantern, "toggle"},
+	-- [205] = {SnowhornArtifact, "toggle"},
 }

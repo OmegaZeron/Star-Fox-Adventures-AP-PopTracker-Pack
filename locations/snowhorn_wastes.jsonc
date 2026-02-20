@@ -55,7 +55,7 @@
 			{
 				"name": "Give Alpine Roots",
 				"sections": [
-					{"name": "1", "access_rules": ["_shw:1"]},
+					{"name": "1", "access_rules": ["alpine_root_shw:1"]},
 					{"name": "2", "access_rules": ["alpine_root_shw:2"]}
 				],
 				"map_locations": [
@@ -108,8 +108,8 @@
 				"map_locations": [
 					{
 						"map": "snowhorn",
-						"x": 243,
-						"y": 147
+						"x": 238,
+						"y": 187
 					}
 				]
 			}

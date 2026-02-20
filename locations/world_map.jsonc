@@ -1,10 +1,10 @@
 [
 	{
 		"name": "Fly to ThornTail Hollow",
-		"sections": [{}]
+		"sections": [{"access_rules": ["dinosaur_planet"]}]
 	},
 	{
 		"name": "Fly to DarkIce Mines",
-		"sections": [{"access_rules": ["@SnowHorn Wastes Behind Gate/Rescue Gate Keeper/"]}]
+		"sections": [{"access_rules": ["darkice_mines"]}]
 	}
 ]

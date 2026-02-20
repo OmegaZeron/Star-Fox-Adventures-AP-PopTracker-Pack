@@ -2,16 +2,17 @@
 	"items": {
 		"type": "itemgrid",
 		"h_alignment": "left",
-		"item_size": 48,
-		"item_margin": "1, 1",
+		"item_size": "48, 36",
+		"item_margin": 2,
 		"rows": [
 			["fire_blaster",	"tricky",			"gate_key"],
-			["rocket_boost",	"bomb_plant",		"cog"],
-			["ground_quake",	"alpine_root_shw",	"dinosaur_horn"],
-			["ice_blaster",		"lantern",			"silver_key"],
-			["disguise",		"grubtub",			"gold_key"],
-			["portal",			"rock_candy",		"moon_key"],
-			["scarab_bag",		"alpine_root_dim"]
+			["rocket_boost",	"bomb_plant",		"cog1"],
+			["?ground_quake",	"alpine_root_shw",	"cog2"],
+			["?ice_blaster",	"lantern",			"dinosaur_horn"],
+			["?disguise",		"grubtub",			"silver_key"],
+			["?portal",			"rock_candy",		""],
+			["scarab_bag",		"alpine_root_dim",	""],
+			["dinosaur_planet", "darkice_mines"]
 		]
 	},
 	"settings": {
