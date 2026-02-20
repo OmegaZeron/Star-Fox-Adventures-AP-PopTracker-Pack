@@ -14,14 +14,8 @@
 						"name": "Cheat Well Cave",
 						"access_rules": ["$CanExplodeBombPlant"]
 					},
-					{
-						"name": "Race Cave Front",
-						"access_rules": ["$HasBlaster"]
-					},
-					{
-						"name": "Race Cave Back",
-						"access_rules": ["@Ice Mountain/Ice Mountain/Race Cave Front"]
-					}
+					{"name": "Race Cave Front"},
+					{"name": "Race Cave Back"}
 				],
 				"map_locations": [
 					{
