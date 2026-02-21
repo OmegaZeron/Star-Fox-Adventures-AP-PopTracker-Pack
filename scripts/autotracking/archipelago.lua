@@ -108,7 +108,12 @@ function OnClear(slotData)
 		Archipelago:Get({CurrentLocID, HintsID})
 	end
 
-	-- TODO slot data here
+	for k, v in pairs(slotData) do
+		local opt = Tracker:FindObjectForCode(k)
+		if opt and SlotDataMapping[k] then
+			opt.CurrentStage = SlotDataMapping[k][v]
+		end
+	end
 
 	IsManualClick = true
 end

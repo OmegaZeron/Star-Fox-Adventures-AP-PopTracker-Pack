@@ -36,6 +36,14 @@ FireFlyLantern = "lantern"
 -- helpers
 ManualStorageCode = "manual_location_storage"
 
+SlotDataMapping = {
+	["shop_locations"] = {
+		["no_map"] = 0,
+		["all"] = 1,
+		["nothing"] = 2,
+	}
+}
+
 -- autotab
 MapIDToTab = {
 	-- [0x0b] = {"Krazoa Palace"},

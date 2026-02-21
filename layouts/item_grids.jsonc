@@ -18,7 +18,7 @@
 	"settings": {
 		"type": "itemgrid",
 		"rows": [
-			["shop_setting"]
+			["shop_locations"]
 		]
 	}	
 }
