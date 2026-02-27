@@ -7,13 +7,9 @@
 			"dropshadow": true,
 			"content": [
 				{
-					"type": "group",
-					"dock": "left",
-					"header": "Items",
-					"content": {
-						"type": "layout",
-						"key": "items"
-					}
+					"type": "layout",
+					"key": "item_grid",
+					"dock": "left"
 				},
 				{
 					"type": "group",
@@ -86,7 +82,7 @@
 	},
 	"tracker_broadcast": {
 		"type": "layout",
-		"key": "items"
+		"key": "item_grid"
 	},
 	"settings_popup": {
 		"type": "container",

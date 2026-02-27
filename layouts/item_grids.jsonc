@@ -9,10 +9,41 @@
 			["rocket_boost",	"bomb_plant",		"cog1"],
 			["?ground_quake",	"alpine_root_shw",	"cog2"],
 			["?ice_blaster",	"lantern",			"dinosaur_horn"],
-			["?disguise",		"grubtub",			"silver_key"],
+			["?disguise",		"grubtub",			""],
 			["?portal",			"rock_candy",		""],
-			["scarab_bag",		"alpine_root_dim",	""],
+			["scarab_bag",		"alpine_root_dim",	""]
+		]
+	},
+	"planets": {
+		"type": "itemgrid",
+		"h_alignment": "left",
+		"item_size": "48, 36",
+		"item_margin": 2,
+		"rows": [
 			["dinosaur_planet", "darkice_mines"]
+		]
+	},
+	"item_grid": {
+		"type": "dock",
+		"dock": "left",
+		"content": [
+			{
+				"type": "group",
+				"dock": "top",
+				"header": "Items",
+				"content": {
+					"type": "layout",
+					"key": "items"
+				}
+			},
+			{
+				"type": "group",
+				"header": "Planet Access",
+				"content": {
+					"type": "layout",
+					"key": "planets"
+				}
+			}
 		]
 	},
 	"settings": {

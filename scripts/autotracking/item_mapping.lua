@@ -21,7 +21,7 @@ ITEM_MAPPING = {
 	[106] = {AlpineRootDIM, "consumable"},
 	[107] = {Cog2, "consumable"},
 	[110] = {DinosaurHorn, "toggle"},
-	[111] = {SilverKey, "toggle"},
+	-- [111] = {SilverKey, "toggle"},
 	-- [112] = {VolcanoSpellstone, "toggle"},
 	-- shop
 	[200] = {RockCandy, "toggle"},

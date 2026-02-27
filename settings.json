@@ -1,3 +1,4 @@
 {
-    "disabled_image_filter": "brightness|.5, saturation|.3"
+    "disabled_image_filter": "brightness|.5, saturation|.3",
+	"smooth_map_scaling": false
 }

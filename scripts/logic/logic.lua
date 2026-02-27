@@ -44,7 +44,7 @@ function CanBuy(price)
 	if price <= 10 then
 		return true
 	elseif price <= 50 then
-		return Has(ScarabBag)
+		return Has(ScarabBag1)
 	elseif price <= 100 then
 		return Has(ScarabBag2)
 	end

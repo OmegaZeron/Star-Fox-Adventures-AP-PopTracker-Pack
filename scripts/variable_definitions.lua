@@ -17,6 +17,7 @@ WalledCity = "walled_city"
 DragonRock = "dragon_rock"
 -- inventory
 ScarabBag = "scarab_bag"
+ScarabBag1 = "scarab_bag1"
 ScarabBag2 = "scarab_bag_2"
 ScarabBag3 = "scarab_bag_3"
 BombPlant = "bomb_plant"

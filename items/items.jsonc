@@ -104,11 +104,17 @@
 	{
 		"name": "Scarab Bag",
 		"type": "progressive",
+		"allow_disabled": false,
 		"stages": [
 			{
 				"name": "Small Scarab Bag",
+				"img": "images/items/scarab.png",
+				"codes": "scarab_bag"
+			},
+			{
+				"name": "Small Scarab Bag",
 				"img": "images/items/scarab_bag_1.png",
-				"codes": "scarab_bag, scarab_bag_1"
+				"codes": "scarab_bag_1"
 			},
 			{
 				"name": "Medium Scarab Bag",
@@ -171,7 +177,7 @@
 	{
 		"name": "Dinosaur Horn",
 		"type": "toggle",
-		"img": "images/items/lantern.png",
+		"img": "images/items/dinosaur_horn.png",
 		"codes": "dinosaur_horn"
 	},
 	{

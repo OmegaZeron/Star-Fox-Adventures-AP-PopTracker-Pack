@@ -146,18 +146,19 @@
 			},
 			{
 				"name": "Fire Wall Chest",
-				"sections": [{"access_rules": ["$HasBlaster"]}],
-				"map_locations": [
-					{
-						"map": "darkice",
-						"x": 289,
-						"y": 186
-					}
-				]
+				"sections": [{"access_rules": ["$HasBlaster"]}]
+				// "map_locations": [
+				// 	{
+				// 		"map": "darkice",
+				// 		"x": 289,
+				// 		"y": 186
+				// 	}
+				// ]
 			},
 			{
 				"name": "Ice Wall Chest",
-				"sections": [{"access_rules": ["flame, silver_key"]}]
+				"access_rules": ["flame, @DarkIce Mines Dungeon/Fire Wall Chest/"],
+				"sections": [{}]
 				// "map_locations": [
 				// 	{
 				// 		"map": "darkice",

@@ -41,7 +41,7 @@ LOCATION_MAPPING = {
 	[36] = {"@DarkIce Mines Past Gate/SharpClaw Hut Chest/"},
 	[37] = {"@DarkIce Mines Past Gate/Ice Cog Chest/"},
 	[38] = {"@DarkIce Mines Past Gate/Fire Puzzle Reward/"},
-	[39] = {"@DarkIce Mines Dungeon/Fire Wall Chest/"},
+	-- [39] = {"@DarkIce Mines Dungeon/Fire Wall Chest/"},
 	[40] = {"@DarkIce Mines Dungeon/Galdon/"},
 	-- fuel cells
 	[100] = {"@ThornTail Hollow/Queen Cave Fuel Cell/"},
