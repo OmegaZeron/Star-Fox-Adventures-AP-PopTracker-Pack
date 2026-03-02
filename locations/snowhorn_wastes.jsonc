@@ -11,11 +11,11 @@
 				"name": "Ice Mountain",
 				"sections": [
 					{
-						"name": "Cheat Well Cave",
+						"name": "Cheat Well Fuel Cell",
 						"access_rules": ["$CanExplodeBombPlant"]
 					},
-					{"name": "Race Cave Front"},
-					{"name": "Race Cave Back"}
+					{"name": "Race Cave Fuel Cell Front"},
+					{"name": "Race Cave Fuel Cell Back"}
 				],
 				"map_locations": [
 					{
@@ -47,7 +47,7 @@
 				]
 			},
 			{
-				"name": "Give Alpine Roots",
+				"name": "Feed Alpine Root",
 				"sections": [
 					{"name": "1", "access_rules": ["alpine_root_shw:1"]},
 					{"name": "2", "access_rules": ["alpine_root_shw:2"]}
@@ -75,7 +75,7 @@
 				]
 			},
 			{
-				"name": "Dig Alpine Root 1",
+				"name": "Dig Alpine Root near Campfire",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -86,7 +86,7 @@
 				]
 			},
 			{
-				"name": "Dig Alpine Root 2",
+				"name": "Dig Alpine Root near Fallen Tree",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -97,7 +97,7 @@
 				]
 			},
 			{
-				"name": "Dig Water Spout Egg",
+				"name": "Dig Egg near Water Spout",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -118,7 +118,7 @@
 				"sections": [{}]
 			},
 			{
-				"name": "Cold Water Fuel Cells",
+				"name": "Water Platform Fuel Cells",
 				"sections": [
 					{"name": "Left"},
 					{"name": "Right (Also Dig Cave Right)"}
@@ -132,10 +132,10 @@
 				]
 			},
 			{
-				"name": "Dig Cave Fuel Cells",
+				"name": "Dig Cave Near Entrance Fuel Cells",
 				"sections": [
 					{"name": "Left"},
-					{"name": "Right (Also Cold Water Right)", "ref": "SnowHorn Wastes Entrance/Cold Water Fuel Cells/Right (Also Dig Cave Right)"} // vanilla links these on accident
+					{"name": "Right (Also Water Platform Right)", "ref": "SnowHorn Wastes Entrance/Water Platform Fuel Cells/Right (Also Dig Cave Right)"} // vanilla links these on accident
 				],
 				"map_locations": [
 					{
@@ -146,7 +146,7 @@
 				]
 			},
 			{
-				"name": "Transition Booster Fuel Cells",
+				"name": "Path to TTH Booster Fuel Cells",
 				"sections": [
 					{"name": "Left"},
 					{"name": "Right"}
@@ -160,7 +160,7 @@
 				]
 			},
 			{
-				"name": "Dig BafomDad",
+				"name": "Dig BafomDad near Entrance",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -188,10 +188,10 @@
 				]
 			},
 			{
-				"name": "After Tree Fuel Cells",
+				"name": "GateKeeper Blast Tree Fuel Cells",
 				"sections": [
-					{"name": "1"},
-					{"name": "2"}
+					{"name": "Left"},
+					{"name": "Right"}
 				],
 				"map_locations": [
 					{
@@ -213,11 +213,11 @@
 				]
 			},
 			{
-				"name": "River Ledge Fuel Cells",
+				"name": "GateKeeper River Ledge Fuel Cells",
 				"sections": [
-					{"name": "1"},
-					{"name": "2 (Use Blaster in Nearby Cave)", "access_rules": ["$HasBlaster"]},
-					{"name": "3 (Use Blaster in Nearby Cave)", "access_rules": ["$HasBlaster"]}
+					{"name": "Center"},
+					{"name": "Right (Use Blaster in Nearby Cave)", "access_rules": ["$HasBlaster"]},
+					{"name": "Left (Use Blaster in Nearby Cave)", "access_rules": ["$HasBlaster"]}
 				],
 				"map_locations": [
 					{
@@ -228,7 +228,7 @@
 				]
 			},
 			{
-				"name": "Dig Cave Fuel Cell",
+				"name": "Dig in GateKeeper Cave",
 				"sections": [{}],
 				"map_locations": [
 					{

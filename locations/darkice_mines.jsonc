@@ -20,7 +20,7 @@
 				// ]
 			},
 			{
-				"name": "Release SnowHorn",
+				"name": "Release Entrance SnowHorn",
 				// should require shackle_key item, but it isn't rando'd
 				"access_rules": ["@DarkIce Mines Entrance/Shackle Key/"],
 				"sections": [{}],
@@ -33,7 +33,7 @@
 				]
 			},
 			{
-				"name": "Dig Alpine Root 1",
+				"name": "Dig Alpine Root in Entrance Hut",
 				"access_rules": ["flame"],
 				"sections": [{}],
 				"map_locations": [
@@ -69,7 +69,7 @@
 				]
 			},
 			{
-				"name": "Dig Alpine Root 2",
+				"name": "Dig Alpine Root in Boulder Path",
 				"access_rules": ["flame"],
 				"sections": [{}],
 				"map_locations": [
@@ -91,7 +91,7 @@
 				"sections": [{}]
 			},
 			{
-				"name": "Cog Chest",
+				"name": "Enemy Gate Cog Chest",
 				"sections": [{"access_rules": ["$HasBooster"]}],
 				"map_locations": [
 					{
@@ -102,7 +102,7 @@
 				]
 			},
 			{
-				"name": "SharpClaw Hut Chest",
+				"name": "Hut Cog Chest",
 				"sections": [{"access_rules": ["$HasBooster"]}],
 				"map_locations": [
 					{
@@ -168,7 +168,7 @@
 				// ]
 			},
 			{
-				"name": "Galdon",
+				"name": "Boss Galdon",
 				// should require gold_key instead of @ice wall chest, but isn't rando'd
 				"access_rules": ["@DarkIce Mines Dungeon/Ice Wall Chest/, $HasBlaster, flame"],
 				"sections": [{}],

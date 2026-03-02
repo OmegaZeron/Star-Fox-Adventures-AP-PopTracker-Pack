@@ -24,67 +24,67 @@
 				"sections": [
 					{"name": "Rock Candy", "access_rules": ["$CanBuy|10"]},
 					{"name": "Hi-Tech Display Device", "access_rules": ["$CanBuy|20"]},
-					{"name": "Tricky's Ball", "access_rules": ["$CanBuy|15"]},
+					{"name": "Tricky Ball", "access_rules": ["$CanBuy|15"]},
 					{"name": "BafomDad Holder", "access_rules": ["$CanBuy|20"]},
 					{"name": "FireFly Lantern", "access_rules": ["$CanBuy|20"]},
 					{"name": "SnowHorn Artifact", "access_rules": ["$CanBuy|130"]},
 					{
-						"name": "Cape Claw Map",
+						"name": "Map Cape Claw",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "Ocean Force Point Map",
+						"name": "Map Ocean Force Point",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|10"]
 					},
 					{
-						"name": "Krazoa Palace Map",
+						"name": "Map Krazoa Palace",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "Dragon Rock Map",
+						"name": "Map Dragon Rock",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "ThornTail Hollow Map",
+						"name": "Map ThornTail Hollow",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "Moon Pass Map",
+						"name": "Map Moon Pass",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "LightFoot Village Map",
+						"name": "Map LightFoot Village",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "DarkIce Mines Map",
+						"name": "Map DarkIce Mines",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "CloudRunner Fortress Map",
+						"name": "Map CloudRunner Fortress",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "Walled City Map",
+						"name": "Map Walled City",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "SnowHorn Wastes Map",
+						"name": "Map SnowHorn Wastes",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|5"]
 					},
 					{
-						"name": "Volcano Force Point Map",
+						"name": "Map Volcano Force Point",
 						"visibility_rules": ["shop_maps"],
 						"access_rules": ["$CanBuy|10"]
 					}
@@ -141,9 +141,9 @@
 				"name": "Waterfall Cave Fuel Cells",
 				"access_rules": ["$CanExplodeBombPlant"],
 				"sections": [
-					{"name": "1"},
-					{"name": "2"},
-					{"name": "3"},
+					{"name": "Center"},
+					{"name": "Left"},
+					{"name": "Right"},
 					{"name": "Back"}
 				],
 				"map_locations": [
@@ -158,9 +158,9 @@
 				"name": "South Cave Fuel Cells",
 				"access_rules": ["$CanExplodeBombPlant"],
 				"sections": [
-					{"name": "1"},
-					{"name": "2"},
-					{"name": "3"}
+					{"name": "Center"},
+					{"name": "Right"},
+					{"name": "Left"}
 				],
 				"map_locations": [
 					{
@@ -171,7 +171,7 @@
 				]
 			},
 			{
-				"name": "Shop Booster Ledge Fuel Cells",
+				"name": "Above Store Fuel Cells",
 				"access_rules": ["$HasBooster"],
 				"sections": [
 					{"name": "Left"},
@@ -186,7 +186,7 @@
 				]
 			},
 			{
-				"name": "Above Shop Magic Upgrade",
+				"name": "Magic Upgrade Above Store",
 				"sections": [{"access_rules": ["$HasBooster, $CanExplodeBombPlant"]}],
 				"map_locations": [
 					{
@@ -197,7 +197,7 @@
 				]
 			},
 			{
-				"name": "Give Queen White GrubTubs",
+				"name": "Feed Queen White GrubTubs",
 				"sections": [{"access_rules": ["@ThornTail Hollow/Queen Cave Fuel Cell/, grubtub:6"]}],
 				"map_locations": [
 					{
@@ -230,16 +230,16 @@
 				]
 			},
 			{
-				"name": "Cape Claw Entrance",
+				"name": "LightFoot Village Entrance",
 				"access_rules": ["@ThornTail Hollow/Reach Area/, staff"],
 				"sections": [{}]
 			},
 			{
-				"name": "Cape Claw Entrance Fuel Cells",
-				"access_rules": ["@ThornTail Hollow/Cape Claw Entrance/"],
+				"name": "Entrance to LightFoot Village Fuel Cells",
+				"access_rules": ["@ThornTail Hollow/LightFoot Village Entrance/"],
 				"sections": [
-					{"name": "1"},
-					{"name": "2"}
+					{"name": "Right"},
+					{"name": "Left"}
 				],
 				"map_locations": [
 					{
@@ -250,8 +250,8 @@
 				]
 			},
 			{
-				"name": "Dig Cape Claw Entrance",
-				"sections": [{"access_rules": ["@ThornTail Hollow/Cape Claw Entrance/, tricky"]}],
+				"name": "Dig in Entrance to LightFoot Village",
+				"sections": [{"access_rules": ["@ThornTail Hollow/LightFoot Village Entrance/, tricky"]}],
 				"map_locations": [
 					{
 						"map": "thorntail",
@@ -293,40 +293,40 @@
 				"name": "Ancient Well",
 				"sections": [
 					{
-						"name": "Staff Rocket Boost Upgrade",
-						"ref": "Ancient Well/Staff Rocket Boost Upgrade/"
+						"name": "Staff Booster Upgrade",
+						"ref": "Ancient Well/Staff Booster Upgrade/"
 					},
 					{
-						"name": "Well Booster Ledge Fuel Cell Left",
-						"ref": "Ancient Well/Well Booster Ledge Fuel Cells/Left"
+						"name": "Fuel Cell Left",
+						"ref": "Ancient Well/Fuel Cells/Left"
 					},
 					{
-						"name": "Well Booster Ledge Fuel Cell Right",
-						"ref": "Ancient Well/Well Booster Ledge Fuel Cells/Right"
+						"name": "Fuel Cell Right",
+						"ref": "Ancient Well/Fuel Cells/Right"
 					},
 					{
-						"name": "Dark Well Shroom 1",
-						"ref": "Dark Ancient Well/Dark Well Shroom 1/"
+						"name": "White GrubTub 1",
+						"ref": "Dark Ancient Well/White GrubTub 1/"
 					},
 					{
-						"name": "Dark Well Shroom 2",
-						"ref": "Dark Ancient Well/Dark Well Shroom 2/"
+						"name": "White GrubTub 2",
+						"ref": "Dark Ancient Well/White GrubTub 2/"
 					},
 					{
-						"name": "Dark Well Shroom 3",
-						"ref": "Dark Ancient Well/Dark Well Shroom 3/"
+						"name": "White GrubTub 3",
+						"ref": "Dark Ancient Well/White GrubTub 3/"
 					},
 					{
-						"name": "Dark Well Shroom 4",
-						"ref": "Dark Ancient Well/Dark Well Shroom 4/"
+						"name": "White GrubTub 4",
+						"ref": "Dark Ancient Well/White GrubTub 4/"
 					},
 					{
-						"name": "Dark Well Shroom 5",
-						"ref": "Dark Ancient Well/Dark Well Shrooms/5"
+						"name": "White GrubTub 5",
+						"ref": "Dark Ancient Well/White GrubTubs/5"
 					},
 					{
-						"name": "Dark Well Shroom 6",
-						"ref": "Dark Ancient Well/Dark Well Shrooms/6"
+						"name": "White GrubTub 6",
+						"ref": "Dark Ancient Well/White GrubTubs/6"
 					}
 				],
 				"map_locations": [
@@ -348,7 +348,7 @@
 				"sections": [{}]
 			},
 			{
-				"name": "Staff Rocket Boost Upgrade",
+				"name": "Staff Booster Upgrade",
 				"sections": [{"access_rules": ["$CanExplodeBombPlant"]}],
 				"map_locations": [
 					{
@@ -359,7 +359,7 @@
 				]
 			},
 			{
-				"name": "Well Booster Ledge Fuel Cells",
+				"name": "Fuel Cells",
 				"access_rules": ["$HasBooster"],
 				"sections": [
 					{"name": "Left"},
@@ -380,7 +380,7 @@
 		"access_rules": ["@Ancient Well/Reach Area/, $HasBooster, lantern, $CanExplodeBombPlant"],
 		"children": [
 			{
-				"name": "Dark Well Shroom 1",
+				"name": "White GrubTub 1",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -391,7 +391,7 @@
 				]
 			},
 			{
-				"name": "Dark Well Shroom 2",
+				"name": "White GrubTub 2",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -402,7 +402,7 @@
 				]
 			},
 			{
-				"name": "Dark Well Shroom 3",
+				"name": "White GrubTub 3",
 				"sections": [{"access_rules": ["$CanExplodeBombPlant"]}],
 				"map_locations": [
 					{
@@ -413,7 +413,7 @@
 				]
 			},
 			{
-				"name": "Dark Well Shroom 4",
+				"name": "White GrubTub 4",
 				"sections": [{"access_rules": ["$HasBooster"]}],
 				"map_locations": [
 					{
@@ -424,7 +424,7 @@
 				]
 			},
 			{
-				"name": "Dark Well Shrooms",
+				"name": "White GrubTubs",
 				"access_rules": ["@Dark Ancient Well/Dark Well Shroom 3/, @Dark Ancient Well/Dark Well Shroom 4/"],
 				"sections": [
 					{"name": "5"},

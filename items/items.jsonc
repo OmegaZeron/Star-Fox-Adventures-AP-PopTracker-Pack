@@ -162,13 +162,13 @@
 		"codes": "gate_key"
 	},
 	{
-		"name": "Bridge Cog 1",
+		"name": "Entrance Bridge Cog",
 		"type": "toggle",
 		"img": "images/items/cog.png",
 		"codes": "cog1"
 	},
 	{
-		"name": "Bridge Cog 2/3/4",
+		"name": "SharpClaw Fort Bridge Cogs",
 		"type": "consumable",
 		"img": "images/items/cog2.png",
 		"codes": "cog2",
