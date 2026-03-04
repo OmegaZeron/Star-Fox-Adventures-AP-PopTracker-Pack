@@ -8,7 +8,7 @@
 	"min_poptracker_version": "0.32.0",
 	"variants": {
 		"standard": {
-			"display_name": "AP Autotracker v0.1.0",
+			"display_name": "Map Tracker",
 			"flags": ["ap"]
 		}
 	},
