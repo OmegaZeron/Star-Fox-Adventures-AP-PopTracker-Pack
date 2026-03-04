@@ -8,7 +8,7 @@
 	"min_poptracker_version": "0.32.0",
 	"variants": {
 		"standard": {
-			"display_name": "Map Tracker",
+			"display_name": "Map Tracker v0.1.0",
 			"flags": ["ap"]
 		}
 	},
