@@ -132,7 +132,7 @@
 				]
 			},
 			{
-				"name": "Dig Cave Near Entrance Fuel Cells",
+				"name": "Dig Cave near Entrance Fuel Cells",
 				"sections": [
 					{"name": "Left"},
 					{"name": "Right (Also Water Platform Right)", "ref": "SnowHorn Wastes Entrance/Water Platform Fuel Cells/Right (Also Dig Cave Right)"} // vanilla links these on accident
@@ -177,7 +177,7 @@
 		"access_rules": ["@SnowHorn Wastes Entrance/Reach Area/, gate_key"],
 		"children": [
 			{
-				"name": "Rescue Gate Keeper",
+				"name": "Rescue GateKeeper",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -188,7 +188,7 @@
 				]
 			},
 			{
-				"name": "GateKeeper Blast Tree Fuel Cells",
+				"name": "Blast Tree past Gate Fuel Cells",
 				"sections": [
 					{"name": "Left"},
 					{"name": "Right"}
@@ -202,7 +202,7 @@
 				]
 			},
 			{
-				"name": "River Cheat Well Fuel Cell",
+				"name": "River past Gate Cheat Well Fuel Cell",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -213,7 +213,7 @@
 				]
 			},
 			{
-				"name": "GateKeeper River Ledge Fuel Cells",
+				"name": "River Ledge past Gate Fuel Cells",
 				"sections": [
 					{"name": "Center"},
 					{"name": "Right (Use Blaster in Nearby Cave)", "access_rules": ["$HasBlaster"]},
@@ -228,7 +228,7 @@
 				]
 			},
 			{
-				"name": "Dig in GateKeeper Cave",
+				"name": "Dig in Cave past Gate",
 				"sections": [{}],
 				"map_locations": [
 					{

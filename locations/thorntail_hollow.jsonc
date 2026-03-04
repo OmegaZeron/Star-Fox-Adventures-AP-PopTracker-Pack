@@ -186,7 +186,7 @@
 				]
 			},
 			{
-				"name": "Magic Upgrade Above Store",
+				"name": "Magic Upgrade above Store",
 				"sections": [{"access_rules": ["$HasBooster, $CanExplodeBombPlant"]}],
 				"map_locations": [
 					{
@@ -208,7 +208,7 @@
 				]
 			},
 			{
-				"name": "Dig Near Shop",
+				"name": "Dig near Store",
 				"sections": [{"access_rules": ["tricky"]}],
 				"map_locations": [
 					{
@@ -219,7 +219,7 @@
 				]
 			},
 			{
-				"name": "Dig Near Queen Cave",
+				"name": "Dig near Queen Cave",
 				"sections": [{"access_rules": ["tricky"]}],
 				"map_locations": [
 					{
