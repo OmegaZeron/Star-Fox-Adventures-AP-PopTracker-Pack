@@ -1,6 +1,12 @@
 {
     "versions": [
-        {
+		{
+			"package_version": "0.1.1",
+			"download_url": "https://github.com/OmegaZeron/Star-Fox-Adventures-AP-PopTracker-Pack/releases/download/0.1.1/sfa_ap.zip",
+			"sha256": "81feb31d711f5e9228a0ae76b188232a1af41a76aa676e5035d50a36bb370fa0",
+			"changelog": ["Fix blast tree rule, SHW past gate autotracking"]
+		},
+		{
 			"package_version": "0.1.0",
 			"download_url": "https://github.com/OmegaZeron/Star-Fox-Adventures-AP-PopTracker-Pack/releases/download/0.1.0/sfa_ap.zip",
 			"sha256": "04b63be5d5e72726a23c8be4ddee8fb803fe56ab70c7fba5646fb1202df901d9",
