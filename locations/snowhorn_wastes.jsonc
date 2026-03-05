@@ -189,6 +189,7 @@
 			},
 			{
 				"name": "Blast Tree past Gate Fuel Cells",
+				"access_rules": ["$HasBlaster"],
 				"sections": [
 					{"name": "Left"},
 					{"name": "Right"}
