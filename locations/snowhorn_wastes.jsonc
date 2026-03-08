@@ -147,6 +147,7 @@
 			},
 			{
 				"name": "Path to TTH Booster Fuel Cells",
+				"access_rules": ["$HasBlaster, rocket_boost"],
 				"sections": [
 					{"name": "Left"},
 					{"name": "Right"}
