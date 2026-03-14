@@ -271,7 +271,7 @@
 	},
 	{
 		"name": "Volcano Force Point Temple Entrance",
-		"access_rules": ["@Moon Mountain Pass Past Gate/Reach Area/, $CanFight, volcano_spellstone"],
+		"access_rules": ["@Moon Mountain Pass Past Gate/Reach Area/, volcano_spellstone"],
 		"children": [
 			{
 				"name": "Reach Area",

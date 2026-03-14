@@ -1,22 +1,74 @@
+---@param item string
+---@param amount string|number?
+---@return boolean
 function Has(item, amount)
-	if (amount == nil) then
-		amount = 1
-	end
+	amount = tonumber(amount) or 1
 	local count = Tracker:ProviderCountForCode(item)
-	amount = tonumber(amount)
-	return amount and count >= amount
+	return count >= amount
 end
 
+---@param result boolean
 ---@return accessibilityLevel
-function CanFight()
-	if Has(Staff) then
+function BoolToAccess(result)
+	if result then
 		return AccessibilityLevel.Normal
+	else
+		return AccessibilityLevel.None
 	end
-	if HasBlaster() then
-		return AccessibilityLevel.SequenceBreak
-	end
-	return AccessibilityLevel.None
 end
+
+---@param ... boolean|string|function|accessibilityLevel
+---@return accessibilityLevel
+function All(...)
+	local args = { ... }
+	local min = AccessibilityLevel.Normal
+	for _, access in ipairs(args) do
+		if type(access) == "function" then
+			access = access()
+		elseif type(access) == "string" then
+			access = BoolToAccess(Has(access))
+		end
+		if type(access) == "boolean" then
+			access = BoolToAccess(access)
+		end
+
+		if access < min then
+			if access == AccessibilityLevel.None then
+				return AccessibilityLevel.None
+			else
+				min = access
+			end
+		end
+	end
+	return min
+end
+
+---@param ... boolean|string|function|accessibilityLevel
+---@return accessibilityLevel
+function Any(...)
+	local args = { ... }
+	local max = AccessibilityLevel.None
+	for _, access in ipairs(args) do
+		if type(access) == "function" then
+			access = access()
+		elseif type(access) == "string" then
+			access = BoolToAccess(Has(access))
+		end
+		if type(access) == "boolean" then
+			access = BoolToAccess(access)
+		end
+
+		if access > max then
+			if access == AccessibilityLevel.Normal then
+				return AccessibilityLevel.Normal
+			else
+				max = access
+			end
+		end
+	end
+	return max
+end
+
 function HasBlaster()
 	return Has(Staff) and Has(FireBlaster)
 end
@@ -34,19 +86,29 @@ function CanGroundQuake()
 end
 
 ---@param price number|string?
----@return boolean
+---@return accessibilityLevel
 function CanBuy(price)
 	price = tonumber(price)
 	if price == nil then
-		return false
+		return AccessibilityLevel.None
 	end
 
-	if price <= 10 then
-		return true
-	elseif price <= 50 then
-		return Has(ScarabBag1)
-	elseif price <= 100 then
-		return Has(ScarabBag2)
-	end
-	return Has(ScarabBag3)
+	return Any(
+		All(
+			price <= 10,
+			Any(
+				ScarabBag1, -- for QoL
+				AccessibilityLevel.SequenceBreak
+			)
+		),
+		All(
+			price <= 50,
+			ScarabBag1
+		),
+		All(
+			price <= 100,
+			ScarabBag2
+		),
+		ScarabBag3
+	)
 end

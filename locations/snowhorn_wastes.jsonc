@@ -10,10 +10,7 @@
 			{
 				"name": "Ice Mountain",
 				"sections": [
-					{
-						"name": "Cheat Well Fuel Cell",
-						"access_rules": ["$CanExplodeBombPlant"]
-					},
+					{"name": "Cheat Well Fuel Cell"}, // pick up explosive barrel
 					{"name": "Race Cave Fuel Cell Front"},
 					{"name": "Race Cave Fuel Cell Back"}
 				],
@@ -111,7 +108,7 @@
 	},
 	{
 		"name": "SnowHorn Wastes Entrance",
-		"access_rules": ["@SnowHorn Wastes Water Spout/Reach Area/"],
+		"access_rules": ["@SnowHorn Wastes Water Spout/Reach Area/"], // requires alpine_root_shw:2 when SW isn't open
 		"children": [
 			{
 				"name": "Reach Area",
@@ -135,7 +132,10 @@
 				"name": "Dig Cave near Entrance Fuel Cells",
 				"sections": [
 					{"name": "Left"},
-					{"name": "Right (Also Water Platform Right)", "ref": "SnowHorn Wastes Entrance/Water Platform Fuel Cells/Right (Also Dig Cave Right)"} // vanilla links these on accident
+					{
+						"name": "Right (Also Water Platform Right)",
+						"ref": "SnowHorn Wastes Entrance/Water Platform Fuel Cells/Right (Also Dig Cave Right)" // vanilla links these on accident
+					}
 				],
 				"map_locations": [
 					{
@@ -175,7 +175,7 @@
 	},
 	{
 		"name": "SnowHorn Wastes Behind Gate",
-		"access_rules": ["@SnowHorn Wastes Entrance/Reach Area/, gate_key"],
+		"access_rules": ["@SnowHorn Wastes Entrance/Reach Area/, [gate_key]"], // shield hover
 		"children": [
 			{
 				"name": "Rescue GateKeeper",

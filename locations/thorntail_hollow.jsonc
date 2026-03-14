@@ -22,71 +22,71 @@
 				"name": "ThornTail Store",
 				"visibility_rules": ["shop_enabled"],
 				"sections": [
-					{"name": "Rock Candy", "access_rules": ["$CanBuy|10"]},
-					{"name": "Hi-Tech Display Device", "access_rules": ["$CanBuy|20"]},
-					{"name": "Tricky Ball", "access_rules": ["$CanBuy|15"]},
-					{"name": "BafomDad Holder", "access_rules": ["$CanBuy|20"]},
-					{"name": "FireFly Lantern", "access_rules": ["$CanBuy|20"]},
-					{"name": "SnowHorn Artifact", "access_rules": ["$CanBuy|130"]},
+					{"name": "Rock Candy", "access_rules": ["^$CanBuy|10"]},
+					{"name": "Hi-Tech Display Device", "access_rules": ["^$CanBuy|20"]},
+					{"name": "Tricky Ball", "access_rules": ["^$CanBuy|15"]},
+					{"name": "BafomDad Holder", "access_rules": ["^$CanBuy|20"]},
+					{"name": "FireFly Lantern", "access_rules": ["^$CanBuy|20"]},
+					{"name": "SnowHorn Artifact", "access_rules": ["^$CanBuy|130"]},
 					{
 						"name": "Map Cape Claw",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map Ocean Force Point",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|10"]
+						"access_rules": ["^$CanBuy|10"]
 					},
 					{
 						"name": "Map Krazoa Palace",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map Dragon Rock",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map ThornTail Hollow",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map Moon Pass",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map LightFoot Village",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map DarkIce Mines",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map CloudRunner Fortress",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map Walled City",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map SnowHorn Wastes",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|5"]
+						"access_rules": ["^$CanBuy|5"]
 					},
 					{
 						"name": "Map Volcano Force Point",
 						"visibility_rules": ["shop_maps"],
-						"access_rules": ["$CanBuy|10"]
+						"access_rules": ["^$CanBuy|10"]
 					}
 				],
 				"map_locations": [
