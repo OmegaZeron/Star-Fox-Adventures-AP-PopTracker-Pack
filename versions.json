@@ -1,6 +1,12 @@
 {
     "versions": [
 		{
+			"package_version": "0.1.2",
+			"download_url": "https://github.com/OmegaZeron/Star-Fox-Adventures-AP-PopTracker-Pack/releases/download/0.1.2/sfa_ap.zip",
+			"sha256": "a15133dc831d3acd5c106d6b4389e8bae024fae783e62b80f4d01b7f3f7a60f7",
+			"changelog": ["Fix Path to TTH rule, logic update, added OoL rules"]
+		},
+		{
 			"package_version": "0.1.1",
 			"download_url": "https://github.com/OmegaZeron/Star-Fox-Adventures-AP-PopTracker-Pack/releases/download/0.1.1/sfa_ap.zip",
 			"sha256": "81feb31d711f5e9228a0ae76b188232a1af41a76aa676e5035d50a36bb370fa0",
