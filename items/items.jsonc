@@ -107,7 +107,7 @@
 		"allow_disabled": false,
 		"stages": [
 			{
-				"name": "Small Scarab Bag",
+				"name": "No Scarab Bag",
 				"img": "images/items/scarab.png",
 				"codes": "scarab_bag"
 			},
