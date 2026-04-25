@@ -80,7 +80,7 @@ const itemData = [
 		new Stage("Medium Scarab Bag", vars.Inventory.MediumScarabBag, [vars.Inventory.MediumScarabBag]),
 		new Stage("Large Scarab Bag", vars.Inventory.LargeScarabBag, [vars.Inventory.LargeScarabBag]),
 	], false),
-	generic("Bomb Plant", "static", vars.Inventory.BombPlant, [vars.Inventory.BombPlant]),
+	generic("Bomb Plant", "toggle", vars.Inventory.BombPlant, [vars.Inventory.BombPlant]),
 	consumable("Alpine Root (SnowHorn Wastes)", 2, [vars.Inventory.AlpineSHW]),
 	consumable("Alpine Root (DarkIce Mines)", 2, [vars.Inventory.AlpineDIM]),
 	consumable("White GrubTub Fungus", 6, [vars.Inventory.WhiteGrubTub]),

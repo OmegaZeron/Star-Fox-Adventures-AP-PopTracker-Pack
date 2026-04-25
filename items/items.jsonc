@@ -101,7 +101,7 @@
 	},
 	{
 		"name": "Bomb Plant",
-		"type": "static",
+		"type": "toggle",
 		"img": "images/items/bombPlant.png",
 		"codes": "bombPlant"
 	},
