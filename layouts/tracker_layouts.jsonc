@@ -52,21 +52,21 @@
 									"type": "map",
 									"maps": ["darkice"]
 								}
+							},
+							{
+								"title": "Moon Mountain Pass",
+								"content": {
+									"type": "map",
+									"maps": ["moon"]
+								}
+							},
+							{
+								"title": "Volcano Force Point Temple",
+								"content": {
+									"type": "map",
+									"maps": ["volcano"]
+								}
 							}
-							// {
-							// 	"title": "Moon Mountain Pass",
-							// 	"content": {
-							// 		"type": "map",
-							// 		"maps": ["moon"]
-							// 	}
-							// },
-							// {
-							// 	"title": "Volcano Force Point Temple",
-							// 	"content": {
-							// 		"type": "map",
-							// 		"maps": ["volcano"]
-							// 	}
-							// },
 							// {
 							// 	"title": "LightFoot Village",
 							// 	"content": {

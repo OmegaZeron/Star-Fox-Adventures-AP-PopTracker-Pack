@@ -1,27 +1,48 @@
 [
 	{
-		"name": "Shop Setting",
+		"name": "Store Setting",
 		"type": "progressive",
 		"allow_disabled": false,
+		"loop": true,
 		"stages": [
 			{
-				"name": "No Maps in Shop",
-				"codes": "shop_locations, shop_enabled",
-				"img": "images/settings/shop_no_maps.png",
+				"name": "No Maps in Store",
+				"img": "images/settings/shopNoMaps.png",
+				"codes": "shopSetting, shopEnabled",
 				"inherit_codes": false
 			},
 			{
-				"name": "All Items in Shop",
-				"codes": "shop_locations, shop_enabled, shop_maps",
-				"img": "images/settings/shop_enabled.png",
+				"name": "Store Enabled",
+				"img": "images/settings/shopEnabled.png",
+				"codes": "shopSetting, shopEnabled, shopMaps",
 				"inherit_codes": false
 			},
 			{
-				"name": "Shop Disabled",
-				"codes": "shop_locations, shop_disabled",
-				"img": "images/settings/shop_disabled.png",
+				"name": "Store Disabled",
+				"img": "images/settings/shopDisabled.png",
+				"codes": "shopSetting, shopDisabled",
+				"inherit_codes": false
+			}
+		]
+	},
+	{
+		"name": "Plant Shuffle",
+		"type": "progressive",
+		"allow_disabled": false,
+		"loop": true,
+		"stages": [
+			{
+				"name": "Plant Shuffle Enabled",
+				"img": "images/settings/plantShuffleOn.png",
+				"codes": "plantShuffle, plantShuffleOn",
+				"inherit_codes": false
+			},
+			{
+				"name": "Plant Shuffle Disabled",
+				"img": "images/settings/plantShuffleOff.png",
+				"codes": "plantShuffle, plantShuffleOff",
 				"inherit_codes": false
 			}
 		]
 	}
-]	
+]

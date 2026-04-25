@@ -21,7 +21,7 @@ end
 ---@return accessibilityLevel
 function All(...)
 	local args = { ... }
-	local min = AccessibilityLevel.Normal
+	local min = AccessibilityLevel.Normal ---@cast min accessibilityLevel
 	for _, access in ipairs(args) do
 		if type(access) == "function" then
 			access = access()
@@ -47,7 +47,7 @@ end
 ---@return accessibilityLevel
 function Any(...)
 	local args = { ... }
-	local max = AccessibilityLevel.None
+	local max = AccessibilityLevel.None ---@cast max accessibilityLevel
 	for _, access in ipairs(args) do
 		if type(access) == "function" then
 			access = access()
@@ -77,12 +77,39 @@ function HasBooster()
 	return Has(Staff) and Has(RocketBoost)
 end
 
-function CanExplodeBombPlant()
-	return HasBlaster() and Has(BombPlant)
+function HasGroundQuake()
+	return Has(Staff) and Has(GroundQuake)
+end
+function HasIceBlast()
+	return Has(Staff) and Has(FreezeBlast)
 end
 
-function CanGroundQuake()
-	return Has(Staff) and Has(GroundQuake)
+function CanExplodeBombPlant()
+	return All(
+		Any(
+			FireBlaster,
+			GroundQuake
+		),
+		Any(
+			PlantShuffleOff,
+			BombPlant
+		)
+	)
+end
+function CanGrowMoonSeed()
+	return All(
+		Flame,
+		Any(
+			All(
+				PlantShuffleOff,
+				GroundQuake
+			),
+			All(
+				PlantShuffleOn,
+				MoonSeed
+			)
+		)
+	)
 end
 
 ---@param price number|string?
@@ -97,18 +124,18 @@ function CanBuy(price)
 		All(
 			price <= 10,
 			Any(
-				ScarabBag1, -- for QoL
+				SmallScarabBag, -- for QoL
 				AccessibilityLevel.SequenceBreak
 			)
 		),
 		All(
 			price <= 50,
-			ScarabBag1
+			SmallScarabBag
 		),
 		All(
 			price <= 100,
-			ScarabBag2
+			MediumScarabBag
 		),
-		ScarabBag3
+		LargeScarabBag
 	)
 end

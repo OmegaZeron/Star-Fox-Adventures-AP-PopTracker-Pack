@@ -1,4 +1,4 @@
-function dump(o, depth)
+function DumpTable(o, depth)
 	if depth == nil then
 		depth = 0
 	end
@@ -10,7 +10,7 @@ function dump(o, depth)
 			if type(k) ~= 'number' then
 				k = '"' .. k .. '"'
 			end
-			s = s .. tabs2 .. '[' .. k .. '] = ' .. dump(v, depth + 1) .. ',\n'
+			s = s .. tabs2 .. '[' .. k .. '] = ' .. DumpTable(v, depth + 1) .. ',\n'
 		end
 		return s .. tabs .. '}'
 	else

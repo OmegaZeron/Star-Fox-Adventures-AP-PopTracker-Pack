@@ -1,28 +1,27 @@
 [
-	// staff
 	{
 		"name": "Staff",
 		"type": "static",
 		"img": "images/items/staff.png",
-		"codes": "staff, weapon"
+		"codes": "staff"
 	},
 	{
 		"name": "Fire Blaster",
 		"type": "toggle",
-		"img": "images/items/fire_blaster.png",
-		"codes": "fire_blaster, weapon, ranged_weapon"
+		"img": "images/items/fireBlaster.png",
+		"codes": "fireBlaster"
 	},
 	{
-		"name": "Staff Rocket Boost",
+		"name": "Rocket Boost",
 		"type": "toggle",
-		"img": "images/items/rocket_boost.png",
-		"codes": "rocket_boost"
+		"img": "images/items/rocketBoost.png",
+		"codes": "rocketBoost"
 	},
 	{
-		"name": "Ice Blaster",
+		"name": "Freeze Blast",
 		"type": "toggle",
-		"img": "images/items/ice_blaster.png",
-		"codes": "ice_blaster, weapon, ranged_weapon"
+		"img": "images/items/freezeBlast.png",
+		"codes": "freezeBlast"
 	},
 	{
 		"name": "Ground Quake",
@@ -30,13 +29,13 @@
 		"stages": [
 			{
 				"name": "Ground Quake",
-				"img": "images/items/ground_quake.png",
-				"codes": "ground_quake"
+				"img": "images/items/groundQuake.png",
+				"codes": "groundQuake"
 			},
 			{
-				"name": "Super Ground Quake",
-				"img": "images/items/super_quake.png",
-				"codes": "super_quake"
+				"name": "Super Quake",
+				"img": "images/items/superQuake.png",
+				"codes": "superQuake"
 			}
 		]
 	},
@@ -47,186 +46,139 @@
 		"codes": "disguise"
 	},
 	{
-		"name": "Portal Opener",
-		"type": "toggle",
-		"img": "images/items/portal.png",
-		"codes": "portal"
-	},
-	// tricky
-	{
 		"name": "Tricky",
 		"type": "progressive",
 		"stages": [
 			{
-				"name": "Tricky (Dig, Stay)",
+				"name": "Tricky (Find, Stay)",
 				"img": "images/items/find.png",
-				"codes": "tricky, dig, stay"
+				"codes": "tricky, find, stay"
 			},
 			{
-				"name": "Tricky (Dig, Stay, Flame)",
+				"name": "Tricky (Find, Stay, Flame)",
 				"img": "images/items/flame.png",
 				"codes": "flame"
 			}
 		]
 	},
-	// planet
 	{
 		"name": "Dinosaur Planet Access",
 		"type": "toggle",
-		"img": "images/items/dinosaur_planet.png",
-		"codes": "dinosaur_planet"
+		"img": "images/items/dinoPlanetAccess.png",
+		"codes": "dinoPlanetAccess"
 	},
 	{
 		"name": "DarkIce Mines Access",
 		"type": "toggle",
-		"img": "images/items/darkice_mines.png",
-		"codes": "darkice_mines"
+		"img": "images/items/darkIceAccess.png",
+		"codes": "darkIceAccess"
 	},
-	// {
-	// 	"name": "CloudRunner Fortress Access",
-	// 	"type": "toggle",
-	// 	"img": "images/items/cloudrunner_fortress.png",
-	// 	"codes": "cloudrunner_fortress"
-	// },
-	// {
-	// 	"name": "Walled City Access",
-	// 	"type": "toggle",
-	// 	"img": "images/items/walled_city.png",
-	// 	"codes": "walled_city"
-	// },
-	// {
-	// 	"name": "Dragon Rock Access",
-	// 	"type": "toggle",
-	// 	"img": "images/items/dragon_rock.png",
-	// 	"codes": "dragon_rock"
-	// },
-	// inventory
 	{
 		"name": "Scarab Bag",
 		"type": "progressive",
-		"allow_disabled": false,
 		"stages": [
 			{
-				"name": "No Scarab Bag",
-				"img": "images/items/scarab.png",
-				"codes": "scarab_bag"
+				"name": "Pockets",
+				"img": "images/items/scarabPockets.png",
+				"codes": "scarabPockets"
 			},
 			{
 				"name": "Small Scarab Bag",
-				"img": "images/items/scarab_bag_1.png",
-				"codes": "scarab_bag_1"
+				"img": "images/items/scarabSmall.png",
+				"codes": "scarabSmall"
 			},
 			{
 				"name": "Medium Scarab Bag",
-				"img": "images/items/scarab_bag_2.png",
-				"codes": "scarab_bag_2"
+				"img": "images/items/scarabMedium.png",
+				"codes": "scarabMedium"
 			},
 			{
 				"name": "Large Scarab Bag",
-				"img": "images/items/scarab_bag_3.png",
-				"codes": "scarab_bag_3"
+				"img": "images/items/scarabLarge.png",
+				"codes": "scarabLarge"
 			}
 		]
 	},
 	{
 		"name": "Bomb Plant",
 		"type": "static",
-		"img": "images/items/bomb_plant.png",
-		"codes": "bomb_plant"
+		"img": "images/items/bombPlant.png",
+		"codes": "bombPlant"
 	},
 	{
 		"name": "Alpine Root (SnowHorn Wastes)",
 		"type": "consumable",
-		"img": "images/items/alpine_root_shw.png",
+		"img": "images/items/alpineSHW.png",
 		"max_quantity": 2,
-		"codes": "alpine_root_shw"
+		"codes": "alpineSHW"
 	},
 	{
 		"name": "Alpine Root (DarkIce Mines)",
 		"type": "consumable",
-		"img": "images/items/alpine_root_dim.png",
+		"img": "images/items/alpineDIM.png",
 		"max_quantity": 2,
-		"codes": "alpine_root_dim"
+		"codes": "alpineDIM"
 	},
 	{
 		"name": "White GrubTub Fungus",
 		"type": "consumable",
-		"img": "images/items/grubtub.png",
+		"img": "images/items/whiteGrubTub.png",
 		"max_quantity": 6,
-		"codes": "grubtub"
+		"codes": "whiteGrubTub"
 	},
 	{
 		"name": "SharpClaw Prison Key",
 		"type": "toggle",
-		"img": "images/items/gate_key.png",
-		"codes": "gate_key"
+		"img": "images/items/gateKey.png",
+		"codes": "gateKey"
 	},
 	{
 		"name": "Entrance Bridge Cog",
 		"type": "toggle",
-		"img": "images/items/cog.png",
-		"codes": "cog1"
+		"img": "images/items/entranceCog.png",
+		"codes": "entranceCog"
 	},
 	{
 		"name": "SharpClaw Fort Bridge Cogs",
 		"type": "consumable",
-		"img": "images/items/cog2.png",
-		"codes": "cog2",
-		"max_quantity": 3
+		"img": "images/items/sharpClawCogs.png",
+		"max_quantity": 3,
+		"codes": "sharpClawCogs"
 	},
 	{
 		"name": "Dinosaur Horn",
 		"type": "toggle",
-		"img": "images/items/dinosaur_horn.png",
-		"codes": "dinosaur_horn"
+		"img": "images/items/dinosaurHorn.png",
+		"codes": "dinosaurHorn"
 	},
 	{
-		"name": "Silver Key",
+		"name": "Fire Spellstone 1",
 		"type": "toggle",
-		"img": "images/items/shackle_silver_key.png",
-		"codes": "silver_key"
+		"img": "images/items/fireSpellstone1.png",
+		"codes": "fireSpellstone1"
+	},
+	{
+		"name": "Moon Pass Key",
+		"type": "toggle",
+		"img": "images/items/moonPassKey.png",
+		"codes": "moonPassKey"
+	},
+	{
+		"name": "Moon Seed",
+		"type": "toggle",
+		"img": "images/items/moonSeed.png",
+		"codes": "moonSeed"
 	},
 	{
 		"name": "Rock Candy",
 		"type": "toggle",
-		"img": "images/items/rock_candy.png",
-		"codes": "rock_candy"
+		"img": "images/items/rockCandy.png",
+		"codes": "rockCandy"
 	},
 	{
 		"name": "FireFly Lantern",
 		"type": "toggle",
-		"img": "images/items/lantern.png",
-		"codes": "lantern"
-	},
-	{
-		"name": "SnowHorn Artifact",
-		"type": "toggle",
-		"img": "images/items/lantern.png",
-		"codes": "snowhorn_artifact"
+		"img": "images/items/fireFlyLantern.png",
+		"codes": "fireFlyLantern"
 	}
-	// not created yet
-	// {
-	// 	"name": "Moon Pass Key",
-	// 	"type": "toggle",
-	// 	"img": "images/items/moon_key.png",
-	// 	"codes": "moon_key"
-	// },
-	// {
-	// 	"name": "Volcano SpellStone",
-	// 	"type": "toggle",
-	// 	"img": "images/items/lantern.png",
-	// 	"codes": "volcano_spellstone"
-	// },
-	// {
-	// 	"name": "MoonSeed",
-	// 	"type": "toggle",
-	// 	"img": "images/items/lantern.png",
-	// 	"codes": "moonseed"
-	// },
-	// {
-	// 	"name": "Gold Key",
-	// 	"type": "toggle",
-	// 	"img": "images/items/lantern.png",
-	// 	"codes": "gold_key"
-	// },
-]	
+]

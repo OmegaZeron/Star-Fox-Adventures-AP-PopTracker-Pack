@@ -109,7 +109,7 @@ function OnClear(slotData)
 	end
 
 	for k, v in pairs(slotData) do
-		local opt = Tracker:FindObjectForCode(k)
+		local opt = Tracker:FindObjectForCode(SlotDataKeyMapping(k))
 		if opt and SlotDataMapping[k] then
 			opt.CurrentStage = SlotDataMapping[k][v]
 		end

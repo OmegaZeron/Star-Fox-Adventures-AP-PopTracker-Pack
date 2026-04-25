@@ -1,4 +1,3 @@
-Tracker:AddLocations("locations/world_map.jsonc")
 Tracker:AddLocations("locations/thorntail_hollow.jsonc")
 Tracker:AddLocations("locations/snowhorn_wastes.jsonc")
 Tracker:AddLocations("locations/lightfoot_village.jsonc")

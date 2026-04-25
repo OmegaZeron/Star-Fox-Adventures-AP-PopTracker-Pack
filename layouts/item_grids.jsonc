@@ -5,13 +5,13 @@
 		"item_size": "48, 36",
 		"item_margin": 2,
 		"rows": [
-			["fire_blaster",	"tricky",			"gate_key"],
-			["rocket_boost",	"bomb_plant",		"cog1"],
-			["?ground_quake",	"alpine_root_shw",	"cog2"],
-			["?ice_blaster",	"lantern",			"dinosaur_horn"],
-			["?disguise",		"grubtub",			""],
-			["?portal",			"rock_candy",		""],
-			["scarab_bag",		"alpine_root_dim",	""]
+			["fireBlaster", "find", "gateKey"],
+			["rocketBoost", "bombPlant", "entranceCog"],
+			["groundQuake", "alpineSHW", "sharpClawCogs"],
+			["freezeBlast", "fireFlyLantern", "dinosaurHorn"],
+			["disguise", "whiteGrubTub", "moonPassKey"],
+			["?portal", "rockCandy", ""],
+			["scarabPockets", "alpineDIM", ""]
 		]
 	},
 	"planets": {
@@ -20,7 +20,7 @@
 		"item_size": "48, 36",
 		"item_margin": 2,
 		"rows": [
-			["dinosaur_planet", "darkice_mines"]
+			["dinoPlanetAccess", "darkIceAccess"]
 		]
 	},
 	"item_grid": {
@@ -49,7 +49,7 @@
 	"settings": {
 		"type": "itemgrid",
 		"rows": [
-			["shop_locations"]
+			["shopSetting", "plantShuffle"]
 		]
-	}	
+	}
 }
