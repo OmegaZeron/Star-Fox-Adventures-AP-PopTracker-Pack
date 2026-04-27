@@ -149,15 +149,19 @@
 				]
 			},
 			{
-				"name": "Dig Cave near Entrance Fuel Cells",
+				"name": "Dig Cave near Entrance",
 				"sections": [
 					{
-						"name": "Left",
+						"name": "Fuel Cell Left",
 						"access_rules": ["tricky"]
 					},
 					{
-						"name": "Right (Also Water Platform Right)",
+						"name": "Fuel Cell Right (Also Water Platform Right)",
 						"ref": "SnowHorn Wastes Entrance/Water Platform Fuel Cells/Right (Also Dig Cave Right)"
+					},
+					{
+						"name": "BafomDad",
+						"access_rules": ["tricky"]
 					}
 				],
 				"map_locations": [
@@ -219,14 +223,18 @@
 				]
 			},
 			{
-				"name": "Blast Tree past Gate Fuel Cells",
+				"name": "Blast Tree past Gate",
 				"sections": [
 					{
-						"name": "Left",
+						"name": "Fuel Cell Left",
 						"access_rules": ["fireBlaster"]
 					},
 					{
-						"name": "Right",
+						"name": "Fuel Cell Right",
+						"access_rules": ["fireBlaster"]
+					},
+					{
+						"name": "BafomDad",
 						"access_rules": ["fireBlaster"]
 					}
 				],

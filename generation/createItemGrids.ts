@@ -11,9 +11,9 @@ export default function createItemGrids() {
 				[vars.Staff.FireBlaster, vars.Tricky.Find,	vars.Inventory.GateKey],
 				[vars.Staff.RocketBoost, vars.Inventory.BombPlant, vars.Inventory.EntranceCog],
 				[vars.Staff.GroundQuake, vars.Inventory.AlpineSHW, vars.Inventory.SharpClawCogs],
-				[vars.Staff.FreezeBlast, vars.Shop.FireFlyLantern, vars.Inventory.DinosaurHorn],
+				[vars.Staff.FreezeBlast, vars.Inventory.FireFlyLantern, vars.Inventory.DinosaurHorn],
 				[vars.Staff.Disguise, vars.Inventory.WhiteGrubTub, vars.Inventory.MoonPassKey],
-				["?portal", vars.Shop.RockCandy, ""],
+				["?portal", vars.Inventory.RockCandy, ""],
 				[vars.Inventory.ScarabBag, vars.Inventory.AlpineDIM, ""]
 			]
 		},

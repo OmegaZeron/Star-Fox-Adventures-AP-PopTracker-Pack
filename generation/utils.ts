@@ -75,11 +75,10 @@ export const vars = Object.freeze({
 		MoonPassKey: "moonPassKey",
 		MoonSeed: "moonSeed",
 		KrazoaSpirit2: "krazoa2",
-	},
-	Shop: {
 		RockCandy: "rockCandy",
 		FireFlyLantern: "fireFlyLantern",
-		// SnowHornArtifact: "snowHornArtifact"
+		// SnowHornArtifact: "snowHornArtifact",
+		HiTechDisplay: "hiTechDisplay"
 	},
 	Settings: {
 		ShopSetting: "shopSetting",
@@ -98,7 +97,6 @@ export const varDefinitions = Object.freeze({
 	Tricky: vars.Tricky,
 	Planet: vars.Planet,
 	Inventory: vars.Inventory,
-	Shop: vars.Shop,
 	Settings: vars.Settings
 })
 
@@ -125,7 +123,7 @@ export class Rule {
 	children?: Rule[];
 	rule!: string;
 }
-export class Location {
+export class LocationRule {
 	id!: number;
 	name!: string;
 	rules!: Rule

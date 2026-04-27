@@ -93,9 +93,9 @@ const itemData = [
 	generic("Moon Pass Key", "toggle", vars.Inventory.MoonPassKey, [vars.Inventory.MoonPassKey]),
 	generic("Moon Seed", "toggle", vars.Inventory.MoonSeed, [vars.Inventory.MoonSeed]),
 	// shop
-	generic("Rock Candy", "toggle", vars.Shop.RockCandy, [vars.Shop.RockCandy]),
-	generic("FireFly Lantern", "toggle", vars.Shop.FireFlyLantern, [vars.Shop.FireFlyLantern]),
-	// generic("SnowHorn Artifact", "toggle", vars.Shop.SnowHornArtifact, [vars.Shop.SnowHornArtifact]),
+	generic("Rock Candy", "toggle", vars.Inventory.RockCandy, [vars.Inventory.RockCandy]),
+	generic("FireFly Lantern", "toggle", vars.Inventory.FireFlyLantern, [vars.Inventory.FireFlyLantern]),
+	// generic("SnowHorn Artifact", "toggle", vars.Inventory.SnowHornArtifact, [vars.Inventory.SnowHornArtifact]),
 ]
 const settingData = [
 	progressive("Store Setting", [

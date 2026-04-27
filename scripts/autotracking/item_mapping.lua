@@ -3,6 +3,8 @@ ITEM_MAPPING = {
 	[1] = {Staff, "toggle"},
 	[2] = {FireBlaster, "toggle"},
 	[3] = {RocketBoost, "toggle"},
+	[4] = {FreezeBlast, "toggle"},
+	[5] = {GroundQuake, "toggle"},
 	-- tricky
 	[10] = {Tricky, "progressive"},
 	-- planet
@@ -24,10 +26,12 @@ ITEM_MAPPING = {
 	-- [111] = {SilverKey, "toggle"},
 	-- [112] = {DimGoldKey, "toggle"},
 	[113] = {FireSpellstone1, "toggle"},
-	[114] = {MoonSeed, "toggle"},
-	[115] = {KrazoaSpirit2, "toggle"},
+	[114] = {MoonPassKey, "toggle"},
+	[115] = {MoonSeed, "toggle"},
+	[116] = {KrazoaSpirit2, "toggle"},
 	-- shop
 	[200] = {RockCandy, "toggle"},
+	-- [201] = {HiTechDisplay, "toggle"},
 	[204] = {FireFlyLantern, "toggle"},
 	-- [205] = {SnowhornArtifact, "toggle"},
 }

@@ -260,7 +260,7 @@
 				]
 			},
 			{
-				"name": "Dig near Store",
+				"name": "Dig BafomDad near Store",
 				"sections": [
 					{"access_rules": ["tricky"]}
 				],
@@ -273,7 +273,7 @@
 				]
 			},
 			{
-				"name": "Dig near Queen Cave",
+				"name": "Dig BafomDad near Queen Cave",
 				"sections": [
 					{"access_rules": ["tricky"]}
 				],
@@ -311,7 +311,7 @@
 				]
 			},
 			{
-				"name": "Dig in Entrance to LightFoot Village",
+				"name": "Dig BafomDad in Entrance to LightFoot Village",
 				"access_rules": ["@ThornTail Hollow/LightFoot Village Entrance/"],
 				"sections": [
 					{"access_rules": ["tricky"]}

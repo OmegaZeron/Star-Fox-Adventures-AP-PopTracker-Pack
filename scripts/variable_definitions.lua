@@ -31,9 +31,9 @@ FireSpellstone1 = "fireSpellstone1"
 MoonPassKey = "moonPassKey"
 MoonSeed = "moonSeed"
 KrazoaSpirit2 = "krazoa2"
--- Shop
 RockCandy = "rockCandy"
 FireFlyLantern = "fireFlyLantern"
+HiTechDisplay = "hiTechDisplay"
 -- Settings
 ShopSetting = "shopSetting"
 ShopEnabled = "shopEnabled"
