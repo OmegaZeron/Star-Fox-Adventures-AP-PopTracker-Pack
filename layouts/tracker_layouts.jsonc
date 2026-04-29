@@ -66,7 +66,14 @@
 									"type": "map",
 									"maps": ["volcano"]
 								}
-							}
+							},
+							{
+								"title": "CloudRunner Fortress",
+								"content": {
+									"type": "map",
+									"maps": ["cloudrunner"]
+								}
+							},
 							// {
 							// 	"title": "LightFoot Village",
 							// 	"content": {

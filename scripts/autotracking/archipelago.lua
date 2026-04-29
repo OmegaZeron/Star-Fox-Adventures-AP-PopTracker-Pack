@@ -108,8 +108,9 @@ function OnClear(slotData)
 		Archipelago:Get({CurrentLocID, HintsID})
 	end
 
-	for k, v in pairs(slotData) do
-		local opt = Tracker:FindObjectForCode(SlotDataKeyMapping(k))
+	for k, v in pairs(slotData["options"]) do
+		-- print("SLOT DATA", k, v)
+		local opt = Tracker:FindObjectForCode(SlotDataKeyMapping[k])
 		if opt and SlotDataMapping[k] then
 			opt.CurrentStage = SlotDataMapping[k][v]
 		end
@@ -165,6 +166,7 @@ end
 
 -- called when a location gets cleared
 function OnLocation(location_id, location_name)
+	-- print("onLocation:", location_id, location_name)
 	local location_array = LOCATION_MAPPING[location_id]
 	if not location_array or not location_array[1] then
 		print(string.format("onLocation: could not find location mapping for id %s", location_id))
@@ -206,6 +208,7 @@ function OnNotify(key, value, old_value)
 			end
 		end
 	elseif key == CurrentLocID then
+		-- print("Current location", value)
 		if MapIDToTab[value] then
 			for _, room in ipairs(MapIDToTab[value]) do
 				Tracker:UiHint("ActivateTab", room)

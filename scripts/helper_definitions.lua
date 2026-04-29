@@ -11,8 +11,8 @@ SlotDataMapping = {
 		["nothing"] = 2,
 	},
 	["plant_shuffle"] = {
-		[true] = 0,
-		[false] = 1
+		[0] = 0,
+		[1] = 1
 	}
 }
 
@@ -41,6 +41,7 @@ MapIDToTab = {
 	[0x1b] = {dim}, -- dungeon
 	[0x1c] = {dim}, -- galdon
 	[0x04] = {vfp},
+	[0x0C] = {crf},
 }
 
 PriorityToHighlight = {

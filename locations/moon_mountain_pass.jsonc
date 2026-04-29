@@ -8,24 +8,24 @@
 				"sections": [{}]
 			},
 			{
-				"name": "Wind Draft Entrance Fuel Cell",
-				"sections": [{}],
-				"map_locations": [
-					{
-						"map": "moon",
-						"x": 66,
-						"y": 131
-					}
-				]
-			},
-			{
-				"name": "Wind Draft Exit Fuel Cell",
+				"name": "Wind Draft North Fuel Cell",
 				"sections": [{}],
 				"map_locations": [
 					{
 						"map": "moon",
 						"x": 66,
 						"y": 14
+					}
+				]
+			},
+			{
+				"name": "Wind Draft South Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 66,
+						"y": 131
 					}
 				]
 			},
@@ -80,12 +80,26 @@
 				"name": "BafomDad Ledge near Fort",
 				"sections": [
 					{"access_rules": ["^$CanGrowMoonSeed"]}
+				],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 338,
+						"y": 39
+					}
 				]
 			},
 			{
 				"name": "BafomDad in Moon Seed Zone",
 				"sections": [
 					{"access_rules": ["^$CanGrowMoonSeed"]}
+				],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 351,
+						"y": 106
+					}
 				]
 			}
 		]
@@ -98,16 +112,40 @@
 				"name": "Test of Combat",
 				"sections": [
 					{"access_rules": ["freezeBlast, flame, fireBlaster"]}
+				],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 357,
+						"y": 361
+					}
 				]
 			},
 			{
-				"name": "Meteorite Area Fuel Cell",
-				"sections": [{}]
+				"name": "Meteorite Area",
+				"sections": [
+					{"name": "Fuel Cell"},
+					{"name": "BafomDad"}
+				],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 399,
+						"y": 203
+					}
+				]
 			},
 			{
-				"name": "Cheat Well near Combat Shrine Fuel Cell",
+				"name": "Cheat Well near Combat Shrine",
 				"sections": [
-					{"access_rules": ["^$CanGrowMoonSeed"]}
+					{
+						"name": "Fuel Cell",
+						"access_rules": ["^$CanGrowMoonSeed"]
+					},
+					{
+						"name": "BafomDad",
+						"access_rules": ["^$CanGrowMoonSeed"]
+					}
 				],
 				"map_locations": [
 					{
@@ -119,16 +157,13 @@
 			},
 			{
 				"name": "Beside Combat Shrine Fuel Cell",
-				"sections": [{}]
-			},
-			{
-				"name": "Meteorite Area BafomDad",
-				"sections": [{}]
-			},
-			{
-				"name": "Cheat Well BafomDad",
-				"sections": [
-					{"access_rules": ["^$CanGrowMoonSeed"]}
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 343,
+						"y": 341
+					}
 				]
 			}
 		]
@@ -142,13 +177,16 @@
 				"sections": [{}]
 			},
 			{
-				"name": "Below Bridge Fuel Cell",
-				"sections": [{}]
-			},
-			{
 				"name": "BafomDad Cell",
 				"sections": [
 					{"access_rules": ["rocketBoost"]}
+				],
+				"map_locations": [
+					{
+						"map": "moon",
+						"x": 214,
+						"y": 105
+					}
 				]
 			},
 			{
@@ -168,6 +206,17 @@
 						"map": "moon",
 						"x": 198,
 						"y": 105
+					}
+				]
+			},
+			{
+				"name": "Below Bridge Fuel Cell",
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "volcano",
+						"x": 52,
+						"y": 140
 					}
 				]
 			}
@@ -196,6 +245,13 @@
 						"name": "BafomDad",
 						"access_rules": ["^$CanGrowMoonSeed"]
 					}
+				],
+				"map_locations": [
+					{
+						"map": "volcano",
+						"x": 98,
+						"y": 92
+					}
 				]
 			},
 			{
@@ -210,20 +266,15 @@
 						"y": 139
 					}
 				]
-			},
-			{
-				"name": "Main Room Fuel Cell",
-				"access_rules": ["$HasIceBlast"],
-				"sections": [{}]
 			}
 		]
 	},
 	{
-		"name": "Volcano Force Point Temple Upper Floor",
+		"name": "Volcano Force Point Temple Warp Room",
 		"access_rules": ["@Volcano Force Point Temple Entrance/Reach Area/, freezeBlast, flame, $HasBlaster"],
 		"children": [
 			{
-				"name": "Upper Floor Fuel Cell",
+				"name": "Round Room Ledge Fuel Cell",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -232,25 +283,29 @@
 						"y": 51
 					}
 				]
-			}
-		]
-	},
-	{
-		"name": "Volcano Force Point Temple Warp Room",
-		"access_rules": [],
-		"children": [
-			{
-				"name": "Round Room Ledge Fuel Cell",
-				"sections": [{}]
 			},
 			{
 				"name": "Warp Room Fuel Cell",
-				"sections": [{}]
+				"sections": [{}],
+				"map_locations": [
+					{
+						"map": "volcano",
+						"x": 175,
+						"y": 51
+					}
+				]
 			},
 			{
 				"name": "Insert Fire SpellStone 1",
 				"sections": [
 					{"access_rules": ["fireSpellstone1"]}
+				],
+				"map_locations": [
+					{
+						"map": "volcano",
+						"x": 200,
+						"y": 80
+					}
 				]
 			}
 		]

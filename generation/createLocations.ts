@@ -575,7 +575,7 @@ function tth(data: LocationRule[]) {
 }
 
 function shw(data: LocationRule[]) {
-	let locs = [
+	let locs: Parent[] = [
 		{
 			name: "Ice Mountain",
 			access_rules: [and("@ThornTail Hollow/Reach Area/", vars.Inventory.RockCandy)],
@@ -830,7 +830,7 @@ function shw(data: LocationRule[]) {
 }
 
 function dim(data: LocationRule[]) {
-	let locs = [
+	let locs: Parent[] = [
 		{
 			name: "DarkIce Mines Entrance",
 			access_rules: [vars.Planet.DarkIceAccess],
@@ -1019,7 +1019,7 @@ function dim(data: LocationRule[]) {
 }
 
 function mmp(data: LocationRule[]) {
-	let locs = [
+	let locs: Parent[] = [
 		{
 			name: "Moon Mountain Pass",
 			access_rules: [and("@ThornTail Hollow/Reach Area/", luaFunc.CanExplodeBombPlant)],
@@ -1029,21 +1029,8 @@ function mmp(data: LocationRule[]) {
 					sections: [{}]
 				},
 				{
-					id: 130,
-					name: "Wind Draft Entrance Fuel Cell",
-					sections: [{access_rules: constructRules(ruleDataFromID(data, 130))}],
-					map_locations: [
-						{
-							map: "moon",
-							x: 66,
-							y: 131
-						}
-					]
-				},
-				{
-					id: 131,
-					name: "Wind Draft Exit Fuel Cell",
-					sections: [{access_rules: constructRules(ruleDataFromID(data, 131))}],
+					name: "Wind Draft North Fuel Cell",
+					sections: [{id: 130, access_rules: constructRules(ruleDataFromID(data, 130))}],
 					map_locations: [
 						{
 							map: "moon",
@@ -1053,9 +1040,19 @@ function mmp(data: LocationRule[]) {
 					]
 				},
 				{
-					id: 132,
+					name: "Wind Draft South Fuel Cell",
+					sections: [{id: 131, access_rules: constructRules(ruleDataFromID(data, 131))}],
+					map_locations: [
+						{
+							map: "moon",
+							x: 66,
+							y: 131
+						}
+					]
+				},
+				{
 					name: "Barrel Hill Fuel Cell",
-					sections: [{access_rules: constructRules(ruleDataFromID(data, 132))}],
+					sections: [{id: 132, access_rules: constructRules(ruleDataFromID(data, 132))}],
 					map_locations: [
 						{
 							map: "moon",
@@ -1099,24 +1096,24 @@ function mmp(data: LocationRule[]) {
 				{
 					name: "BafomDad Ledge near Fort",
 					sections: [{id: 315, access_rules: constructRules(ruleDataFromID(data, 315), [luaFunc.CanGrowMoonSeed])}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 215,
-					// 		y: 105
-					// 	}
-					// ]
+					map_locations: [
+						{
+							map: "moon",
+							x: 338,
+							y: 39
+						}
+					]
 				},
 				{
 					name: "BafomDad in Moon Seed Zone",
 					sections: [{id: 316, access_rules: constructRules(ruleDataFromID(data, 316), [luaFunc.CanGrowMoonSeed])}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 215,
-					// 		y: 105
-					// 	}
-					// ]
+					map_locations: [
+						{
+							map: "moon",
+							x: 351,
+							y: 106
+						}
+					]
 				},
 			]
 		},
@@ -1127,28 +1124,34 @@ function mmp(data: LocationRule[]) {
 				{
 					name: "Test of Combat",
 					sections: [{id: 42, access_rules: constructRules(ruleDataFromID(data, 42), [and(vars.Tricky.Flame, vars.Staff.FireBlaster, vars.Staff.FreezeBlast)])}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 212,
-					// 		y: 27
-					// 	}
-					// ]
+					map_locations: [
+						{
+							map: "moon",
+							x: 357,
+							y: 361
+						}
+					]
 				},
 				{
-					name: "Meteorite Area Fuel Cell",
-					sections: [{id: 149, access_rules: constructRules(ruleDataFromID(data, 149))}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 212,
-					// 		y: 27
-					// 	}
-					// ]
+					name: "Meteorite Area",
+					sections: [
+						{id: 149, name: "Fuel Cell", access_rules: constructRules(ruleDataFromID(data, 149))},
+						{id: 317, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 317))}
+					],
+					map_locations: [
+						{
+							map: "moon",
+							x: 399,
+							y: 203
+						}
+					]
 				},
 				{
-					name: "Cheat Well near Combat Shrine Fuel Cell",
-					sections: [{id: 150, access_rules: constructRules(ruleDataFromID(data, 150), [luaFunc.CanGrowMoonSeed])}],
+					name: "Cheat Well near Combat Shrine",
+					sections: [
+						{id: 150, name: "Fuel Cell", access_rules: constructRules(ruleDataFromID(data, 150), [luaFunc.CanGrowMoonSeed])},
+						{id: 318, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 318), [luaFunc.CanGrowMoonSeed])}
+					],
 					map_locations: [
 						{
 							map: "moon",
@@ -1160,36 +1163,14 @@ function mmp(data: LocationRule[]) {
 				{
 					name: "Beside Combat Shrine Fuel Cell",
 					sections: [{id: 151, access_rules: constructRules(ruleDataFromID(data, 151))}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 390,
-					// 		y: 322
-					// 	}
-					// ]
-				},
-				{
-					name: "Meteorite Area BafomDad",
-					sections: [{id: 317, access_rules: constructRules(ruleDataFromID(data, 317))}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 212,
-					// 		y: 27
-					// 	}
-					// ]
-				},
-				{
-					name: "Cheat Well BafomDad",
-					sections: [{id: 318, access_rules: constructRules(ruleDataFromID(data, 318), [luaFunc.CanGrowMoonSeed])}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 390,
-					// 		y: 322
-					// 	}
-					// ]
-				},
+					map_locations: [
+						{
+							map: "moon",
+							x: 343,
+							y: 341
+						}
+					]
+				}
 			]
 		},
 		{
@@ -1201,19 +1182,15 @@ function mmp(data: LocationRule[]) {
 					sections: [{}]
 				},
 				{
-					name: "Below Bridge Fuel Cell",
-					sections: [{id: 144, access_rules: constructRules(ruleDataFromID(data, 144))}],
-					// map_locations: [
-					// 	{
-					// 		map: "moon",
-					// 		x: 181,
-					// 		y: 105
-					// 	}
-					// ]
-				},
-				{
 					name: "BafomDad Cell",
-					sections: [{id: 312, access_rules: constructRules(ruleDataFromID(data, 312), [luaFunc.HasBooster])}]
+					sections: [{id: 312, access_rules: constructRules(ruleDataFromID(data, 312), [luaFunc.HasBooster])}],
+					map_locations: [
+						{
+							map: "moon",
+							x: 214,
+							y: 105
+						}
+					]
 				},
 				// {
 				// 	name: "Disguise Alcove",
@@ -1244,6 +1221,17 @@ function mmp(data: LocationRule[]) {
 						}
 					]
 				},
+				{
+					name: "Below Bridge Fuel Cell",
+					sections: [{id: 144, access_rules: constructRules(ruleDataFromID(data, 144))}],
+					map_locations: [
+						{
+							map: "volcano",
+							x: 52,
+							y: 140
+						}
+					]
+				}
 			]
 		},
 		{
@@ -1261,13 +1249,13 @@ function mmp(data: LocationRule[]) {
 						{id: 146, name: "Fuel Cell Right", access_rules: constructRules(ruleDataFromID(data, 146), [luaFunc.CanGrowMoonSeed])},
 						{id: 314, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 314), [luaFunc.CanGrowMoonSeed])},
 					],
-					// map_locations: [
-					// 	{
-					// 		map: "volcano",
-					// 		x: 211,
-					// 		y: 139
-					// 	}
-					// ]
+					map_locations: [
+						{
+							map: "volcano",
+							x: 98,
+							y: 92
+						}
+					]
 				},
 				{
 					name: "Freeze Blast Upgrade",
@@ -1279,28 +1267,16 @@ function mmp(data: LocationRule[]) {
 							y: 139
 						}
 					]
-				},
-				{
-					name: "Main Room Fuel Cell",
-					access_rules: [luaFunc.HasIceBlast], // ?
-					sections: [{}],
-					// "map_locations": [
-					// 	{
-					// 		"map": "volcano",
-					// 		"x": 114,
-					// 		"y": 64
-					// 	}
-					// ]
 				}
 			]
 		},
 		{
-			name: "Volcano Force Point Temple Upper Floor",
+			name: "Volcano Force Point Temple Warp Room",
 			access_rules: [and("@Volcano Force Point Temple Entrance/Reach Area/", vars.Staff.FreezeBlast, vars.Tricky.Flame, luaFunc.HasBlaster)],
 			children: [
 				{
-					name: "Upper Floor Fuel Cell",
-					sections: [{}],
+					name: "Round Room Ledge Fuel Cell",
+					sections: [{id: 147, access_rules: constructRules(ruleDataFromID(data, 147))}],
 					map_locations: [
 						{
 							map: "volcano",
@@ -1308,24 +1284,28 @@ function mmp(data: LocationRule[]) {
 							y: 51
 						}
 					]
-				}
-			]
-		},
-		{
-			name: "Volcano Force Point Temple Warp Room",
-			access_rules: [],
-			children: [
-				{
-					name: "Round Room Ledge Fuel Cell",
-					sections: [{id: 147, access_rules: constructRules(ruleDataFromID(data, 147))}],
 				},
 				{
 					name: "Warp Room Fuel Cell",
-					sections: [{id: 148, access_rules: constructRules(ruleDataFromID(data, 148))}]
+					sections: [{id: 148, access_rules: constructRules(ruleDataFromID(data, 148))}],
+					map_locations: [
+						{
+							map: "volcano",
+							x: 175,
+							y: 51
+						}
+					]
 				},
 				{
 					name: "Insert Fire SpellStone 1",
-					sections: [{id: 41, access_rules: constructRules(ruleDataFromID(data, 41), [vars.Inventory.FireSpellstone1])}]
+					sections: [{id: 41, access_rules: constructRules(ruleDataFromID(data, 41), [vars.Inventory.FireSpellstone1])}],
+					map_locations: [
+						{
+							map: "volcano",
+							x: 200,
+							y: 80
+						}
+					]
 				}
 			]
 		}
