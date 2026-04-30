@@ -14,7 +14,7 @@ export function writeToFile(file: string, content: string) {
 		console.log(`Successfully wrote to file ${file}`)
 	})
 }
-export function readFromFile(file: string, callback: { (data: any): void; (arg0: null): void }) {
+export function readFromFile(file: string, callback: {(data: any): void}) {
 	fs.readFile(file, "utf8", (err: any, data: string) => {
 		if (err) {
 			console.error(err)

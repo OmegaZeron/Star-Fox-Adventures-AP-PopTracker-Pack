@@ -66,7 +66,7 @@ function addLocs(data: Parent[]) {
 
 export default function createLocations() {
 	locMapping = []
-	readFromFile("generation/locations-output.json", (data: any) => {
+	readFromFile("generation/locations-output.json", (data: LocationRule[]) => {
 		// console.log(JSON.stringify(data, null, '\t'))
 		addLocs(tth(data))
 		addLocs(shw(data))
