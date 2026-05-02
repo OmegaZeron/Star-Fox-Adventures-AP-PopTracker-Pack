@@ -1422,7 +1422,7 @@ function cc(data: LocationRule[]) {
 					sections: [
 						{
 							id: 44,
-							access_rules: constructRules(ruleDataFromID(data, 44), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)], true) // haven't implemented "or" yet
+							access_rules: constructRules(ruleDataFromID(data, 44), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)])
 						}
 					]
 				},
@@ -1431,7 +1431,7 @@ function cc(data: LocationRule[]) {
 					sections: [
 						{
 							id: 45,
-							access_rules: constructRules(ruleDataFromID(data, 45), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)], true) // haven't implemented "or" yet
+							access_rules: constructRules(ruleDataFromID(data, 45), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)])
 						}
 					]
 				},

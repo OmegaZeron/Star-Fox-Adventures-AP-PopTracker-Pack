@@ -118,12 +118,17 @@ export const luaFunc = Object.freeze({
 })
 
 // rule builder
+class ItemMapData {
+	item!: string;
+	type!: string;
+	stages?: string[];
+}
 export class RuleArgs {
 	item_names?: string[];
 	price?: number;
 	count?: number;
 	item_name?: string;
-	item_counts?: any;
+	item_counts?: Record<string, number>;
 }
 export class Rule {
 	args?: RuleArgs;
@@ -140,10 +145,11 @@ function Has(args: RuleArgs) {
 	if (!itemDict[args.item_name!]) {
 		throw new Error(`Has: item ${args.item_name} not defined`)
 	}
-	let itemName = itemDict[args.item_name!].item
+	let item = itemDict[args.item_name!]
+	let itemName = item.item
 	let itemCount = args.count!
-	if (itemDict[args.item_name!].type == "progressive") {
-		itemName = itemDict[args.item_name!].stages![args.count! - 1]
+	if (item.type == "progressive") {
+		itemName = item.stages![args.count! - 1]
 		itemCount = 1
 	}
 	return has(itemName, itemCount)
@@ -157,39 +163,75 @@ function HasAll(args: RuleArgs) {
 	}))
 }
 function HasAllCounts(args: RuleArgs) {
-	return and(Object.entries(args.item_counts).map((itemData, _) => {
+	return and(Object.entries(args.item_counts!).map(itemData => {
 		if (!itemDict[itemData[0]]) {
 			throw new Error(`HasAllCounts: item ${itemData[0]} not defined`)
 		}
-		let itemName = itemDict[itemData[0]].item
-		let itemCount = itemData[1] as number
-		if (itemDict[itemData[0]].type == "progressive") {
-			itemName = itemDict[itemData[0]].stages![itemData[1] as number - 1]
+		let item = itemDict[itemData[0]]
+		let itemName = item.item
+		let itemCount = itemData[1]
+		if (item.type == "progressive") {
+			// find the correct name for the wanted stage
+			itemName = item.stages![itemCount - 1]
 			itemCount = 1
 		}
 		return has(itemName, itemCount)
 	}))
 }
-function And(rules: Rule[]): any[] {
-	let final = []
-	for (let rule of rules) {
-		final.push(...constructRules(rule)!)
-	}
-	return final
-}
-function Or(rules: Rule[]): any {
-	
-}
-function CanBuy(args: RuleArgs) {
-	return luaFunc.CanBuy(args.price!)
-}
-function CanExplodeBombPlant() {
-	return luaFunc.CanExplodeBombPlant
-}
-function CanGrowMoonSeed() {
-	return luaFunc.CanGrowMoonSeed
-}
 
+let RulesArr: string[][] = []
+function consumeRule(ruleData: Rule, evalOnly: boolean = false): string|null {
+	if (ruleData.rule == "And") {
+		// run multiple rules and combine their requirements into one string
+		let output = []
+		for (let rule of ruleData.children!) {
+			
+			let req = consumeRule(rule, evalOnly)
+			// if eval only, return the new requirement(s)
+			if (req) {
+				output.push(req)
+			}
+		}
+		if (evalOnly) {
+			return output.join(", ")
+		}
+	}
+	else if (ruleData.rule == "Or") {
+		// run multiple rules and add their requirements to separate strings
+		let sets: string[][][] = []
+		let children = ruleData.children!
+		// create deep copy of RulesArr for each child of "Or" rule
+		for (let _ of children) {
+			sets.push([])
+			for (let rule of RulesArr) {
+				sets[sets.length - 1].push([...rule])
+			}
+		}
+		for (let i = 0; i < children.length; i++) {
+			let req = consumeRule(children[i], true)!
+			// apply each requirement to a unique set of rules
+			for (let set of sets[i]) {
+				set.push(req)
+			}
+		}
+		// remove extra array and replace RulesArr
+		RulesArr = sets.flat()
+	}
+	else {
+		// individual rules
+		let req = ruleDict[ruleData.rule](ruleData.args)
+		if (evalOnly) {
+			// return the requirement instead of directly applying to the rulles
+			// used for "Or" rules to apply to only one rule array instead of all
+			return req
+		}
+		for (let ruleset of RulesArr) {
+			// add requirement to each rule array
+			ruleset.push(req)
+		}
+	}
+	return null
+}
 export function constructRules(loc: Rule | null, fallback?: string[], preferFallback?: boolean): string[] | undefined {
 	if (!loc || preferFallback) {
 		return fallback || undefined
@@ -198,30 +240,30 @@ export function constructRules(loc: Rule | null, fallback?: string[], preferFall
 		return undefined
 	}
 
-	let arr = []
-	if (loc.rule == "And") {
-		arr.push(...And(loc.children!))
+	RulesArr = [[]]
+	// create rules
+	consumeRule(loc)
+
+	let output: string[] = []
+	// remove any duplicate rules, and create final strings
+	for (let rule of RulesArr) {
+		output.push([...new Set(rule)].join(", "))
 	}
-	else if (loc.rule == "Or") {
-		arr.push(...Or(loc.children!))
-	}
-	else {
-		arr.push(...ruleDict[loc.rule](loc.args).split(", "))
-	}
-	return [[...new Set(arr)].join(", ")]
+
+	return output
 }
 
-export const ruleDict = Object.freeze({
+export const ruleDict: Record<string, Function> = Object.freeze({
+	// key is from exported rule builder data
 	"Has": Has,
 	"HasAll": HasAll,
 	"HasAllCounts": HasAllCounts,
-	"CanBuy": CanBuy,
-	"CanExplodeBombPlant": CanExplodeBombPlant,
-	"CanGrowMoonSeed": CanGrowMoonSeed,
-	"And": And,
-	"Or": Or
-} as Record<string, Function>)
-export const itemDict = Object.freeze({
+	"CanBuy": (args: RuleArgs) => luaFunc.CanBuy(args.price!),
+	"CanExplodeBombPlant": () => luaFunc.CanExplodeBombPlant,
+	"CanGrowMoonSeed": () => luaFunc.CanGrowMoonSeed
+})
+export const itemDict: Record<string, ItemMapData> = Object.freeze({
+	// key is from exported rule builder data
 	"Staff": {item: vars.Staff.Staff, type: "toggle"},
 	"Fire Blaster": {item: vars.Staff.FireBlaster, type: "toggle"},
 	"Staff Booster": {item: vars.Staff.RocketBoost, type: "toggle"},
@@ -240,4 +282,4 @@ export const itemDict = Object.freeze({
 	"Moon Pass Key": {item: vars.Inventory.MoonPassKey, type: "toggle"},
 	"Krazoa Spirit 2": {item: vars.Inventory.KrazoaSpirit2, type: "toggle"},
 	"Gold Bars": {item: vars.Inventory.GoldBar, type: "consumable"}
-} as Record<string, {item: string, type: string, stages?: string[]}>)
+})
