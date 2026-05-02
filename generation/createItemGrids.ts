@@ -23,7 +23,7 @@ export default function createItemGrids() {
 			item_size: "48, 36",
 			item_margin: 2,
 			rows: [
-				[vars.Planet.DinoPlanetAccess, vars.Planet.DarkIceAccess]
+				[vars.Planet.DinoPlanetAccess, vars.Planet.DarkIceAccess, vars.Planet.CloudRunnerAccess]
 			]
 		},
 		item_grid: {

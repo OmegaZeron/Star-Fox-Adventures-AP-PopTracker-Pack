@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Krazoa Palace Entrance",
+		"access_rules": ["@ThornTail Hollow/Reach Area/, rockCandy, krazoa2"],
+		"children": [
+			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Dark Room BafomDad",
+				"sections": [
+					{"access_rules": ["^$CanTraverseDark"]}
+				]
+			}
+		]
+	},
+	{
+		"name": "Krazoa Palace Main",
+		"access_rules": ["@Krazoa Palace Entrance/Reach Area/, fireBlaster, ^$CanTraverseDark"],
+		"children": [
+			{
+				"name": "Release Spirit 2",
+				"sections": [
+					{"access_rules": ["krazoa2"]}
+				]
+			}
+		]
+	}
+]

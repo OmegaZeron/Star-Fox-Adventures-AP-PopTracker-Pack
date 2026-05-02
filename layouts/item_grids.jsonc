@@ -20,7 +20,7 @@
 		"item_size": "48, 36",
 		"item_margin": 2,
 		"rows": [
-			["dinoPlanetAccess", "darkIceAccess"]
+			["dinoPlanetAccess", "darkIceAccess", "cloudRunnerAccess"]
 		]
 	},
 	"item_grid": {

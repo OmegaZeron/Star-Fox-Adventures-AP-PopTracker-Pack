@@ -139,3 +139,10 @@ function CanBuy(price)
 		LargeScarabBag
 	)
 end
+
+function CanTraverseDark()
+	return Any(
+		FireFlyLantern,
+		AccessibilityLevel.SequenceBreak
+	)
+end

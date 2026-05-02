@@ -4,16 +4,23 @@
 		"access_rules": ["@ThornTail Hollow/Reach Area/, staff"],
 		"children": [
 			{
-				"name": "Entrance Booster Ledge Fuel Cells",
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Entrance Booster Ledge",
 				"sections": [
-					{"name": "1"},
-					{"name": "2"}
-				],
-				"map_locations": [
 					{
-						"map": "lightfoot",
-						"x": 166,
-						"y": 206
+						"name": "Fuel Cell Right",
+						"access_rules": ["rocketBoost"]
+					},
+					{
+						"name": "Fuel Cell Left",
+						"access_rules": ["rocketBoost"]
+					},
+					{
+						"name": "BafomDad",
+						"access_rules": ["rocketBoost"]
 					}
 				]
 			}

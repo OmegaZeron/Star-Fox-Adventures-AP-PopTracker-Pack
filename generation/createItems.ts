@@ -73,6 +73,7 @@ const itemData = [
 	// planet
 	generic("Dinosaur Planet Access", "toggle", vars.Planet.DinoPlanetAccess, [vars.Planet.DinoPlanetAccess]),
 	generic("DarkIce Mines Access", "toggle", vars.Planet.DarkIceAccess, [vars.Planet.DarkIceAccess]),
+	generic("CloudRunner Fortress Access", "toggle", vars.Planet.CloudRunnerAccess, [vars.Planet.CloudRunnerAccess]),
 	// inventory
 	progressive("Scarab Bag", [
 		new Stage("Pockets", vars.Inventory.ScarabBag, [vars.Inventory.ScarabBag]),
@@ -96,6 +97,12 @@ const itemData = [
 	generic("Rock Candy", "toggle", vars.Inventory.RockCandy, [vars.Inventory.RockCandy]),
 	generic("FireFly Lantern", "toggle", vars.Inventory.FireFlyLantern, [vars.Inventory.FireFlyLantern]),
 	// generic("SnowHorn Artifact", "toggle", vars.Inventory.SnowHornArtifact, [vars.Inventory.SnowHornArtifact]),
+	consumable("Gold Bar", 4, [vars.Inventory.GoldBar]),
+	generic("Power Key", "toggle", vars.Inventory.PowerKey, [vars.Inventory.PowerKey]),
+	generic("Red Crystal", "toggle", vars.Inventory.RedCrystal, [vars.Inventory.RedCrystal]),
+	generic("Green Crystal", "toggle", vars.Inventory.GreenCrystal, [vars.Inventory.GreenCrystal]),
+	generic("Blue Crystal", "toggle", vars.Inventory.BlueCrystal, [vars.Inventory.BlueCrystal]),
+	generic("CloudRunner Flute", "toggle", vars.Inventory.CloudRunnerFlute, [vars.Inventory.CloudRunnerFlute]),
 ]
 const settingData = [
 	progressive("Store Setting", [

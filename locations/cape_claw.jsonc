@@ -1,0 +1,102 @@
+[
+	{
+		"name": "Cape Claw Transition Area",
+		"access_rules": ["@LightFoot Village/Reach Area/, ^$CanBuy|60"],
+		"children": [
+			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Transition Bottom Platform Fuel Cell",
+				"sections": [
+					{"access_rules": ["rocketBoost"]}
+				]
+			},
+			{
+				"name": "Transition Bottom Waterfall Fuel Cell",
+				"sections": [
+					{"access_rules": ["rocketBoost"]}
+				]
+			},
+			{
+				"name": "Transition Bottom Weeds Fuel Cell",
+				"sections": [
+					{"access_rules": ["rocketBoost"]}
+				]
+			}
+		]
+	},
+	{
+		"name": "Cape Claw Open Area",
+		"access_rules": ["@Cape Claw Transition Area/Reach Area/"],
+		"children": [
+			{
+				"name": "Give HighTop Gold Bars",
+				"sections": [
+					{
+						"access_rules": [
+							"goldBar:4, ^$CanBuy|25",
+							"goldBar:4, rocketBoost"
+						]
+					}
+				]
+			},
+			{
+				"name": "Rescue CloudRunner",
+				"sections": [
+					{
+						"access_rules": [
+							"goldBar:4, ^$CanBuy|25",
+							"goldBar:4, rocketBoost"
+						]
+					}
+				]
+			},
+			{
+				"name": "Drop from Bridge Fuel Cell",
+				"sections": [{}]
+			},
+			{
+				"name": "Drop from Deck Fuel Cell",
+				"sections": [{}]
+			},
+			{
+				"name": "Dig in Back Cave Fuel Cell",
+				"sections": [
+					{"access_rules": ["tricky"]}
+				]
+			},
+			{
+				"name": "Dig BafomDad middle of Water",
+				"sections": [
+					{"access_rules": ["tricky"]}
+				]
+			},
+			{
+				"name": "Dig Gold Bar near HighTop",
+				"sections": [
+					{"access_rules": ["tricky"]}
+				]
+			},
+			{
+				"name": "Dig Gold Bar behind Bramble",
+				"sections": [
+					{"access_rules": ["flame"]}
+				]
+			},
+			{
+				"name": "Dig Gold Bar before Bramble",
+				"sections": [
+					{"access_rules": ["tricky"]}
+				]
+			},
+			{
+				"name": "Dig Gold Bar near CloudRunner Cell",
+				"sections": [
+					{"access_rules": ["tricky"]}
+				]
+			}
+		]
+	}
+]

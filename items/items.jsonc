@@ -74,6 +74,12 @@
 		"codes": "darkIceAccess"
 	},
 	{
+		"name": "CloudRunner Fortress Access",
+		"type": "toggle",
+		"img": "images/items/cloudRunnerAccess.png",
+		"codes": "cloudRunnerAccess"
+	},
+	{
 		"name": "Scarab Bag",
 		"type": "progressive",
 		"stages": [
@@ -180,5 +186,42 @@
 		"type": "toggle",
 		"img": "images/items/fireFlyLantern.png",
 		"codes": "fireFlyLantern"
+	},
+	{
+		"name": "Gold Bar",
+		"type": "consumable",
+		"img": "images/items/goldBar.png",
+		"max_quantity": 4,
+		"codes": "goldBar"
+	},
+	{
+		"name": "Power Key",
+		"type": "toggle",
+		"img": "images/items/powerKey.png",
+		"codes": "powerKey"
+	},
+	{
+		"name": "Red Crystal",
+		"type": "toggle",
+		"img": "images/items/crystalRed.png",
+		"codes": "crystalRed"
+	},
+	{
+		"name": "Green Crystal",
+		"type": "toggle",
+		"img": "images/items/crystalGreen.png",
+		"codes": "crystalGreen"
+	},
+	{
+		"name": "Blue Crystal",
+		"type": "toggle",
+		"img": "images/items/crystalBlue.png",
+		"codes": "crystalBlue"
+	},
+	{
+		"name": "CloudRunner Flute",
+		"type": "toggle",
+		"img": "images/items/cloudRunnerFlute.png",
+		"codes": "cloudRunnerFlute"
 	}
 ]

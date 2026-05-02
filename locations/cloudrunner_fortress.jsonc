@@ -1,0 +1,92 @@
+[
+	{
+		"name": "CloudRunner Fortress Landing",
+		"access_rules": ["cloudRunnerAccess"],
+		"children": [
+			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Entrance Platform Race",
+				"sections": [{}]
+			}
+		]
+	},
+	{
+		"name": "CloudRunner Fortress Main",
+		"access_rules": ["@CloudRunner Fortress Landing/Reach Area/, fireBlaster"],
+		"children": [
+			{
+				"name": "Reach Area",
+				"sections": [{}]
+			},
+			{
+				"name": "Explode Prison Ceiling",
+				"sections": [{}]
+			},
+			{
+				"name": "Rescue Gradabug",
+				"sections": [
+					{"access_rules": ["staff"]}
+				]
+			},
+			{
+				"name": "Red Crystal Chest",
+				"sections": [{}]
+			},
+			{
+				"name": "Green Crystal Chest",
+				"sections": [
+					{"access_rules": ["freezeBlast"]}
+				]
+			},
+			{
+				"name": "Blue Crystal Chest",
+				"sections": [
+					{"access_rules": ["freezeBlast, rocketBoost"]}
+				]
+			},
+			{
+				"name": "Cage BafomDad",
+				"sections": [{}]
+			},
+			{
+				"name": "Cell BafomDad",
+				"sections": [{}]
+			}
+		]
+	},
+	{
+		"name": "CloudRunner Fortress Powered",
+		"access_rules": ["@CloudRunner Fortress Main/Reach Area/, powerKey, crystalRed, crystalGreen, crystalBlue, disguise"],
+		"children": [
+			{
+				"name": "Rescue Queen CloudRunner",
+				"sections": [
+					{"access_rules": ["disguise"]}
+				]
+			},
+			{
+				"name": "BafomDad on Back Crates",
+				"sections": [{}]
+			},
+			{
+				"name": "BafomDad near Boss Door",
+				"sections": [{}]
+			},
+			{
+				"name": "BafomDad in Dark Room",
+				"sections": [
+					{"access_rules": ["$HasBlaster, rocketBoost, cloudRunnerFlute, ^$CanTraverseDark"]}
+				]
+			},
+			{
+				"name": "Defeat Boss SharpClaw Race",
+				"sections": [
+					{"access_rules": ["$HasBlaster, rocketBoost, cloudRunnerFlute, ^$CanTraverseDark"]}
+				]
+			}
+		]
+	}
+]

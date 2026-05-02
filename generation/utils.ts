@@ -53,7 +53,7 @@ export const vars = Object.freeze({
 	Planet: {
 		DinoPlanetAccess: "dinoPlanetAccess",
 		DarkIceAccess: "darkIceAccess",
-		// CloudRunnerFortAccess: "cloudRunnerFortAccess",
+		CloudRunnerAccess: "cloudRunnerAccess",
 		// WalledCityAccess: "walledCityAccess",
 		// DragonRockAccess: "dragonRockAccess"
 	},
@@ -78,7 +78,13 @@ export const vars = Object.freeze({
 		RockCandy: "rockCandy",
 		FireFlyLantern: "fireFlyLantern",
 		// SnowHornArtifact: "snowHornArtifact",
-		HiTechDisplay: "hiTechDisplay"
+		HiTechDisplay: "hiTechDisplay",
+		GoldBar: "goldBar",
+		PowerKey: "powerKey",
+		RedCrystal: "crystalRed",
+		GreenCrystal: "crystalGreen",
+		BlueCrystal: "crystalBlue",
+		CloudRunnerFlute: "cloudRunnerFlute"
 	},
 	Settings: {
 		ShopSetting: "shopSetting",
@@ -107,7 +113,8 @@ export const luaFunc = Object.freeze({
 	HasBlaster: "$HasBlaster",
 	HasBooster: "$HasBooster",
 	HasGroundQuake: "$HasGroundQuake",
-	HasIceBlast: "$HasIceBlast"
+	HasIceBlast: "$HasIceBlast",
+	CanTraverseDark: "^$CanTraverseDark"
 })
 
 // rule builder
@@ -168,7 +175,10 @@ function And(rules: Rule[]): any[] {
 	for (let rule of rules) {
 		final.push(...constructRules(rule)!)
 	}
-	return final.join(", ").split(", ")
+	return final
+}
+function Or(rules: Rule[]): any {
+	
 }
 function CanBuy(args: RuleArgs) {
 	return luaFunc.CanBuy(args.price!)
@@ -180,8 +190,8 @@ function CanGrowMoonSeed() {
 	return luaFunc.CanGrowMoonSeed
 }
 
-export function constructRules(loc: Rule | null, fallback?: string[]): string[] | undefined {
-	if (!loc) {
+export function constructRules(loc: Rule | null, fallback?: string[], preferFallback?: boolean): string[] | undefined {
+	if (!loc || preferFallback) {
 		return fallback || undefined
 	}
 	if (loc.rule == "True_") {
@@ -191,6 +201,9 @@ export function constructRules(loc: Rule | null, fallback?: string[]): string[] 
 	let arr = []
 	if (loc.rule == "And") {
 		arr.push(...And(loc.children!))
+	}
+	else if (loc.rule == "Or") {
+		arr.push(...Or(loc.children!))
 	}
 	else {
 		arr.push(...ruleDict[loc.rule](loc.args).split(", "))
@@ -204,7 +217,9 @@ export const ruleDict = Object.freeze({
 	"HasAllCounts": HasAllCounts,
 	"CanBuy": CanBuy,
 	"CanExplodeBombPlant": CanExplodeBombPlant,
-	"CanGrowMoonSeed": CanGrowMoonSeed
+	"CanGrowMoonSeed": CanGrowMoonSeed,
+	"And": And,
+	"Or": Or
 } as Record<string, Function>)
 export const itemDict = Object.freeze({
 	"Staff": {item: vars.Staff.Staff, type: "toggle"},
@@ -223,4 +238,6 @@ export const itemDict = Object.freeze({
 	"Fire SpellStone 1": {item: vars.Inventory.FireSpellstone1, type: "toggle"},
 	"Moon Seed": {item: vars.Inventory.MoonSeed, type: "toggle"},
 	"Moon Pass Key": {item: vars.Inventory.MoonPassKey, type: "toggle"},
+	"Krazoa Spirit 2": {item: vars.Inventory.KrazoaSpirit2, type: "toggle"},
+	"Gold Bars": {item: vars.Inventory.GoldBar, type: "consumable"}
 } as Record<string, {item: string, type: string, stages?: string[]}>)
