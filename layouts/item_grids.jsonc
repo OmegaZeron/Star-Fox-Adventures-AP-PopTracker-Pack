@@ -1,17 +1,27 @@
 {
+	"staff": {
+		"type": "itemgrid",
+		"h_alignment": "left",
+		"item_size": "48, 36",
+		"item_margin": 2,
+		"rows": [
+			["fireBlaster", "rocketBoost", "groundQuake"],
+			["freezeBlast", "disguise", "?portal"]
+		]
+	},
 	"items": {
 		"type": "itemgrid",
 		"h_alignment": "left",
 		"item_size": "48, 36",
 		"item_margin": 2,
 		"rows": [
-			["fireBlaster", "find", "gateKey"],
-			["rocketBoost", "bombPlant", "entranceCog"],
-			["groundQuake", "alpineSHW", "sharpClawCogs"],
-			["freezeBlast", "fireFlyLantern", "dinosaurHorn"],
-			["disguise", "whiteGrubTub", "moonPassKey"],
-			["?portal", "rockCandy", ""],
-			["scarabPockets", "alpineDIM", ""]
+			["tricky", "bombPlant", "moonSeed"],
+			["fireFlyLantern", "dinosaurHorn", "cloudRunnerFlute"],
+			["scarabPockets"],
+			["rockCandy", "alpineSHW", "alpineDIM"],
+			["whiteGrubTub", "entranceCog", "sharpClawCogs"],
+			["gateKey", "moonPassKey", "powerKey"],
+			["crystalRed", "crystalGreen", "crystalBlue"]
 		]
 	},
 	"planets": {
@@ -27,6 +37,15 @@
 		"type": "dock",
 		"dock": "left",
 		"content": [
+			{
+				"type": "group",
+				"dock": "top",
+				"header": "Staff Upgrades",
+				"content": {
+					"type": "layout",
+					"key": "staff"
+				}
+			},
 			{
 				"type": "group",
 				"dock": "top",

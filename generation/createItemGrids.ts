@@ -2,19 +2,31 @@ import { vars, writeToFile } from "./utils.ts"
 
 export default function createItemGrids() {
 	let grids = {
+		staff: {
+			type: "itemgrid",
+			h_alignment: "left",
+			item_size: "48, 36",
+			item_margin: 2,
+			rows: [
+				[vars.Staff.FireBlaster, vars.Staff.RocketBoost, vars.Staff.GroundQuake],
+				[vars.Staff.FreezeBlast, vars.Staff.Disguise, "?portal"]
+			]
+		},
 		items: {
 			type: "itemgrid",
 			h_alignment: "left",
 			item_size: "48, 36",
 			item_margin: 2,
 			rows: [
-				[vars.Staff.FireBlaster, vars.Tricky.Find,	vars.Inventory.GateKey],
-				[vars.Staff.RocketBoost, vars.Inventory.BombPlant, vars.Inventory.EntranceCog],
-				[vars.Staff.GroundQuake, vars.Inventory.AlpineSHW, vars.Inventory.SharpClawCogs],
-				[vars.Staff.FreezeBlast, vars.Inventory.FireFlyLantern, vars.Inventory.DinosaurHorn],
-				[vars.Staff.Disguise, vars.Inventory.WhiteGrubTub, vars.Inventory.MoonPassKey],
-				["?portal", vars.Inventory.RockCandy, ""],
-				[vars.Inventory.ScarabBag, vars.Inventory.AlpineDIM, ""]
+				[vars.Tricky.Tricky, vars.Inventory.BombPlant, vars.Inventory.MoonSeed],
+				[vars.Inventory.FireFlyLantern, vars.Inventory.DinosaurHorn, vars.Inventory.CloudRunnerFlute],
+				[vars.Inventory.ScarabBag],
+
+				[vars.Inventory.RockCandy, vars.Inventory.AlpineSHW, vars.Inventory.AlpineDIM],
+				[vars.Inventory.WhiteGrubTub, vars.Inventory.EntranceCog, vars.Inventory.SharpClawCogs],
+
+				[vars.Inventory.GateKey, vars.Inventory.MoonPassKey, vars.Inventory.PowerKey],
+				[vars.Inventory.RedCrystal, vars.Inventory.GreenCrystal, vars.Inventory.BlueCrystal]
 			]
 		},
 		planets: {
@@ -30,6 +42,15 @@ export default function createItemGrids() {
 			type: "dock",
 			dock: "left",
 			content: [
+				{
+					type: "group",
+					dock: "top",
+					header: "Staff Upgrades",
+					content: {
+						type: "layout",
+						key: "staff"
+					}
+				},
 				{
 					type: "group",
 					dock: "top",
