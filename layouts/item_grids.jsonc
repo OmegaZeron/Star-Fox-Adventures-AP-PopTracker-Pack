@@ -21,7 +21,8 @@
 			["rockCandy", "alpineSHW", "alpineDIM"],
 			["whiteGrubTub", "entranceCog", "sharpClawCogs"],
 			["gateKey", "moonPassKey", "powerKey"],
-			["crystalRed", "crystalGreen", "crystalBlue"]
+			["crystalRed", "crystalGreen", "crystalBlue"],
+			["krazoa2"]
 		]
 	},
 	"planets": {

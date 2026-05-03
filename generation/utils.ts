@@ -95,6 +95,18 @@ export const vars = Object.freeze({
 		PlantShuffle: "plantShuffle",
 		PlantShuffleOn: "plantShuffleOn",
 		PlantShuffleOff: "plantShuffleOff"
+	},
+	Maps: {
+		TTH: "thorntail",
+		Krazoa: "krazoa",
+		Well: "ancient_well",
+		SHW: "snowhorn",
+		LFV: "lightfoot",
+		MMP: "moon",
+		DIM: "darkice",
+		VFP: "volcano",
+		CC: "capeclaw",
+		CRF: "cloudrunner",
 	}
 })
 // currently equal to above, might consolidate if it stays in parity

@@ -119,13 +119,6 @@
 		"codes": "alpineSHW"
 	},
 	{
-		"name": "Alpine Root (DarkIce Mines)",
-		"type": "consumable",
-		"img": "images/items/alpineDIM.png",
-		"max_quantity": 2,
-		"codes": "alpineDIM"
-	},
-	{
 		"name": "White GrubTub Fungus",
 		"type": "consumable",
 		"img": "images/items/whiteGrubTub.png",
@@ -143,6 +136,13 @@
 		"type": "toggle",
 		"img": "images/items/entranceCog.png",
 		"codes": "entranceCog"
+	},
+	{
+		"name": "Alpine Root (DarkIce Mines)",
+		"type": "consumable",
+		"img": "images/items/alpineDIM.png",
+		"max_quantity": 2,
+		"codes": "alpineDIM"
 	},
 	{
 		"name": "SharpClaw Fort Bridge Cogs",
@@ -176,16 +176,10 @@
 		"codes": "moonSeed"
 	},
 	{
-		"name": "Rock Candy",
+		"name": "Krazoa Spirit 2",
 		"type": "toggle",
-		"img": "images/items/rockCandy.png",
-		"codes": "rockCandy"
-	},
-	{
-		"name": "FireFly Lantern",
-		"type": "toggle",
-		"img": "images/items/fireFlyLantern.png",
-		"codes": "fireFlyLantern"
+		"img": "images/items/krazoa2.png",
+		"codes": "krazoa2"
 	},
 	{
 		"name": "Gold Bar",
@@ -223,5 +217,17 @@
 		"type": "toggle",
 		"img": "images/items/cloudRunnerFlute.png",
 		"codes": "cloudRunnerFlute"
+	},
+	{
+		"name": "Rock Candy",
+		"type": "toggle",
+		"img": "images/items/rockCandy.png",
+		"codes": "rockCandy"
+	},
+	{
+		"name": "FireFly Lantern",
+		"type": "toggle",
+		"img": "images/items/fireFlyLantern.png",
+		"codes": "fireFlyLantern"
 	}
 ]

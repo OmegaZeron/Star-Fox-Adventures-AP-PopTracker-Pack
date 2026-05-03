@@ -108,7 +108,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 1, access_rules: constructRules(ruleDataFromID(data, 1))}],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 229,
 							y: 173
 						}
@@ -223,7 +223,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 159,
 							y: 274
 						}
@@ -234,7 +234,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 100, access_rules: constructRules(ruleDataFromID(data, 100))}],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 280,
 							y: 401
 						}
@@ -248,7 +248,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 168,
 							y: 369
 						}
@@ -262,7 +262,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 144,
 							y: 256
 						}
@@ -278,7 +278,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 114,
 							y: 276
 						}
@@ -293,7 +293,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 172,
 							y: 399
 						}
@@ -307,7 +307,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 183,
 							y: 229
 						}
@@ -318,7 +318,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 30, access_rules: constructRules(ruleDataFromID(data, 30), [and(vars.Staff.FireBlaster, luaFunc.HasBooster)])}],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 157,
 							y: 235
 						}
@@ -330,7 +330,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 31, access_rules: constructRules(ruleDataFromID(data, 31), [has(vars.Inventory.WhiteGrubTub, 6)])}],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 279,
 							y: 340
 						}
@@ -341,7 +341,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 304, access_rules: constructRules(ruleDataFromID(data, 304), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 176,
 							y: 296
 						}
@@ -352,7 +352,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 305, access_rules: constructRules(ruleDataFromID(data, 305), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 237,
 							y: 364
 						}
@@ -371,7 +371,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 37,
 							y: 388
 						}
@@ -383,7 +383,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 306, access_rules: constructRules(ruleDataFromID(data, 306), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 22,
 							y: 379
 						}
@@ -395,24 +395,24 @@ function tth(data: LocationRule[]) {
 				// 	sections: [{}], // fire weed? spellstone?
 				// 	map_locations: [
 				// 		{
-				// 			map: "thorntail",
+				// 			map: vars.Maps.TTH,
 				// 			x: 151,
 				// 			y: 355
 				// 		},
 				// 		{
-				// 			map: "thorntail",
+				// 			map: vars.Maps.TTH,
 				// 			x: 237,
 				// 			y: 292,
 				// 			shape: "diamond"
 				// 		},
 				// 		{
-				// 			map: "thorntail",
+				// 			map: vars.Maps.TTH,
 				// 			x: 132,
 				// 			y: 219,
 				// 			shape: "diamond"
 				// 		},
 				// 		{
-				// 			map: "thorntail",
+				// 			map: vars.Maps.TTH,
 				// 			x: 17,
 				// 			y: 392,
 				// 			shape: "diamond"
@@ -461,7 +461,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 221,
 							y: 233
 						}
@@ -482,7 +482,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 2, access_rules: constructRules(ruleDataFromID(data, 2), [luaFunc.CanExplodeBombPlant])}],
 					map_locations: [
 						{
-							map: "ancient_well",
+							map: vars.Maps.Well,
 							x: 105,
 							y: 113
 						}
@@ -496,7 +496,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "ancient_well",
+							map: vars.Maps.Well,
 							x: 9,
 							y: 141
 						}
@@ -513,7 +513,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 24, access_rules: constructRules(ruleDataFromID(data, 24))}],
 					map_locations: [
 						{
-							map: "ancient_well",
+							map: vars.Maps.Well,
 							x: 19,
 							y: 33
 						}
@@ -524,7 +524,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 25, access_rules: constructRules(ruleDataFromID(data, 25))}],
 					map_locations: [
 						{
-							map: "ancient_well",
+							map: vars.Maps.Well,
 							x: 116,
 							y: 11
 						}
@@ -535,7 +535,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 26, access_rules: constructRules(ruleDataFromID(data, 26), [luaFunc.CanExplodeBombPlant])}],
 					map_locations: [
 						{
-							map: "ancient_well",
+							map: vars.Maps.Well,
 							x: 12,
 							y: 114
 						}
@@ -546,7 +546,7 @@ function tth(data: LocationRule[]) {
 					sections: [{id: 27, access_rules: constructRules(ruleDataFromID(data, 27), [luaFunc.HasBooster])}],
 					map_locations: [
 						{
-							map: "ancient_well",
+							map: vars.Maps.Well,
 							x: 73,
 							y: 36
 						}
@@ -560,7 +560,7 @@ function tth(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "ancient_well",
+							map: vars.Maps.Well,
 							x: 135,
 							y: 122
 						}
@@ -633,7 +633,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 4,
 							y: 100
 						}
@@ -654,7 +654,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 20, access_rules: constructRules(ruleDataFromID(data, 20), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 233,
 							y: 144
 						}
@@ -668,7 +668,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 260,
 							y: 149
 						}
@@ -682,7 +682,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 223,
 							y: 138
 						}
@@ -693,7 +693,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 300, access_rules: constructRules(ruleDataFromID(data, 300), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 218,
 							y: 188
 						}
@@ -704,7 +704,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 301, access_rules: constructRules(ruleDataFromID(data, 301), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 201,
 							y: 154
 						}
@@ -715,7 +715,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 302, access_rules: constructRules(ruleDataFromID(data, 302), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 238,
 							y: 187
 						}
@@ -739,7 +739,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 299,
 							y: 124
 						}
@@ -757,7 +757,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 349,
 							y: 136
 						}
@@ -771,7 +771,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "thorntail",
+							map: vars.Maps.TTH,
 							x: 224,
 							y: 72
 						}
@@ -782,7 +782,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 303, access_rules: constructRules(ruleDataFromID(data, 303), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 326,
 							y: 184
 						}
@@ -799,7 +799,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 23, access_rules: constructRules(ruleDataFromID(data, 23))}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 376,
 							y: 139
 						}
@@ -814,7 +814,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 364,
 							y: 72
 						}
@@ -825,7 +825,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 135, access_rules: constructRules(ruleDataFromID(data, 135))}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 455,
 							y: 145
 						}
@@ -840,7 +840,7 @@ function shw(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 426,
 							y: 90
 						}
@@ -851,7 +851,7 @@ function shw(data: LocationRule[]) {
 					sections: [{id: 307, access_rules: constructRules(ruleDataFromID(data, 307), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "snowhorn",
+							map: vars.Maps.SHW,
 							x: 410,
 							y: 53
 						}
@@ -885,7 +885,7 @@ function dim(data: LocationRule[]) {
 				// 	sections: [{}],
 				// 	map_locations: [
 				// 		{
-				// 			map: "darkice",
+				// 			map: vars.Maps.DIM,
 				// 			x: 35,
 				// 			y: 205
 				// 		}
@@ -896,7 +896,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 32, access_rules: constructRules(ruleDataFromID(data, 32), [vars.Tricky.Find])}], // should be Shackle Key, but not rando'd
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 46,
 							y: 204
 						}
@@ -907,7 +907,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 308, access_rules: constructRules(ruleDataFromID(data, 308), [vars.Tricky.Find])}],
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 89,
 							y: 220
 						}
@@ -931,7 +931,7 @@ function dim(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 35,
 							y: 148
 						}
@@ -942,7 +942,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 309, access_rules: constructRules(ruleDataFromID(data, 309), [vars.Tricky.Flame], true)}], // apworld hasn't fixed this yet
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 79,
 							y: 113
 						}
@@ -963,7 +963,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 35, access_rules: constructRules(ruleDataFromID(data, 35), [luaFunc.HasBooster])}],
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 95,
 							y: 90
 						}
@@ -974,7 +974,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 36, access_rules: constructRules(ruleDataFromID(data, 36), [luaFunc.HasBooster])}],
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 65,
 							y: 103
 						}
@@ -985,7 +985,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 37, access_rules: constructRules(ruleDataFromID(data, 37), [and(vars.Tricky.Flame, luaFunc.HasBooster)])}],
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 31,
 							y: 60
 						}
@@ -996,7 +996,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 38, access_rules: constructRules(ruleDataFromID(data, 38), [and(vars.Tricky.Flame, has(vars.Inventory.SharpClawCogs, 3), luaFunc.HasBlaster)])}],
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 8,
 							y: 109
 						}
@@ -1017,7 +1017,7 @@ function dim(data: LocationRule[]) {
 				// 	sections: [{access_rules: ["$HasBlaster"]}],
 				// 	map_locations: [
 				// 		{
-				// 			map: "darkice",
+				// 			map: vars.Maps.DIM,
 				// 			x: 289,
 				// 			y: 186
 				// 		}
@@ -1029,7 +1029,7 @@ function dim(data: LocationRule[]) {
 				// 	sections: [{}],
 				// 	map_locations: [
 				// 		{
-				// 			map: "darkice",
+				// 			map: vars.Maps.DIM,
 				// 			x: 273,
 				// 			y: 40
 				// 		}
@@ -1040,7 +1040,7 @@ function dim(data: LocationRule[]) {
 					sections: [{id: 40, access_rules: constructRules(ruleDataFromID(data, 40), [and(vars.Tricky.Flame, luaFunc.HasBlaster)])}],
 					map_locations: [
 						{
-							map: "darkice",
+							map: vars.Maps.DIM,
 							x: 283,
 							y: 253
 						}
@@ -1073,7 +1073,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 130, access_rules: constructRules(ruleDataFromID(data, 130))}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 66,
 							y: 14
 						}
@@ -1084,7 +1084,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 131, access_rules: constructRules(ruleDataFromID(data, 131))}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 66,
 							y: 131
 						}
@@ -1095,7 +1095,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 132, access_rules: constructRules(ruleDataFromID(data, 132))}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 217,
 							y: 27
 						}
@@ -1116,7 +1116,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 139, access_rules: constructRules(ruleDataFromID(data, 139), [vars.Staff.Staff])}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 321,
 							y: 31
 						}
@@ -1127,7 +1127,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 4, access_rules: constructRules(ruleDataFromID(data, 4), [vars.Inventory.MoonPassKey])}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 398,
 							y: 66
 						}
@@ -1138,7 +1138,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 315, access_rules: constructRules(ruleDataFromID(data, 315), [luaFunc.CanGrowMoonSeed])}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 338,
 							y: 39
 						}
@@ -1149,7 +1149,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 316, access_rules: constructRules(ruleDataFromID(data, 316), [luaFunc.CanGrowMoonSeed])}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 351,
 							y: 106
 						}
@@ -1166,7 +1166,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 42, access_rules: constructRules(ruleDataFromID(data, 42), [and(vars.Tricky.Flame, vars.Staff.FireBlaster, vars.Staff.FreezeBlast)])}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 357,
 							y: 361
 						}
@@ -1180,7 +1180,7 @@ function mmp(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 399,
 							y: 203
 						}
@@ -1194,7 +1194,7 @@ function mmp(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 390,
 							y: 322
 						}
@@ -1205,7 +1205,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 151, access_rules: constructRules(ruleDataFromID(data, 151))}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 343,
 							y: 341
 						}
@@ -1226,7 +1226,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 312, access_rules: constructRules(ruleDataFromID(data, 312), [luaFunc.HasBooster])}],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 214,
 							y: 105
 						}
@@ -1241,7 +1241,7 @@ function mmp(data: LocationRule[]) {
 				// 	],
 				// 	map_locations: [
 				// 		{
-				// 			map: "moon",
+				// 			map: vars.Maps.MMP,
 				// 			x: 181,
 				// 			y: 105
 				// 		}
@@ -1255,7 +1255,7 @@ function mmp(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "moon",
+							map: vars.Maps.MMP,
 							x: 198,
 							y: 105
 						}
@@ -1266,7 +1266,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 144, access_rules: constructRules(ruleDataFromID(data, 144))}],
 					map_locations: [
 						{
-							map: "volcano",
+							map: vars.Maps.VFP,
 							x: 52,
 							y: 140
 						}
@@ -1291,7 +1291,7 @@ function mmp(data: LocationRule[]) {
 					],
 					map_locations: [
 						{
-							map: "volcano",
+							map: vars.Maps.VFP,
 							x: 98,
 							y: 92
 						}
@@ -1302,7 +1302,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 3, access_rules: constructRules(ruleDataFromID(data, 3))}],
 					map_locations: [
 						{
-							map: "volcano",
+							map: vars.Maps.VFP,
 							x: 211,
 							y: 139
 						}
@@ -1319,7 +1319,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 147, access_rules: constructRules(ruleDataFromID(data, 147))}],
 					map_locations: [
 						{
-							map: "volcano",
+							map: vars.Maps.VFP,
 							x: 185,
 							y: 51
 						}
@@ -1330,7 +1330,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 148, access_rules: constructRules(ruleDataFromID(data, 148))}],
 					map_locations: [
 						{
-							map: "volcano",
+							map: vars.Maps.VFP,
 							x: 175,
 							y: 51
 						}
@@ -1341,7 +1341,7 @@ function mmp(data: LocationRule[]) {
 					sections: [{id: 41, access_rules: constructRules(ruleDataFromID(data, 41), [vars.Inventory.FireSpellstone1])}],
 					map_locations: [
 						{
-							map: "volcano",
+							map: vars.Maps.VFP,
 							x: 200,
 							y: 80
 						}
@@ -1491,7 +1491,14 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Entrance Platform Race",
-					sections: [{id: 46, access_rules: constructRules(ruleDataFromID(data, 46))}]
+					sections: [{id: 46, access_rules: constructRules(ruleDataFromID(data, 46))}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 111,
+							y: 97
+						}
+					]
 				}
 			]
 		},
@@ -1505,31 +1512,80 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Explode Prison Ceiling",
-					sections: [{id: 47, access_rules: constructRules(ruleDataFromID(data, 47))}]
+					sections: [{id: 47, access_rules: constructRules(ruleDataFromID(data, 47))}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 173,
+							y: 28
+						}
+					]
 				},
 				{
 					name: "Rescue Gradabug",
-					sections: [{id: 48, access_rules: constructRules(ruleDataFromID(data, 48), [vars.Staff.Staff])}]
+					sections: [{id: 48, access_rules: constructRules(ruleDataFromID(data, 48), [vars.Staff.Staff])}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 202,
+							y: 18
+						}
+					]
 				},
 				{
 					name: "Red Crystal Chest",
-					sections: [{id: 49, access_rules: constructRules(ruleDataFromID(data, 49), [vars.Staff.Staff])}]
+					sections: [{id: 49, access_rules: constructRules(ruleDataFromID(data, 49), [vars.Staff.Staff])}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 204,
+							y: 45
+						}
+					]
 				},
 				{
 					name: "Green Crystal Chest",
-					sections: [{id: 50, access_rules: constructRules(ruleDataFromID(data, 50), [luaFunc.HasIceBlast])}]
+					sections: [{id: 50, access_rules: constructRules(ruleDataFromID(data, 50), [luaFunc.HasIceBlast])}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 213,
+							y: 45
+						}
+					]
 				},
 				{
 					name: "Blue Crystal Chest",
-					sections: [{id: 51, access_rules: constructRules(ruleDataFromID(data, 51), [and(luaFunc.HasIceBlast, vars.Staff.RocketBoost)])}]
+					sections: [{id: 51, access_rules: constructRules(ruleDataFromID(data, 51), [and(luaFunc.HasIceBlast, vars.Staff.RocketBoost)])}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 219,
+							y: 143
+						}
+					]
 				},
 				{
 					name: "Cage BafomDad",
-					sections: [{id: 326, access_rules: constructRules(ruleDataFromID(data, 326))}]
+					sections: [{id: 326, access_rules: constructRules(ruleDataFromID(data, 326))}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 191,
+							y: 18
+						}
+					]
 				},
 				{
 					name: "Cell BafomDad",
-					sections: [{id: 327, access_rules: constructRules(ruleDataFromID(data, 327))}]
+					sections: [{id: 327, access_rules: constructRules(ruleDataFromID(data, 327))}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 219,
+							y: 35
+						}
+					]
 				},
 			]
 		},
@@ -1539,23 +1595,58 @@ function crf(data: LocationRule[]) {
 			children: [
 				{
 					name: "Rescue Queen CloudRunner",
-					sections: [{id: 52, access_rules: constructRules(ruleDataFromID(data, 52), [vars.Staff.Disguise])}]
+					sections: [{id: 52, access_rules: constructRules(ruleDataFromID(data, 52), [vars.Staff.Disguise])}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 242,
+							y: 97
+						}
+					]
 				},
 				{
 					name: "BafomDad on Back Crates",
-					sections: [{id: 328, access_rules: constructRules(ruleDataFromID(data, 328))}]
+					sections: [{id: 328, access_rules: constructRules(ruleDataFromID(data, 328))}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 302,
+							y: 85
+						}
+					]
 				},
 				{
 					name: "BafomDad near Boss Door",
-					sections: [{id: 329, access_rules: constructRules(ruleDataFromID(data, 329))}]
+					sections: [{id: 329, access_rules: constructRules(ruleDataFromID(data, 329))}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 288,
+							y: 140
+						}
+					]
 				},
 				{
 					name: "BafomDad in Dark Room",
-					sections: [{id: 330, access_rules: constructRules(ruleDataFromID(data, 330), [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], true)}]
+					sections: [{id: 330, access_rules: constructRules(ruleDataFromID(data, 330), [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], true)}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 267,
+							y: 88
+						}
+					]
 				},
 				{
 					name: "Defeat Boss SharpClaw Race",
-					sections: [{id: 53, access_rules: constructRules(ruleDataFromID(data, 53), [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], true)}]
+					sections: [{id: 53, access_rules: constructRules(ruleDataFromID(data, 53), [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], true)}],
+					map_locations: [
+						{
+							map: vars.Maps.CRF,
+							x: 244,
+							y: 57
+						}
+					]
 				},
 			]
 		},

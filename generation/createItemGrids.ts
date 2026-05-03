@@ -26,7 +26,9 @@ export default function createItemGrids() {
 				[vars.Inventory.WhiteGrubTub, vars.Inventory.EntranceCog, vars.Inventory.SharpClawCogs],
 
 				[vars.Inventory.GateKey, vars.Inventory.MoonPassKey, vars.Inventory.PowerKey],
-				[vars.Inventory.RedCrystal, vars.Inventory.GreenCrystal, vars.Inventory.BlueCrystal]
+				[vars.Inventory.RedCrystal, vars.Inventory.GreenCrystal, vars.Inventory.BlueCrystal],
+
+				[vars.Inventory.KrazoaSpirit2]
 			]
 		},
 		planets: {
