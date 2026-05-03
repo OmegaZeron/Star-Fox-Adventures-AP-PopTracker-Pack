@@ -54,15 +54,21 @@
 		"img": "images/maps/volcano_force_point_temple.png"
 	},
 	{
-		"name": "cloudrunner",
-		"location_size": 8,
-		"location_border_thickness": 1,
-		"img": "images/maps/cloudrunner_fortress.png"
-	},
-	{
 		"name": "lightfoot",
 		"location_size": 8,
 		"location_border_thickness": 1,
 		"img": "images/maps/lightfoot_village.png"
+	},
+	{
+		"name": "capeclaw",
+		"location_size": 8,
+		"location_border_thickness": 1,
+		"img": "images/maps/cape_claw.png"
+	},
+	{
+		"name": "cloudrunner",
+		"location_size": 8,
+		"location_border_thickness": 1,
+		"img": "images/maps/cloudrunner_fortress.png"
 	}
 ]

@@ -18,32 +18,61 @@
 					"content": {
 						"type": "tabbed",
 						"tabs": [
-							// {
-							// 	"title": "Sauria",
-							// 	"content": {
-							// 		"type": "map",
-							// 		"maps": ["sauria"]
-							// 	}
-							// },
 							{
-								"title": "ThornTail Hollow",
+								"title": "Sauria",
 								"content": {
-									"type": "map",
-									"maps": ["thorntail"]
-								}
-							},
-							{
-								"title": "Ancient Well",
-								"content": {
-									"type": "map",
-									"maps": ["ancient_well"]
-								}
-							},
-							{
-								"title": "SnowHorn Wastes",
-								"content": {
-									"type": "map",
-									"maps": ["snowhorn"]
+									"type": "tabbed",
+									"tabs": [
+										{
+											"title": "ThornTail Hollow",
+											"content": {
+												"type": "map",
+												"maps": ["thorntail"]
+											}
+										},
+										{
+											"title": "Ancient Well",
+											"content": {
+												"type": "map",
+												"maps": ["ancient_well"]
+											}
+										},
+										{
+											"title": "SnowHorn Wastes",
+											"content": {
+												"type": "map",
+												"maps": ["snowhorn"]
+											}
+										},
+										{
+											"title": "Moon Mountain Pass",
+											"content": {
+												"type": "map",
+												"maps": ["moon"]
+											}
+										},
+										{
+											"title": "Volcano Force Point Temple",
+											"content": {
+												"type": "map",
+												"maps": ["volcano"]
+											}
+										},
+										{
+											"title": "LightFoot Village",
+											"content": {
+												"type": "map",
+												"maps": ["lightfoot"]
+											}
+										},
+										{
+											"title": "Cape Claw",
+											"content": {
+												"type": "map",
+												"maps": ["capeclaw"]
+											}
+										}
+									]
 								}
 							},
 							{
@@ -54,33 +83,19 @@
 								}
 							},
 							{
-								"title": "Moon Mountain Pass",
-								"content": {
-									"type": "map",
-									"maps": ["moon"]
-								}
-							},
-							{
-								"title": "Volcano Force Point Temple",
-								"content": {
-									"type": "map",
-									"maps": ["volcano"]
-								}
-							},
-							{
 								"title": "CloudRunner Fortress",
 								"content": {
 									"type": "map",
 									"maps": ["cloudrunner"]
 								}
 							},
-							// {
-							// 	"title": "LightFoot Village",
-							// 	"content": {
-							// 		"type": "map",
-							// 		"maps": ["lightfoot"]
-							// 	}
-							// },
+							{
+								"title": "Krazoa Palace",
+								"content": {
+									"type": "map",
+									"maps": ["krazoa"]
+								}
+							}
 						]
 					}
 				}
