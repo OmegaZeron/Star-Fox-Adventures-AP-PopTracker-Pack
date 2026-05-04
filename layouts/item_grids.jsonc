@@ -20,8 +20,8 @@
 			["scarabPockets"],
 			["rockCandy", "alpineSHW", "alpineDIM"],
 			["whiteGrubTub", "entranceCog", "sharpClawCogs"],
-			["gateKey", "moonPassKey", "powerKey"],
-			["crystalRed", "crystalGreen", "crystalBlue"],
+			["gateKey", "moonPassKey", "goldBar"],
+			["powerKey", "crystalRed", "crystalGreen", "crystalBlue"],
 			["krazoa2"]
 		]
 	},

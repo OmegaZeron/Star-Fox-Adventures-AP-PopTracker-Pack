@@ -1375,6 +1375,13 @@ function lfv(data: LocationRule[]) {
 						{id: 126, name: "Fuel Cell Right", access_rules: constructRules(ruleDataFromID(data, 126), [luaFunc.HasBooster])},
 						{id: 127, name: "Fuel Cell Left", access_rules: constructRules(ruleDataFromID(data, 127), [luaFunc.HasBooster])},
 						{id: 320, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 320), [luaFunc.HasBooster])},
+					],
+					map_locations: [
+						{
+							map: vars.Maps.LFV,
+							x: 166,
+							y: 207
+						}
 					]
 				}
 			]
@@ -1401,15 +1408,36 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Transition Bottom Platform Fuel Cell",
-					sections: [{id: 152, access_rules: constructRules(ruleDataFromID(data, 152), [vars.Staff.RocketBoost])}]
+					sections: [{id: 152, access_rules: constructRules(ruleDataFromID(data, 152), [`[${vars.Staff.RocketBoost}]`], true)}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 249,
+							y: 207
+						}
+					]
 				},
 				{
 					name: "Transition Bottom Waterfall Fuel Cell",
-					sections: [{id: 153, access_rules: constructRules(ruleDataFromID(data, 153), [vars.Staff.RocketBoost])}]
+					sections: [{id: 153, access_rules: constructRules(ruleDataFromID(data, 153), [`[${vars.Staff.RocketBoost}]`], true)}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 226,
+							y: 182
+						}
+					]
 				},
 				{
 					name: "Transition Bottom Weeds Fuel Cell",
-					sections: [{id: 154, access_rules: constructRules(ruleDataFromID(data, 154), [vars.Staff.RocketBoost])}]
+					sections: [{id: 154, access_rules: constructRules(ruleDataFromID(data, 154), [`[${vars.Staff.RocketBoost}]`], true)}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 252,
+							y: 181
+						}
+					]
 				},
 			]
 		},
@@ -1422,7 +1450,14 @@ function cc(data: LocationRule[]) {
 					sections: [
 						{
 							id: 44,
-							access_rules: constructRules(ruleDataFromID(data, 44), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)])
+							access_rules: constructRules(ruleDataFromID(data, 44), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)]),
+						}
+					],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 100,
+							y: 78
 						}
 					]
 				},
@@ -1433,40 +1468,103 @@ function cc(data: LocationRule[]) {
 							id: 45,
 							access_rules: constructRules(ruleDataFromID(data, 45), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)])
 						}
+					],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 8,
+							y: 190
+						}
 					]
 				},
 				{
 					name: "Drop from Bridge Fuel Cell",
-					sections: [{id: 155, access_rules: constructRules(ruleDataFromID(data, 155))}]
+					sections: [{id: 155, access_rules: constructRules(ruleDataFromID(data, 155))}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 133,
+							y: 239
+						}
+					]
 				},
 				{
 					name: "Drop from Deck Fuel Cell",
-					sections: [{id: 156, access_rules: constructRules(ruleDataFromID(data, 156))}]
+					sections: [{id: 156, access_rules: constructRules(ruleDataFromID(data, 156))}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 119,
+							y: 137
+						}
+					]
 				},
 				{
 					name: "Dig in Back Cave Fuel Cell",
-					sections: [{id: 157, access_rules: constructRules(ruleDataFromID(data, 157), [vars.Tricky.Find])}]
+					sections: [{id: 157, access_rules: constructRules(ruleDataFromID(data, 157), [vars.Tricky.Find])}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 22,
+							y: 123
+						}
+					]
 				},
 				{
 					name: "Dig BafomDad middle of Water",
-					sections: [{id: 321, access_rules: constructRules(ruleDataFromID(data, 321), [vars.Tricky.Find])}]
+					sections: [{id: 321, access_rules: constructRules(ruleDataFromID(data, 321), [vars.Tricky.Find])}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 81,
+							y: 134
+						}
+					]
 				},
 				{
 					name: "Dig Gold Bar near HighTop",
-					sections: [{id: 322, access_rules: constructRules(ruleDataFromID(data, 322), [vars.Tricky.Find])}]
+					sections: [{id: 322, access_rules: constructRules(ruleDataFromID(data, 322), [vars.Tricky.Find])}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 186,
+							y: 18
+						}
+					]
 				},
 				{
 					name: "Dig Gold Bar behind Bramble",
-					sections: [{id: 323, access_rules: constructRules(ruleDataFromID(data, 323), [vars.Tricky.Flame])}]
+					sections: [{id: 323, access_rules: constructRules(ruleDataFromID(data, 323), [vars.Tricky.Flame])}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 26,
+							y: 32
+						}
+					]
 				},
 				{
 					name: "Dig Gold Bar before Bramble",
-					sections: [{id: 324, access_rules: constructRules(ruleDataFromID(data, 324), [vars.Tricky.Find])}]
+					sections: [{id: 324, access_rules: constructRules(ruleDataFromID(data, 324), [vars.Tricky.Find])}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 29,
+							y: 81
+						}
+					]
 				},
 				{
 					name: "Dig Gold Bar near CloudRunner Cell",
-					sections: [{id: 325, access_rules: constructRules(ruleDataFromID(data, 325), [vars.Tricky.Find])}]
-				},
+					sections: [{id: 325, access_rules: constructRules(ruleDataFromID(data, 325), [vars.Tricky.Find])}],
+					map_locations: [
+						{
+							map: vars.Maps.CC,
+							x: 27,
+							y: 162
+						}
+					]
+				}
 			]
 		}
 	]
