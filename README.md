@@ -22,3 +22,7 @@ Click the AP button in the top left of the window. Enter your server:port (most 
 ## Credits
 MichelFenouil - Map and item images</br>
 [Krystal Archive](https://krystalarchive.com/) and [StarFox.org](https://starfox.org/) - Header image
+
+## Support
+I don't expect anything, but financial contributions are greatly appreciated and help me continue development in the future</br>
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/omegazeron)
