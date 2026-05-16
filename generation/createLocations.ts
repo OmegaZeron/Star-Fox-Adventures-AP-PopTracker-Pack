@@ -19,6 +19,9 @@ class Section {
 	access_rules?: string[];
 	visibility_rules?: string[];
 	ref?: string;
+
+	fallback?: string[];
+	preferFallback?: boolean
 }
 class MapLocations {
 	map!: string;
@@ -51,31 +54,45 @@ function createLocMapping() {
 
 	writeToFile("scripts/autotracking/location_mapping.lua", output)
 }
-function addLocs(data: Parent[]) {
-	if (!data) {
+function addLocs(parents: Parent[], rules: LocationRule[], path: string) {
+	if (!parents) {
 		console.warn("addLocs: data is null")
 		return
 	}
-	if (data.length <= 0) {
+	if (parents.length <= 0) {
 		console.warn("addLocs: data is empty")
 		return
 	}
 
-	locMapping.push(...data)
+	for (let parent of parents) {
+		for (let child of parent.children) {
+			for (let section of child.sections) {
+				if (!section.id) {
+					continue
+				}
+				
+				section.access_rules = constructRules(ruleDataFromID(rules, section.id), section.fallback, section.preferFallback)
+			}
+		}
+	}
+
+	outputFile(path, parents)
+
+	locMapping.push(...parents)
 }
 
 export default function createLocations() {
 	locMapping = []
-	readFromFile("generation/locations-output.json", (data: LocationRule[]) => {
+	readFromFile("generation/locations-output.json", (rules: LocationRule[]) => {
 		// console.log(JSON.stringify(data, null, '\t'))
-		addLocs(tth(data))
-		addLocs(kp(data))
-		addLocs(shw(data))
-		addLocs(dim(data))
-		addLocs(mmp(data))
-		addLocs(lfv(data))
-		addLocs(cc(data))
-		addLocs(crf(data))
+		addLocs(tth(), rules, "thorntail_hollow.jsonc")
+		addLocs(kp(), rules, "krazoa_palace.jsonc")
+		addLocs(shw(), rules, "snowhorn_wastes.jsonc")
+		addLocs(dim(), rules, "darkice_mines.jsonc")
+		addLocs(mmp(), rules, "moon_mountain_pass.jsonc")
+		addLocs(lfv(), rules, "lightfoot_village.jsonc")
+		addLocs(cc(), rules, "cape_claw.jsonc")
+		addLocs(crf(), rules, "cloudrunner_fortress.jsonc")
 
 		createLocMapping()
 	})
@@ -93,7 +110,17 @@ function ruleDataFromID(data: LocationRule[], id: number): Rule | null {
 	return loc.rules
 }
 
-function tth(data: LocationRule[]) {
+function replacer(key: string, value: any) {
+	return ["id", "fallback", "preferFallback"].includes(key) ? undefined : value
+}
+function outputFile(path: string, locs: Parent[]) {
+	let output = JSON.stringify(locs, replacer, '\t')
+	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
+
+	writeToFile(`locations/${path}`, output)
+}
+
+function tth() {
 	let locs: Parent[] = [
 		{
 			name: "ThornTail Hollow",
@@ -105,7 +132,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "Fire Blaster Upgrade",
-					sections: [{id: 1, access_rules: constructRules(ruleDataFromID(data, 1))}],
+					sections: [{id: 1}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -121,104 +148,104 @@ function tth(data: LocationRule[]) {
 						{
 							id: 200,
 							name: "Rock Candy",
-							access_rules: constructRules(ruleDataFromID(data, 200), [luaFunc.CanBuy(10)])
+							fallback: [luaFunc.CanBuy(10)]
 						},
 						{
 							id: 201,
 							name: "Hi-Tech Display Device",
-							access_rules: constructRules(ruleDataFromID(data, 201), [luaFunc.CanBuy(20)])
+							fallback: [luaFunc.CanBuy(20)]
 						},
 						{
 							id: 202,
 							name: "Tricky Ball",
-							access_rules: constructRules(ruleDataFromID(data, 202), [luaFunc.CanBuy(15)])
+							fallback: [luaFunc.CanBuy(15)]
 						},
 						{
 							id: 203,
 							name: "BafomDad Holder",
-							access_rules: constructRules(ruleDataFromID(data, 203), [luaFunc.CanBuy(20)])
+							fallback: [luaFunc.CanBuy(20)]
 						},
 						{
 							id: 204,
 							name: "FireFly Lantern",
-							access_rules: constructRules(ruleDataFromID(data, 204), [luaFunc.CanBuy(20)])
+							fallback: [luaFunc.CanBuy(20)]
 						},
 						{
 							id: 205,
 							name: "SnowHorn Artifact",
-							access_rules: constructRules(ruleDataFromID(data, 205), [luaFunc.CanBuy(130)])
+							fallback: [luaFunc.CanBuy(130)]
 						},
 						{
 							id: 210,
 							name: "Map Cape Claw",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 210), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 211,
 							name: "Map Ocean Force Point",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 211), [luaFunc.CanBuy(10)])
+							fallback: [luaFunc.CanBuy(10)]
 						},
 						{
 							id: 212,
 							name: "Map Krazoa Palace",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 212), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 213,
 							name: "Map Dragon Rock",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 213), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 214,
 							name: "Map ThornTail Hollow",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 214), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 215,
 							name: "Map Moon Pass",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 215), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 216,
 							name: "Map LightFoot Village",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 216), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 217,
 							name: "Map DarkIce Mines",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 217), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 218,
 							name: "Map CloudRunner Fortress",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 218), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 219,
 							name: "Map Walled City",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 219), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 220,
 							name: "Map SnowHorn Wastes",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 220), [luaFunc.CanBuy(5)])
+							fallback: [luaFunc.CanBuy(5)]
 						},
 						{
 							id: 221,
 							name: "Map Volcano Force Point",
 							visibility_rules: [vars.Settings.ShopMaps],
-							access_rules: constructRules(ruleDataFromID(data, 221), [luaFunc.CanBuy(10)])
+							fallback: [luaFunc.CanBuy(10)]
 						}
 					],
 					map_locations: [
@@ -231,7 +258,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "Queen Cave Fuel Cell",
-					sections: [{id: 100, access_rules: constructRules(ruleDataFromID(data, 100))}],
+					sections: [{id: 100}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -243,8 +270,8 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Pillar Fuel Cells",
 					sections: [
-						{id: 101, name: "Left", access_rules: constructRules(ruleDataFromID(data, 101))},
-						{id: 102, name: "Right", access_rules: constructRules(ruleDataFromID(data, 102))}
+						{id: 101, name: "Left"},
+						{id: 102, name: "Right"}
 					],
 					map_locations: [
 						{
@@ -257,8 +284,8 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Beside WarpStone Fuel Cells",
 					sections: [
-						{id: 103, name: "Left", access_rules: constructRules(ruleDataFromID(data, 103), [luaFunc.CanExplodeBombPlant])},
-						{id: 104, name: "Right", access_rules: constructRules(ruleDataFromID(data, 104), [luaFunc.CanExplodeBombPlant])}
+						{id: 103, name: "Left", fallback: [luaFunc.CanExplodeBombPlant]},
+						{id: 104, name: "Right", fallback: [luaFunc.CanExplodeBombPlant]}
 					],
 					map_locations: [
 						{
@@ -271,10 +298,10 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Waterfall Cave Fuel Cells",
 					sections: [
-						{id: 105, name: "Center", access_rules: constructRules(ruleDataFromID(data, 105), [luaFunc.CanExplodeBombPlant])},
-						{id: 106, name: "Left", access_rules: constructRules(ruleDataFromID(data, 106), [luaFunc.CanExplodeBombPlant])},
-						{id: 107, name: "Right", access_rules: constructRules(ruleDataFromID(data, 107), [luaFunc.CanExplodeBombPlant])},
-						{id: 108, name: "Back", access_rules: constructRules(ruleDataFromID(data, 108), [luaFunc.CanExplodeBombPlant])}
+						{id: 105, name: "Center", fallback: [luaFunc.CanExplodeBombPlant]},
+						{id: 106, name: "Left", fallback: [luaFunc.CanExplodeBombPlant]},
+						{id: 107, name: "Right", fallback: [luaFunc.CanExplodeBombPlant]},
+						{id: 108, name: "Back", fallback: [luaFunc.CanExplodeBombPlant]}
 					],
 					map_locations: [
 						{
@@ -287,9 +314,9 @@ function tth(data: LocationRule[]) {
 				{
 					name: "South Cave Fuel Cells",
 					sections: [
-						{id: 109, name: "Center", access_rules: constructRules(ruleDataFromID(data, 109), [luaFunc.CanExplodeBombPlant])},
-						{id: 110, name: "Right", access_rules: constructRules(ruleDataFromID(data, 110), [luaFunc.CanExplodeBombPlant])},
-						{id: 111, name: "Left", access_rules: constructRules(ruleDataFromID(data, 111), [luaFunc.CanExplodeBombPlant])}
+						{id: 109, name: "Center", fallback: [luaFunc.CanExplodeBombPlant]},
+						{id: 110, name: "Right", fallback: [luaFunc.CanExplodeBombPlant]},
+						{id: 111, name: "Left", fallback: [luaFunc.CanExplodeBombPlant]}
 					],
 					map_locations: [
 						{
@@ -302,8 +329,8 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Above Store Fuel Cells",
 					sections: [
-						{id: 112, name: "Left", access_rules: constructRules(ruleDataFromID(data, 112), [luaFunc.HasBooster])},
-						{id: 113, name: "Right", access_rules: constructRules(ruleDataFromID(data, 113), [luaFunc.HasBooster])}
+						{id: 112, name: "Left", fallback: [luaFunc.HasBooster]},
+						{id: 113, name: "Right", fallback: [luaFunc.HasBooster]}
 					],
 					map_locations: [
 						{
@@ -315,7 +342,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "Magic Upgrade above Store",
-					sections: [{id: 30, access_rules: constructRules(ruleDataFromID(data, 30), [and(vars.Staff.FireBlaster, luaFunc.HasBooster)])}],
+					sections: [{id: 30, fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -327,7 +354,7 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Feed Queen White GrubTubs",
 					access_rules: ["@ThornTail Hollow/Queen Cave Fuel Cell/"],
-					sections: [{id: 31, access_rules: constructRules(ruleDataFromID(data, 31), [has(vars.Inventory.WhiteGrubTub, 6)])}],
+					sections: [{id: 31, fallback: [has(vars.Inventory.WhiteGrubTub, 6)]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -338,7 +365,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "Dig BafomDad near Store",
-					sections: [{id: 304, access_rules: constructRules(ruleDataFromID(data, 304), [vars.Tricky.Find])}],
+					sections: [{id: 304, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -349,7 +376,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "Dig BafomDad near Queen Cave",
-					sections: [{id: 305, access_rules: constructRules(ruleDataFromID(data, 305), [vars.Tricky.Find])}],
+					sections: [{id: 305, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -366,8 +393,8 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Entrance to LightFoot Village Fuel Cells",
 					sections: [
-						{id: 124, name: "Right", access_rules: constructRules(ruleDataFromID(data, 124), [vars.Staff.Staff])},
-						{id: 125, name: "Left", access_rules: constructRules(ruleDataFromID(data, 125), [vars.Staff.Staff])}
+						{id: 124, name: "Right", fallback: [vars.Staff.Staff]},
+						{id: 125, name: "Left", fallback: [vars.Staff.Staff]}
 					],
 					map_locations: [
 						{
@@ -380,7 +407,7 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Dig BafomDad in Entrance to LightFoot Village",
 					access_rules: ["@ThornTail Hollow/LightFoot Village Entrance/"],
-					sections: [{id: 306, access_rules: constructRules(ruleDataFromID(data, 306), [vars.Tricky.Find])}],
+					sections: [{id: 306, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -479,7 +506,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "Staff Booster Upgrade",
-					sections: [{id: 2, access_rules: constructRules(ruleDataFromID(data, 2), [luaFunc.CanExplodeBombPlant])}],
+					sections: [{id: 2, fallback: [luaFunc.CanExplodeBombPlant]}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -491,8 +518,8 @@ function tth(data: LocationRule[]) {
 				{
 					name: "Fuel Cells",
 					sections: [
-						{id: 128, name: "Left", access_rules: constructRules(ruleDataFromID(data, 128), [luaFunc.HasBooster])},
-						{id: 129, name: "Right", access_rules: constructRules(ruleDataFromID(data, 129), [luaFunc.HasBooster])}
+						{id: 128, name: "Left", fallback: [luaFunc.HasBooster]},
+						{id: 129, name: "Right", fallback: [luaFunc.HasBooster]}
 					],
 					map_locations: [
 						{
@@ -510,7 +537,7 @@ function tth(data: LocationRule[]) {
 			children: [
 				{
 					name: "White GrubTub 1",
-					sections: [{id: 24, access_rules: constructRules(ruleDataFromID(data, 24))}],
+					sections: [{id: 24}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -521,7 +548,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "White GrubTub 2",
-					sections: [{id: 25, access_rules: constructRules(ruleDataFromID(data, 25))}],
+					sections: [{id: 25}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -532,7 +559,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "White GrubTub 3",
-					sections: [{id: 26, access_rules: constructRules(ruleDataFromID(data, 26), [luaFunc.CanExplodeBombPlant])}],
+					sections: [{id: 26, fallback: [luaFunc.CanExplodeBombPlant]}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -543,7 +570,7 @@ function tth(data: LocationRule[]) {
 				},
 				{
 					name: "White GrubTub 4",
-					sections: [{id: 27, access_rules: constructRules(ruleDataFromID(data, 27), [luaFunc.HasBooster])}],
+					sections: [{id: 27, fallback: [luaFunc.HasBooster]}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -555,8 +582,8 @@ function tth(data: LocationRule[]) {
 				{
 					name: "White GrubTubs",
 					sections: [
-						{id: 28, name: "5", access_rules: constructRules(ruleDataFromID(data, 28), [and(vars.Staff.FireBlaster, luaFunc.HasBooster)])},
-						{id: 29, name: "6", access_rules: constructRules(ruleDataFromID(data, 29), [and(vars.Staff.FireBlaster, luaFunc.HasBooster)])}
+						{id: 28, name: "5", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]},
+						{id: 29, name: "6", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]}
 					],
 					map_locations: [
 						{
@@ -570,15 +597,10 @@ function tth(data: LocationRule[]) {
 		}
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/thorntail_hollow.jsonc", output)
-
 	return locs
 }
 
-function kp(data: LocationRule[]) {
+function kp() {
 	let locs: Parent[] = [
 		{
 			name: "Krazoa Palace Entrance",
@@ -590,7 +612,7 @@ function kp(data: LocationRule[]) {
 				},
 				{
 					name: "Dark Room BafomDad",
-					sections: [{id: 319, access_rules: constructRules(ruleDataFromID(data, 319), [luaFunc.CanTraverseDark], true)}] // ool rules
+					sections: [{id: 319, fallback: [luaFunc.CanTraverseDark], preferFallback: true}] // ool rules
 				}
 			]
 		},
@@ -600,21 +622,16 @@ function kp(data: LocationRule[]) {
 			children: [
 				{
 					name: "Release Spirit 2",
-					sections: [{id: 43, access_rules: constructRules(ruleDataFromID(data, 43), [vars.Inventory.KrazoaSpirit2])}]
+					sections: [{id: 43, fallback: [vars.Inventory.KrazoaSpirit2]}]
 				}
 			]
 		},
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/krazoa_palace.jsonc", output)
-
 	return locs
 }
 
-function shw(data: LocationRule[]) {
+function shw() {
 	let locs: Parent[] = [
 		{
 			name: "Ice Mountain",
@@ -627,9 +644,9 @@ function shw(data: LocationRule[]) {
 				{
 					name: "Ice Mountain",
 					sections: [
-						{id: 114, name: "Cheat Well Fuel Cell", access_rules: constructRules(ruleDataFromID(data, 114))},
-						{id: 115, name: "Race Cave Fuel Cell Front", access_rules: constructRules(ruleDataFromID(data, 115))},
-						{id: 116, name: "Race Cave Fuel Cell Back", access_rules: constructRules(ruleDataFromID(data, 116))}
+						{id: 114, name: "Cheat Well Fuel Cell"},
+						{id: 115, name: "Race Cave Fuel Cell Front"},
+						{id: 116, name: "Race Cave Fuel Cell Back"}
 					],
 					map_locations: [
 						{
@@ -651,7 +668,7 @@ function shw(data: LocationRule[]) {
 				},
 				{
 					name: "Magic Upgrade",
-					sections: [{id: 20, access_rules: constructRules(ruleDataFromID(data, 20), [vars.Tricky.Find])}],
+					sections: [{id: 20, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -663,8 +680,8 @@ function shw(data: LocationRule[]) {
 				{
 					name: "Feed Alpine Root",
 					sections: [
-						{id: 21, name: "1", access_rules: constructRules(ruleDataFromID(data, 21), [has(vars.Inventory.AlpineSHW)])},
-						{id: 22, name: "2", access_rules: constructRules(ruleDataFromID(data, 22), [has(vars.Inventory.AlpineSHW, 2)])}
+						{id: 21, name: "1", fallback: [has(vars.Inventory.AlpineSHW)]},
+						{id: 22, name: "2", fallback: [has(vars.Inventory.AlpineSHW, 2)]}
 					],
 					map_locations: [
 						{
@@ -677,8 +694,8 @@ function shw(data: LocationRule[]) {
 				{
 					name: "Ice Block Fuel Cells", // requires alpine_root_shw:2 when SW isn't open
 					sections: [
-						{id: 117, name: "Left", access_rules: constructRules(ruleDataFromID(data, 117))},
-						{id: 118, name: "Right", access_rules: constructRules(ruleDataFromID(data, 118))}
+						{id: 117, name: "Left"},
+						{id: 118, name: "Right"}
 					],
 					map_locations: [
 						{
@@ -690,7 +707,7 @@ function shw(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Alpine Root near Campfire",
-					sections: [{id: 300, access_rules: constructRules(ruleDataFromID(data, 300), [vars.Tricky.Find])}],
+					sections: [{id: 300, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -701,7 +718,7 @@ function shw(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Alpine Root near Fallen Tree",
-					sections: [{id: 301, access_rules: constructRules(ruleDataFromID(data, 301), [vars.Tricky.Find])}],
+					sections: [{id: 301, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -712,7 +729,7 @@ function shw(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Egg near Water Spout",
-					sections: [{id: 302, access_rules: constructRules(ruleDataFromID(data, 302), [vars.Tricky.Find])}],
+					sections: [{id: 302, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -734,8 +751,8 @@ function shw(data: LocationRule[]) {
 				{
 					name: "Water Platform Fuel Cells",
 					sections: [
-						{id: 119, name: "Left", access_rules: constructRules(ruleDataFromID(data, 119), [vars.Staff.Staff])},
-						{id: 120, name: "Right (Also Dig Cave Right)", access_rules: constructRules(ruleDataFromID(data, 120), [vars.Staff.Staff])}
+						{id: 119, name: "Left", fallback: [vars.Staff.Staff]},
+						{id: 120, name: "Right (Also Dig Cave Right)", fallback: [vars.Staff.Staff]}
 					],
 					map_locations: [
 						{
@@ -748,12 +765,12 @@ function shw(data: LocationRule[]) {
 				{
 					name: "Dig Cave near Entrance",
 					sections: [
-						{id: 121, name: "Fuel Cell Left", access_rules: constructRules(ruleDataFromID(data, 121), [vars.Tricky.Find])},
+						{id: 121, name: "Fuel Cell Left", fallback: [vars.Tricky.Find]},
 						{
 							name: "Fuel Cell Right (Also Water Platform Right)",
 							ref: "SnowHorn Wastes Entrance/Water Platform Fuel Cells/Right (Also Dig Cave Right)" // vanilla links these on accident
 						},
-						{id: 310, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 303), [vars.Tricky.Find])}
+						{id: 310, name: "BafomDad", fallback: [vars.Tricky.Find]}
 					],
 					map_locations: [
 						{
@@ -766,8 +783,8 @@ function shw(data: LocationRule[]) {
 				{
 					name: "Path to TTH Booster Fuel Cells",
 					sections: [
-						{id: 122, name: "Left", access_rules: constructRules(ruleDataFromID(data, 122), [and(vars.Staff.FireBlaster, luaFunc.HasBooster)])},
-						{id: 123, name: "Right", access_rules: constructRules(ruleDataFromID(data, 123), [and(vars.Staff.FireBlaster, luaFunc.HasBooster)])}
+						{id: 122, name: "Left", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]},
+						{id: 123, name: "Right", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]}
 					],
 					map_locations: [
 						{
@@ -779,7 +796,7 @@ function shw(data: LocationRule[]) {
 				},
 				{
 					name: "Dig BafomDad near Entrance",
-					sections: [{id: 303, access_rules: constructRules(ruleDataFromID(data, 303), [vars.Tricky.Find])}],
+					sections: [{id: 303, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -796,7 +813,7 @@ function shw(data: LocationRule[]) {
 			children: [
 				{
 					name: "Rescue GateKeeper",
-					sections: [{id: 23, access_rules: constructRules(ruleDataFromID(data, 23))}],
+					sections: [{id: 23}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -808,9 +825,9 @@ function shw(data: LocationRule[]) {
 				{
 					name: "Blast Tree past Gate",
 					sections: [
-						{id: 133, name: "Fuel Cell Left", access_rules: constructRules(ruleDataFromID(data, 133), [luaFunc.HasBlaster])},
-						{id: 134, name: "Fuel Cell Right", access_rules: constructRules(ruleDataFromID(data, 134), [luaFunc.HasBlaster])},
-						{id: 311, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 311), [luaFunc.HasBlaster])}
+						{id: 133, name: "Fuel Cell Left", fallback: [luaFunc.HasBlaster]},
+						{id: 134, name: "Fuel Cell Right", fallback: [luaFunc.HasBlaster]},
+						{id: 311, name: "BafomDad", fallback: [luaFunc.HasBlaster]}
 					],
 					map_locations: [
 						{
@@ -822,7 +839,7 @@ function shw(data: LocationRule[]) {
 				},
 				{
 					name: "River past Gate Cheat Well Fuel Cell",
-					sections: [{id: 135, access_rules: constructRules(ruleDataFromID(data, 135))}],
+					sections: [{id: 135}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -834,9 +851,9 @@ function shw(data: LocationRule[]) {
 				{
 					name: "River Ledge past Gate Fuel Cells",
 					sections: [
-						{id: 136, name: "Center", access_rules: constructRules(ruleDataFromID(data, 136))},
-						{id: 137, name: "Right (Use Blaster in Nearby Cave)", access_rules: constructRules(ruleDataFromID(data, 137), [luaFunc.HasBlaster])},
-						{id: 138, name: "Left (Use Blaster in Nearby Cave)", access_rules: constructRules(ruleDataFromID(data, 138), [luaFunc.HasBlaster])}
+						{id: 136, name: "Center"},
+						{id: 137, name: "Right (Use Blaster in Nearby Cave)", fallback: [luaFunc.HasBlaster]},
+						{id: 138, name: "Left (Use Blaster in Nearby Cave)", fallback: [luaFunc.HasBlaster]}
 					],
 					map_locations: [
 						{
@@ -848,7 +865,7 @@ function shw(data: LocationRule[]) {
 				},
 				{
 					name: "Dig in Cave past Gate",
-					sections: [{id: 307, access_rules: constructRules(ruleDataFromID(data, 307), [vars.Tricky.Find])}],
+					sections: [{id: 307, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -861,15 +878,10 @@ function shw(data: LocationRule[]) {
 		}
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/snowhorn_wastes.jsonc", output)
-
 	return locs
 }
 
-function dim(data: LocationRule[]) {
+function dim() {
 	let locs: Parent[] = [
 		{
 			name: "DarkIce Mines Entrance",
@@ -893,7 +905,7 @@ function dim(data: LocationRule[]) {
 				// },
 				{
 					name: "Release Entrance SnowHorn",
-					sections: [{id: 32, access_rules: constructRules(ruleDataFromID(data, 32), [vars.Tricky.Find])}], // should be Shackle Key, but not rando'd
+					sections: [{id: 32, fallback: [vars.Tricky.Find]}], // should be Shackle Key, but not rando'd
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -904,7 +916,7 @@ function dim(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Alpine Root in Entrance Hut",
-					sections: [{id: 308, access_rules: constructRules(ruleDataFromID(data, 308), [vars.Tricky.Find])}],
+					sections: [{id: 308, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -926,8 +938,8 @@ function dim(data: LocationRule[]) {
 				{
 					name: "Injured SnowHorn",
 					sections: [
-						{id: 33, name: "Rescue", access_rules: constructRules(ruleDataFromID(data, 33))},
-						{id: 34, name: "Feed", access_rules: constructRules(ruleDataFromID(data, 34), [has(vars.Inventory.AlpineDIM, 2)])}
+						{id: 33, name: "Rescue"},
+						{id: 34, name: "Feed", fallback: [has(vars.Inventory.AlpineDIM, 2)]}
 					],
 					map_locations: [
 						{
@@ -939,7 +951,7 @@ function dim(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Alpine Root in Boulder Path",
-					sections: [{id: 309, access_rules: constructRules(ruleDataFromID(data, 309), [vars.Tricky.Flame], true)}], // apworld hasn't fixed this yet
+					sections: [{id: 309, fallback: [vars.Tricky.Flame], preferFallback: true}], // apworld hasn't fixed this yet
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -960,7 +972,7 @@ function dim(data: LocationRule[]) {
 				},
 				{
 					name: "Enemy Gate Cog Chest",
-					sections: [{id: 35, access_rules: constructRules(ruleDataFromID(data, 35), [luaFunc.HasBooster])}],
+					sections: [{id: 35, fallback: [luaFunc.HasBooster]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -971,7 +983,7 @@ function dim(data: LocationRule[]) {
 				},
 				{
 					name: "Hut Cog Chest",
-					sections: [{id: 36, access_rules: constructRules(ruleDataFromID(data, 36), [luaFunc.HasBooster])}],
+					sections: [{id: 36, fallback: [luaFunc.HasBooster]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -982,7 +994,7 @@ function dim(data: LocationRule[]) {
 				},
 				{
 					name: "Ice Cog Chest",
-					sections: [{id: 37, access_rules: constructRules(ruleDataFromID(data, 37), [and(vars.Tricky.Flame, luaFunc.HasBooster)])}],
+					sections: [{id: 37, fallback: [and(vars.Tricky.Flame, luaFunc.HasBooster)]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -993,7 +1005,7 @@ function dim(data: LocationRule[]) {
 				},
 				{
 					name: "Fire Puzzle Reward",
-					sections: [{id: 38, access_rules: constructRules(ruleDataFromID(data, 38), [and(vars.Tricky.Flame, has(vars.Inventory.SharpClawCogs, 3), luaFunc.HasBlaster)])}],
+					sections: [{id: 38, fallback: [and(vars.Tricky.Flame, has(vars.Inventory.SharpClawCogs, 3), luaFunc.HasBlaster)]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -1037,7 +1049,7 @@ function dim(data: LocationRule[]) {
 				// },
 				{
 					name: "Boss Galdon",
-					sections: [{id: 40, access_rules: constructRules(ruleDataFromID(data, 40), [and(vars.Tricky.Flame, luaFunc.HasBlaster)])}],
+					sections: [{id: 40, fallback: [and(vars.Tricky.Flame, luaFunc.HasBlaster)]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -1050,15 +1062,10 @@ function dim(data: LocationRule[]) {
 		}
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/darkice_mines.jsonc", output)
-
 	return locs
 }
 
-function mmp(data: LocationRule[]) {
+function mmp() {
 	let locs: Parent[] = [
 		{
 			name: "Moon Mountain Pass",
@@ -1070,7 +1077,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Wind Draft North Fuel Cell",
-					sections: [{id: 130, access_rules: constructRules(ruleDataFromID(data, 130))}],
+					sections: [{id: 130}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1081,7 +1088,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Wind Draft South Fuel Cell",
-					sections: [{id: 131, access_rules: constructRules(ruleDataFromID(data, 131))}],
+					sections: [{id: 131}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1092,7 +1099,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Barrel Hill Fuel Cell",
-					sections: [{id: 132, access_rules: constructRules(ruleDataFromID(data, 132))}],
+					sections: [{id: 132}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1113,7 +1120,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Behind Fort Fuel Cell",
-					sections: [{id: 139, access_rules: constructRules(ruleDataFromID(data, 139), [vars.Staff.Staff])}],
+					sections: [{id: 139, fallback: [vars.Staff.Staff]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1124,7 +1131,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Ground Quake Upgrade",
-					sections: [{id: 4, access_rules: constructRules(ruleDataFromID(data, 4), [vars.Inventory.MoonPassKey])}],
+					sections: [{id: 4, fallback: [vars.Inventory.MoonPassKey]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1135,7 +1142,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "BafomDad Ledge near Fort",
-					sections: [{id: 315, access_rules: constructRules(ruleDataFromID(data, 315), [luaFunc.CanGrowMoonSeed])}],
+					sections: [{id: 315, fallback: [luaFunc.CanGrowMoonSeed]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1146,7 +1153,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "BafomDad in Moon Seed Zone",
-					sections: [{id: 316, access_rules: constructRules(ruleDataFromID(data, 316), [luaFunc.CanGrowMoonSeed])}],
+					sections: [{id: 316, fallback: [luaFunc.CanGrowMoonSeed]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1163,7 +1170,7 @@ function mmp(data: LocationRule[]) {
 			children: [
 				{
 					name: "Test of Combat",
-					sections: [{id: 42, access_rules: constructRules(ruleDataFromID(data, 42), [and(vars.Tricky.Flame, vars.Staff.FireBlaster, vars.Staff.FreezeBlast)])}],
+					sections: [{id: 42, fallback: [and(vars.Tricky.Flame, vars.Staff.FireBlaster, vars.Staff.FreezeBlast)]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1175,8 +1182,8 @@ function mmp(data: LocationRule[]) {
 				{
 					name: "Meteorite Area",
 					sections: [
-						{id: 149, name: "Fuel Cell", access_rules: constructRules(ruleDataFromID(data, 149))},
-						{id: 317, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 317))}
+						{id: 149, name: "Fuel Cell"},
+						{id: 317, name: "BafomDad"}
 					],
 					map_locations: [
 						{
@@ -1189,8 +1196,8 @@ function mmp(data: LocationRule[]) {
 				{
 					name: "Cheat Well near Combat Shrine",
 					sections: [
-						{id: 150, name: "Fuel Cell", access_rules: constructRules(ruleDataFromID(data, 150), [luaFunc.CanGrowMoonSeed])},
-						{id: 318, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 318), [luaFunc.CanGrowMoonSeed])}
+						{id: 150, name: "Fuel Cell", fallback: [luaFunc.CanGrowMoonSeed]},
+						{id: 318, name: "BafomDad", fallback: [luaFunc.CanGrowMoonSeed]}
 					],
 					map_locations: [
 						{
@@ -1202,7 +1209,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Beside Combat Shrine Fuel Cell",
-					sections: [{id: 151, access_rules: constructRules(ruleDataFromID(data, 151))}],
+					sections: [{id: 151}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1223,7 +1230,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "BafomDad Cell",
-					sections: [{id: 312, access_rules: constructRules(ruleDataFromID(data, 312), [luaFunc.HasBooster])}],
+					sections: [{id: 312, fallback: [luaFunc.HasBooster]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1235,9 +1242,9 @@ function mmp(data: LocationRule[]) {
 				// {
 				// 	name: "Disguise Alcove",
 				// 	sections: [
-				// 		{id: 142, name: "Fuel Cell Left", access_rules: constructRules(ruleDataFromID(data, 142), [and(vars.Staff.Disguise, luaFunc.HasBooster)])},
-				// 		{id: 143, name: "Fuel Cell Right", access_rules: constructRules(ruleDataFromID(data, 143), [and(vars.Staff.Disguise, luaFunc.HasBooster)])},
-				// 		{id: 313, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 313), [and(vars.Staff.Disguise, luaFunc.HasBooster)])}
+				// 		{id: 142, name: "Fuel Cell Left", fallback: [and(vars.Staff.Disguise, luaFunc.HasBooster)]},
+				// 		{id: 143, name: "Fuel Cell Right", fallback: [and(vars.Staff.Disguise, luaFunc.HasBooster)]},
+				// 		{id: 313, name: "BafomDad", fallback: [and(vars.Staff.Disguise, luaFunc.HasBooster)]}
 				// 	],
 				// 	map_locations: [
 				// 		{
@@ -1250,8 +1257,8 @@ function mmp(data: LocationRule[]) {
 				{
 					name: "Freeze Blast Alcove Fuel Cells",
 					sections: [
-						{id: 140, name: "Left", access_rules: constructRules(ruleDataFromID(data, 140), [and(vars.Staff.FreezeBlast, luaFunc.HasBooster)])},
-						{id: 141, name: "Right", access_rules: constructRules(ruleDataFromID(data, 141), [and(vars.Staff.FreezeBlast, luaFunc.HasBooster)])}
+						{id: 140, name: "Left", fallback: [and(vars.Staff.FreezeBlast, luaFunc.HasBooster)]},
+						{id: 141, name: "Right", fallback: [and(vars.Staff.FreezeBlast, luaFunc.HasBooster)]}
 					],
 					map_locations: [
 						{
@@ -1263,7 +1270,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Below Bridge Fuel Cell",
-					sections: [{id: 144, access_rules: constructRules(ruleDataFromID(data, 144))}],
+					sections: [{id: 144}],
 					map_locations: [
 						{
 							map: vars.Maps.VFP,
@@ -1285,9 +1292,9 @@ function mmp(data: LocationRule[]) {
 				{
 					name: "Cheat Well",
 					sections: [
-						{id: 145, name: "Fuel Cell Left", access_rules: constructRules(ruleDataFromID(data, 145), [luaFunc.CanGrowMoonSeed])},
-						{id: 146, name: "Fuel Cell Right", access_rules: constructRules(ruleDataFromID(data, 146), [luaFunc.CanGrowMoonSeed])},
-						{id: 314, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 314), [luaFunc.CanGrowMoonSeed])},
+						{id: 145, name: "Fuel Cell Left", fallback: [luaFunc.CanGrowMoonSeed]},
+						{id: 146, name: "Fuel Cell Right", fallback: [luaFunc.CanGrowMoonSeed]},
+						{id: 314, name: "BafomDad", fallback: [luaFunc.CanGrowMoonSeed]},
 					],
 					map_locations: [
 						{
@@ -1299,7 +1306,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Freeze Blast Upgrade",
-					sections: [{id: 3, access_rules: constructRules(ruleDataFromID(data, 3))}],
+					sections: [{id: 3}],
 					map_locations: [
 						{
 							map: vars.Maps.VFP,
@@ -1316,7 +1323,7 @@ function mmp(data: LocationRule[]) {
 			children: [
 				{
 					name: "Round Room Ledge Fuel Cell",
-					sections: [{id: 147, access_rules: constructRules(ruleDataFromID(data, 147))}],
+					sections: [{id: 147}],
 					map_locations: [
 						{
 							map: vars.Maps.VFP,
@@ -1327,7 +1334,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Warp Room Fuel Cell",
-					sections: [{id: 148, access_rules: constructRules(ruleDataFromID(data, 148))}],
+					sections: [{id: 148}],
 					map_locations: [
 						{
 							map: vars.Maps.VFP,
@@ -1338,7 +1345,7 @@ function mmp(data: LocationRule[]) {
 				},
 				{
 					name: "Insert Fire SpellStone 1",
-					sections: [{id: 41, access_rules: constructRules(ruleDataFromID(data, 41), [vars.Inventory.FireSpellstone1])}],
+					sections: [{id: 41, fallback: [vars.Inventory.FireSpellstone1]}],
 					map_locations: [
 						{
 							map: vars.Maps.VFP,
@@ -1351,15 +1358,10 @@ function mmp(data: LocationRule[]) {
 		}
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/moon_mountain_pass.jsonc", output)
-
 	return locs
 }
 
-function lfv(data: LocationRule[]) {
+function lfv() {
 	let locs: Parent[] = [
 		{
 			name: "LightFoot Village",
@@ -1372,9 +1374,9 @@ function lfv(data: LocationRule[]) {
 				{
 					name: "Entrance Booster Ledge",
 					sections: [
-						{id: 126, name: "Fuel Cell Right", access_rules: constructRules(ruleDataFromID(data, 126), [luaFunc.HasBooster])},
-						{id: 127, name: "Fuel Cell Left", access_rules: constructRules(ruleDataFromID(data, 127), [luaFunc.HasBooster])},
-						{id: 320, name: "BafomDad", access_rules: constructRules(ruleDataFromID(data, 320), [luaFunc.HasBooster])},
+						{id: 126, name: "Fuel Cell Right", fallback: [luaFunc.HasBooster]},
+						{id: 127, name: "Fuel Cell Left", fallback: [luaFunc.HasBooster]},
+						{id: 320, name: "BafomDad", fallback: [luaFunc.HasBooster]},
 					],
 					map_locations: [
 						{
@@ -1388,15 +1390,10 @@ function lfv(data: LocationRule[]) {
 		}
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/lightfoot_village.jsonc", output)
-
 	return locs
 }
 
-function cc(data: LocationRule[]) {
+function cc() {
 	let locs: Parent[] = [
 		{
 			name: "Cape Claw Transition Area",
@@ -1408,7 +1405,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Transition Bottom Platform Fuel Cell",
-					sections: [{id: 152, access_rules: constructRules(ruleDataFromID(data, 152), [`[${vars.Staff.RocketBoost}]`], true)}],
+					sections: [{id: 152, fallback: [`[${vars.Staff.RocketBoost}]`], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1419,7 +1416,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Transition Bottom Waterfall Fuel Cell",
-					sections: [{id: 153, access_rules: constructRules(ruleDataFromID(data, 153), [`[${vars.Staff.RocketBoost}]`], true)}],
+					sections: [{id: 153, fallback: [`[${vars.Staff.RocketBoost}]`], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1430,7 +1427,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Transition Bottom Weeds Fuel Cell",
-					sections: [{id: 154, access_rules: constructRules(ruleDataFromID(data, 154), [`[${vars.Staff.RocketBoost}]`], true)}],
+					sections: [{id: 154, fallback: [`[${vars.Staff.RocketBoost}]`], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1450,7 +1447,7 @@ function cc(data: LocationRule[]) {
 					sections: [
 						{
 							id: 44,
-							access_rules: constructRules(ruleDataFromID(data, 44), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)]),
+							fallback: [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)],
 						}
 					],
 					map_locations: [
@@ -1466,7 +1463,7 @@ function cc(data: LocationRule[]) {
 					sections: [
 						{
 							id: 45,
-							access_rules: constructRules(ruleDataFromID(data, 45), [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)])
+							fallback: [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)]
 						}
 					],
 					map_locations: [
@@ -1479,7 +1476,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Drop from Bridge Fuel Cell",
-					sections: [{id: 155, access_rules: constructRules(ruleDataFromID(data, 155))}],
+					sections: [{id: 155}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1490,7 +1487,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Drop from Deck Fuel Cell",
-					sections: [{id: 156, access_rules: constructRules(ruleDataFromID(data, 156))}],
+					sections: [{id: 156}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1501,7 +1498,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Dig in Back Cave Fuel Cell",
-					sections: [{id: 157, access_rules: constructRules(ruleDataFromID(data, 157), [vars.Tricky.Find])}],
+					sections: [{id: 157, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1512,7 +1509,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Dig BafomDad middle of Water",
-					sections: [{id: 321, access_rules: constructRules(ruleDataFromID(data, 321), [vars.Tricky.Find])}],
+					sections: [{id: 321, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1523,7 +1520,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Gold Bar near HighTop",
-					sections: [{id: 322, access_rules: constructRules(ruleDataFromID(data, 322), [vars.Tricky.Find])}],
+					sections: [{id: 322, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1534,7 +1531,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Gold Bar behind Bramble",
-					sections: [{id: 323, access_rules: constructRules(ruleDataFromID(data, 323), [vars.Tricky.Flame])}],
+					sections: [{id: 323, fallback: [vars.Tricky.Flame]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1545,7 +1542,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Gold Bar before Bramble",
-					sections: [{id: 324, access_rules: constructRules(ruleDataFromID(data, 324), [vars.Tricky.Find])}],
+					sections: [{id: 324, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1556,7 +1553,7 @@ function cc(data: LocationRule[]) {
 				},
 				{
 					name: "Dig Gold Bar near CloudRunner Cell",
-					sections: [{id: 325, access_rules: constructRules(ruleDataFromID(data, 325), [vars.Tricky.Find])}],
+					sections: [{id: 325, fallback: [vars.Tricky.Find]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1569,15 +1566,10 @@ function cc(data: LocationRule[]) {
 		}
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/cape_claw.jsonc", output)
-
 	return locs
 }
 
-function crf(data: LocationRule[]) {
+function crf() {
 	let locs: Parent[] = [
 		{
 			name: "CloudRunner Fortress Landing",
@@ -1589,7 +1581,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Entrance Platform Race",
-					sections: [{id: 46, access_rules: constructRules(ruleDataFromID(data, 46))}],
+					sections: [{id: 46}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1610,7 +1602,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Explode Prison Ceiling",
-					sections: [{id: 47, access_rules: constructRules(ruleDataFromID(data, 47))}],
+					sections: [{id: 47}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1621,7 +1613,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Rescue Gradabug",
-					sections: [{id: 48, access_rules: constructRules(ruleDataFromID(data, 48), [vars.Staff.Staff])}],
+					sections: [{id: 48, fallback: [vars.Staff.Staff]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1632,7 +1624,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Red Crystal Chest",
-					sections: [{id: 49, access_rules: constructRules(ruleDataFromID(data, 49), [vars.Staff.Staff])}],
+					sections: [{id: 49, fallback: [vars.Staff.Staff]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1643,7 +1635,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Green Crystal Chest",
-					sections: [{id: 50, access_rules: constructRules(ruleDataFromID(data, 50), [luaFunc.HasIceBlast])}],
+					sections: [{id: 50, fallback: [luaFunc.HasIceBlast]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1654,7 +1646,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Blue Crystal Chest",
-					sections: [{id: 51, access_rules: constructRules(ruleDataFromID(data, 51), [and(luaFunc.HasIceBlast, vars.Staff.RocketBoost)])}],
+					sections: [{id: 51, fallback: [and(luaFunc.HasIceBlast, vars.Staff.RocketBoost)]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1665,7 +1657,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Cage BafomDad",
-					sections: [{id: 326, access_rules: constructRules(ruleDataFromID(data, 326))}],
+					sections: [{id: 326}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1676,7 +1668,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Cell BafomDad",
-					sections: [{id: 327, access_rules: constructRules(ruleDataFromID(data, 327))}],
+					sections: [{id: 327}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1693,7 +1685,7 @@ function crf(data: LocationRule[]) {
 			children: [
 				{
 					name: "Rescue Queen CloudRunner",
-					sections: [{id: 52, access_rules: constructRules(ruleDataFromID(data, 52), [vars.Staff.Disguise])}],
+					sections: [{id: 52, fallback: [vars.Staff.Disguise]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1704,7 +1696,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "BafomDad on Back Crates",
-					sections: [{id: 328, access_rules: constructRules(ruleDataFromID(data, 328))}],
+					sections: [{id: 328}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1715,7 +1707,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "BafomDad near Boss Door",
-					sections: [{id: 329, access_rules: constructRules(ruleDataFromID(data, 329))}],
+					sections: [{id: 329}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1726,7 +1718,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "BafomDad in Dark Room",
-					sections: [{id: 330, access_rules: constructRules(ruleDataFromID(data, 330), [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], true)}],
+					sections: [{id: 330, fallback: [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1737,7 +1729,7 @@ function crf(data: LocationRule[]) {
 				},
 				{
 					name: "Defeat Boss SharpClaw Race",
-					sections: [{id: 53, access_rules: constructRules(ruleDataFromID(data, 53), [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], true)}],
+					sections: [{id: 53, fallback: [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1750,14 +1742,8 @@ function crf(data: LocationRule[]) {
 		},
 	]
 
-	let output = JSON.stringify(locs, (k, v) => k == "id" ? undefined : v, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
-
-	writeToFile("locations/cloudrunner_fortress.jsonc", output)
-
 	return locs
 }
-
 
 // @ts-ignore
 if (import.meta.main) {

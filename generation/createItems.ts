@@ -103,9 +103,10 @@ const itemData = [
 	generic(116, "Krazoa Spirit 2", "toggle", vars.Inventory.KrazoaSpirit2, vars.Inventory.KrazoaSpirit2, [vars.Inventory.KrazoaSpirit2]),
 	consumable(117, "Gold Bar", vars.Inventory.GoldBar, 4, [vars.Inventory.GoldBar]),
 	generic(118, "Power Key", "toggle", vars.Inventory.PowerKey, vars.Inventory.PowerKey, [vars.Inventory.PowerKey]),
-	generic(119, "Red Crystal", "toggle", vars.Inventory.RedCrystal, vars.Inventory.RedCrystal, [vars.Inventory.RedCrystal]),
-	generic(120, "Green Crystal", "toggle", vars.Inventory.GreenCrystal, vars.Inventory.GreenCrystal, [vars.Inventory.GreenCrystal]),
-	generic(121, "Blue Crystal", "toggle", vars.Inventory.BlueCrystal, vars.Inventory.BlueCrystal, [vars.Inventory.BlueCrystal]),
+	consumable(119, "Light Gems", vars.Inventory.LightGems, 3, [vars.Inventory.LightGems]),
+	// generic(119, "Red Crystal", "toggle", vars.Inventory.RedCrystal, vars.Inventory.RedCrystal, [vars.Inventory.RedCrystal]),
+	// generic(120, "Green Crystal", "toggle", vars.Inventory.GreenCrystal, vars.Inventory.GreenCrystal, [vars.Inventory.GreenCrystal]),
+	// generic(121, "Blue Crystal", "toggle", vars.Inventory.BlueCrystal, vars.Inventory.BlueCrystal, [vars.Inventory.BlueCrystal]),
 	generic(122, "CloudRunner Flute", "toggle", vars.Inventory.CloudRunnerFlute, vars.Inventory.CloudRunnerFlute, [vars.Inventory.CloudRunnerFlute]),
 	// shop
 	generic(200, "Rock Candy", "toggle", vars.Inventory.RockCandy, vars.Inventory.RockCandy, [vars.Inventory.RockCandy]),

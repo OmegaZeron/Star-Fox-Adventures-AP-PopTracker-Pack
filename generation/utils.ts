@@ -81,6 +81,7 @@ export const vars = Object.freeze({
 		HiTechDisplay: "hiTechDisplay",
 		GoldBar: "goldBar",
 		PowerKey: "powerKey",
+		LightGems: "lightGems",
 		RedCrystal: "crystalRed",
 		GreenCrystal: "crystalGreen",
 		BlueCrystal: "crystalBlue",

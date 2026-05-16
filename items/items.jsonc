@@ -195,22 +195,11 @@
 		"codes": "powerKey"
 	},
 	{
-		"name": "Red Crystal",
-		"type": "toggle",
-		"img": "images/items/crystalRed.png",
-		"codes": "crystalRed"
-	},
-	{
-		"name": "Green Crystal",
-		"type": "toggle",
-		"img": "images/items/crystalGreen.png",
-		"codes": "crystalGreen"
-	},
-	{
-		"name": "Blue Crystal",
-		"type": "toggle",
-		"img": "images/items/crystalBlue.png",
-		"codes": "crystalBlue"
+		"name": "Light Gems",
+		"type": "consumable",
+		"img": "images/items/lightGems.png",
+		"max_quantity": 3,
+		"codes": "lightGems"
 	},
 	{
 		"name": "CloudRunner Flute",

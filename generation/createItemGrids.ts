@@ -25,8 +25,8 @@ export default function createItemGrids() {
 				[vars.Inventory.RockCandy, vars.Inventory.AlpineSHW, vars.Inventory.AlpineDIM],
 				[vars.Inventory.WhiteGrubTub, vars.Inventory.EntranceCog, vars.Inventory.SharpClawCogs],
 
-				[vars.Inventory.GateKey, vars.Inventory.MoonPassKey, vars.Inventory.PowerKey],
-				[vars.Inventory.RedCrystal, vars.Inventory.GreenCrystal, vars.Inventory.BlueCrystal],
+				[vars.Inventory.GateKey, vars.Inventory.MoonPassKey, vars.Inventory.GoldBar],
+				[vars.Inventory.PowerKey, vars.Inventory.LightGems],
 
 				[vars.Inventory.KrazoaSpirit2]
 			]
