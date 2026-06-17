@@ -8,7 +8,7 @@
 				"sections": [{}]
 			},
 			{
-				"name": "Wind Draft North Fuel Cell",
+				"name": "Entrance Wind Draft North Fuel Cell",
 				"sections": [{}],
 				"map_locations": [
 					{
@@ -19,7 +19,7 @@
 				]
 			},
 			{
-				"name": "Wind Draft South Fuel Cell",
+				"name": "Entrance Wind Draft South Fuel Cell",
 				"sections": [{}],
 				"map_locations": [
 					{
