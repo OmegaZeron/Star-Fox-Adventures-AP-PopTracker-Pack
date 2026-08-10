@@ -1,4 +1,4 @@
-![Star Fox Adventures](https://raw.githubusercontent.com/OmegaZeron/Star-Fox-Adventures-AP-PopTracker-Pack/refs/heads/main/StarFoxAdventuresLogo.png)
+![Star Fox Adventures](./StarFoxAdventuresLogo.png)
 # Star Fox Adventures Archipelago PopTracker Pack
 Tracker pack for [PopTracker](https://poptracker.github.io)</br>
 <b>PopTracker v0.33.0 or higher is recommended.</b>
