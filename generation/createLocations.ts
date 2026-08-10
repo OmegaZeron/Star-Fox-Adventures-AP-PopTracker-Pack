@@ -1,14 +1,14 @@
-import { vars, luaFunc, writeToFile, readFromFile, has, and, constructRules, LocationRule, Rule } from "./utils.ts"
+import { vars, writeToFile, readFromFile, has } from "./utils.ts"
 
 class Parent {
 	name!: string;
-	access_rules!: string[];
+	access_rules?: string[][];
 	visibility_rules?: string[];
 	children!: Location[];
 }
 class Location {
 	name!: string;
-	access_rules?: string[];
+	access_rules?: string[][];
 	visibility_rules?: string[];
 	sections!: Section[];
 	map_locations?: MapLocations[];
@@ -16,11 +16,11 @@ class Location {
 class Section {
 	id?: number;
 	name?: string;
-	access_rules?: string[];
+	access_rules?: string[][];
 	visibility_rules?: string[];
 	ref?: string;
 
-	fallback?: string[];
+	fallback?: string[][];
 	preferFallback?: boolean
 }
 class MapLocations {
@@ -30,7 +30,166 @@ class MapLocations {
 	restrict_visibility_rules?: string[]
 }
 
+// rule builder
+class ItemMapData {
+	item!: string;
+	type!: string;
+	stages?: string[];
+}
+class RuleArgs {
+	item_names?: string[];
+	price?: number;
+	count?: number;
+	item_name?: string;
+	item_counts?: Record<string, number>;
+}
+type OptionOp = "eq" | "ne" | "gt" | "lt" | "ge" | "le" | "in" | "contains"
+class Option {
+	operator!: OptionOp;
+	option!: string;
+	value!: any
+}
+class Rule {
+	args?: RuleArgs;
+	children?: Rule[];
+	options!: Option[]
+	rule!: string;
+}
+class LocationRule {
+	id!: number;
+	name!: string;
+	rules!: Rule
+}
+
+let RulesArr: string[][] = []
 let locMapping: Parent[]
+
+const luaFunc = Object.freeze({
+	CanBuy: (amt: number) => `^$CanBuy|${amt}`,
+	CanExplodeBombPlant: `^$CanExplodeBombPlant`,
+	CanGrowMoonSeed: `^$CanGrowMoonSeed`,
+	HasBlaster: "$HasBlaster",
+	HasBooster: "$HasBooster",
+	HasGroundQuake: "$HasGroundQuake",
+	HasIceBlast: "$HasIceBlast",
+	CanTraverseDark: "^$CanTraverseDark"
+})
+const ruleDict: Record<string, Function> = Object.freeze({
+	// key is from exported rule builder data
+	"Has": Has,
+	"HasAll": HasAll,
+	"HasAllCounts": HasAllCounts,
+	"CanBuy": (args: RuleArgs) => luaRuleWrapper(luaFunc.CanBuy(args.price!)),
+	"CanExplodeBombPlant": () => luaRuleWrapper(luaFunc.CanExplodeBombPlant),
+	"CanGrowMoonSeed": () => luaRuleWrapper(luaFunc.CanGrowMoonSeed)
+})
+const itemDict: Record<string, ItemMapData> = Object.freeze({
+	// key is from exported rule builder data
+	"Staff": {item: vars.Staff.Staff, type: "toggle"},
+	"Fire Blaster": {item: vars.Staff.FireBlaster, type: "toggle"},
+	"Staff Booster": {item: vars.Staff.RocketBoost, type: "toggle"},
+	"Ground Quake": {item: vars.Staff.GroundQuake, type: "progressive", stages: [vars.Staff.GroundQuake, vars.Staff.SuperQuake]},
+	"Freeze Blast": {item: vars.Staff.FreezeBlast, type: "toggle"},
+	"SharpClaw Disguise": {item: vars.Staff.Disguise, type: "toggle"},
+	"Tricky (Progressive)": {item: vars.Tricky.Tricky, type: "progressive", stages: [vars.Tricky.Tricky, vars.Tricky.Flame]},
+	"Bomb Plant": {item: vars.Inventory.BombPlant, type: "toggle"},
+	"White GrubTub": {item: vars.Inventory.WhiteGrubTub, type: "consumable"},
+	"Entrance Bridge Cog": {item: vars.Inventory.EntranceCog, type: "toggle"},
+	"SHW Alpine Root": {item: vars.Inventory.AlpineSHW, type: "consumable"},
+	"DIM Alpine Root": {item: vars.Inventory.AlpineDIM, type: "consumable"},
+	"SharpClaw Fort Bridge Cogs": {item: vars.Inventory.SharpClawCogs, type: "consumable"},
+	"Fire SpellStone 1": {item: vars.Inventory.FireSpellstone1, type: "toggle"},
+	"Moon Seed": {item: vars.Inventory.MoonSeed, type: "toggle"},
+	"Moon Pass Key": {item: vars.Inventory.MoonPassKey, type: "toggle"},
+	"Krazoa Spirit 2": {item: vars.Inventory.KrazoaSpirit2, type: "toggle"},
+	"Gold Bars": {item: vars.Inventory.GoldBar, type: "consumable"}
+})
+
+function luaRuleWrapper(ruleStr: string) {
+	for (let rule of RulesArr) {
+		rule.push(ruleStr)
+	}
+}
+
+function Has(args: RuleArgs) {
+	if (!itemDict[args.item_name!]) {
+		throw new Error(`Has: item ${args.item_name} not defined`)
+	}
+	let item = itemDict[args.item_name!]
+	let itemName = item.item
+	let itemCount = args.count!
+	if (item.type == "progressive") {
+		// find the correct name for the wanted stage
+		itemName = item.stages![args.count! - 1]
+		itemCount = 1
+	}
+	for (let rule of RulesArr) {
+		rule.push(has(itemName, itemCount))
+	}
+}
+function HasAll(args: RuleArgs) {
+	for (let name in args.item_names) {
+		if (!itemDict[name]) {
+			throw new Error(`HasAll: Item ${name} not defined`)
+		}
+		for (let rule of RulesArr) {
+			rule.push(has(name))
+		}
+	}
+}
+function HasAllCounts(args: RuleArgs) {
+	for (let itemData of Object.entries(args.item_counts!)) {
+		if (!itemDict[itemData[0]]) {
+			throw new Error(`HasAllCounts: item ${itemData[0]} not defined`)
+		}
+		let item = itemDict[itemData[0]]
+		let itemName = item.item
+		let itemCount = itemData[1]
+		if (item.type == "progressive") {
+			// find the correct name for the wanted stage
+			itemName = item.stages![itemCount - 1]
+			itemCount = 1
+		}
+		for (let rule of RulesArr) {
+			rule.push(has(itemName, itemCount))
+		}
+	}
+}
+
+function consumeRule(ruleData: Rule) {
+	if (ruleData.rule == "And") {
+		// run multiple rules and combine their requirements into one string
+		for (let child of ruleData.children!) {
+			consumeRule(child)
+		}
+	}
+	// TODO implement "Or" better. currently unused, so can ignore for now
+	// else if (ruleData.rule == "Or") {
+	// }
+	else {
+		// individual rules
+		ruleDict[ruleData.rule](ruleData.args)
+	}
+}
+function constructRules(loc: Rule | null, fallback?: string[][], preferFallback?: boolean): string[][] {
+	if (!loc || preferFallback) {
+		return fallback || []
+	}
+	if (loc.rule == "True_") {
+		return []
+	}
+
+	RulesArr = [[]]
+	// create rules
+	try {
+		consumeRule(loc)
+	} catch (error) {
+		console.log(error)
+		return fallback || []
+	}
+
+	return RulesArr
+}
 
 function createLocMapping() {
 	let sections: {id: number, path: string}[] = []
@@ -70,8 +229,8 @@ function addLocs(parents: Parent[], rules: LocationRule[], path: string) {
 				if (!section.id) {
 					continue
 				}
-				
-				section.access_rules = constructRules(ruleDataFromID(rules, section.id), section.fallback, section.preferFallback)
+				let rule = constructRules(ruleDataFromID(rules, section.id), section.fallback, section.preferFallback)
+				section.access_rules = rule.length == 0 ? undefined : rule
 			}
 		}
 	}
@@ -115,7 +274,12 @@ function replacer(key: string, value: any) {
 }
 function outputFile(path: string, locs: Parent[]) {
 	let output = JSON.stringify(locs, replacer, '\t')
-	output = output.replace(/\[\n\s+(".+")\n\s+\]/g, "[$1]").replace(/\{\n\s+(.+)\n\s+\}/g, "{$1}").replace(/\[\n\t+\{\}\n\t+\]/gm, "[{}]")
+	output = output.replace(/\[\s+(".+")\s+\]/g, "[$1]")
+					.replace(/\[\s+(((?:[^\[\]\{\}])|"\[|\]"|"\{|\}")+?)\s+\]/g, (_, capture: string) => `[${capture.replace(/\s+/g, " ")}]`)
+					.replace(/\[\s+\{\}\s+\]/g, "[{}]")
+					.replace(/\{\s+(.+)\s+\}/g, "{$1}")
+					.replace(/\{\s+"(access|visibility)_rules": \[\s+\[\s*"(.+)"\]\s+\]\s+\}/g, "{\"$1_rules\": [[\"$2\"]]}")
+					.replace(/\[\s+\[(.+)\]\s+\]/g, "[[$1]]")
 
 	writeToFile(`locations/${path}`, output)
 }
@@ -124,7 +288,7 @@ function tth() {
 	let locs: Parent[] = [
 		{
 			name: "ThornTail Hollow",
-			access_rules: [vars.Planet.DinoPlanetAccess],
+			access_rules: [[vars.Planet.DinoPlanetAccess]],
 			children: [
 				{
 					name: "Reach Area",
@@ -148,104 +312,104 @@ function tth() {
 						{
 							id: 200,
 							name: "Rock Candy",
-							fallback: [luaFunc.CanBuy(10)]
+							fallback: [[luaFunc.CanBuy(10)]]
 						},
 						{
 							id: 201,
 							name: "Hi-Tech Display Device",
-							fallback: [luaFunc.CanBuy(20)]
+							fallback: [[luaFunc.CanBuy(20)]]
 						},
 						{
 							id: 202,
 							name: "Tricky Ball",
-							fallback: [luaFunc.CanBuy(15)]
+							fallback: [[luaFunc.CanBuy(15)]]
 						},
 						{
 							id: 203,
 							name: "BafomDad Holder",
-							fallback: [luaFunc.CanBuy(20)]
+							fallback: [[luaFunc.CanBuy(20)]]
 						},
 						{
 							id: 204,
 							name: "FireFly Lantern",
-							fallback: [luaFunc.CanBuy(20)]
+							fallback: [[luaFunc.CanBuy(20)]]
 						},
 						{
 							id: 205,
 							name: "SnowHorn Artifact",
-							fallback: [luaFunc.CanBuy(130)]
+							fallback: [[luaFunc.CanBuy(130)]]
 						},
 						{
 							id: 210,
 							name: "Map Cape Claw",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 211,
 							name: "Map Ocean Force Point",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(10)]
+							fallback: [[luaFunc.CanBuy(10)]]
 						},
 						{
 							id: 212,
 							name: "Map Krazoa Palace",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 213,
 							name: "Map Dragon Rock",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 214,
 							name: "Map ThornTail Hollow",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 215,
 							name: "Map Moon Pass",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 216,
 							name: "Map LightFoot Village",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 217,
 							name: "Map DarkIce Mines",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 218,
 							name: "Map CloudRunner Fortress",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 219,
 							name: "Map Walled City",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 220,
 							name: "Map SnowHorn Wastes",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(5)]
+							fallback: [[luaFunc.CanBuy(5)]]
 						},
 						{
 							id: 221,
 							name: "Map Volcano Force Point",
 							visibility_rules: [vars.Settings.ShopMaps],
-							fallback: [luaFunc.CanBuy(10)]
+							fallback: [[luaFunc.CanBuy(10)]]
 						}
 					],
 					map_locations: [
@@ -284,8 +448,8 @@ function tth() {
 				{
 					name: "Beside WarpStone Fuel Cells",
 					sections: [
-						{id: 103, name: "Left", fallback: [luaFunc.CanExplodeBombPlant]},
-						{id: 104, name: "Right", fallback: [luaFunc.CanExplodeBombPlant]}
+						{id: 103, name: "Left", fallback: [[luaFunc.CanExplodeBombPlant]]},
+						{id: 104, name: "Right", fallback: [[luaFunc.CanExplodeBombPlant]]}
 					],
 					map_locations: [
 						{
@@ -298,10 +462,10 @@ function tth() {
 				{
 					name: "Waterfall Cave Fuel Cells",
 					sections: [
-						{id: 105, name: "Center", fallback: [luaFunc.CanExplodeBombPlant]},
-						{id: 106, name: "Left", fallback: [luaFunc.CanExplodeBombPlant]},
-						{id: 107, name: "Right", fallback: [luaFunc.CanExplodeBombPlant]},
-						{id: 108, name: "Back", fallback: [luaFunc.CanExplodeBombPlant]}
+						{id: 105, name: "Center", fallback: [[luaFunc.CanExplodeBombPlant]]},
+						{id: 106, name: "Left", fallback: [[luaFunc.CanExplodeBombPlant]]},
+						{id: 107, name: "Right", fallback: [[luaFunc.CanExplodeBombPlant]]},
+						{id: 108, name: "Back", fallback: [[luaFunc.CanExplodeBombPlant]]}
 					],
 					map_locations: [
 						{
@@ -314,9 +478,9 @@ function tth() {
 				{
 					name: "South Cave Fuel Cells",
 					sections: [
-						{id: 109, name: "Center", fallback: [luaFunc.CanExplodeBombPlant]},
-						{id: 110, name: "Right", fallback: [luaFunc.CanExplodeBombPlant]},
-						{id: 111, name: "Left", fallback: [luaFunc.CanExplodeBombPlant]}
+						{id: 109, name: "Center", fallback: [[luaFunc.CanExplodeBombPlant]]},
+						{id: 110, name: "Right", fallback: [[luaFunc.CanExplodeBombPlant]]},
+						{id: 111, name: "Left", fallback: [[luaFunc.CanExplodeBombPlant]]}
 					],
 					map_locations: [
 						{
@@ -329,8 +493,8 @@ function tth() {
 				{
 					name: "Above Store Fuel Cells",
 					sections: [
-						{id: 112, name: "Left", fallback: [luaFunc.HasBooster]},
-						{id: 113, name: "Right", fallback: [luaFunc.HasBooster]}
+						{id: 112, name: "Left", fallback: [[luaFunc.HasBooster]]},
+						{id: 113, name: "Right", fallback: [[luaFunc.HasBooster]]}
 					],
 					map_locations: [
 						{
@@ -342,7 +506,7 @@ function tth() {
 				},
 				{
 					name: "Magic Upgrade above Store",
-					sections: [{id: 30, fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]}],
+					sections: [{id: 30, fallback: [[vars.Staff.FireBlaster, luaFunc.HasBooster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -353,8 +517,8 @@ function tth() {
 				},
 				{
 					name: "Feed Queen White GrubTubs",
-					access_rules: ["@ThornTail Hollow/Queen Cave Fuel Cell/"],
-					sections: [{id: 31, fallback: [has(vars.Inventory.WhiteGrubTub, 6)]}],
+					access_rules: [["@ThornTail Hollow/Queen Cave Fuel Cell/"]],
+					sections: [{id: 31, fallback: [[has(vars.Inventory.WhiteGrubTub, 6)]]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -365,7 +529,7 @@ function tth() {
 				},
 				{
 					name: "Dig BafomDad near Store",
-					sections: [{id: 304, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 304, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -376,7 +540,7 @@ function tth() {
 				},
 				{
 					name: "Dig BafomDad near Queen Cave",
-					sections: [{id: 305, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 305, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -387,14 +551,14 @@ function tth() {
 				},
 				{
 					name: "LightFoot Village Entrance",
-					access_rules: [and("@ThornTail Hollow/Reach Area/", vars.Staff.Staff)],
+					access_rules: [["@ThornTail Hollow/Reach Area/", vars.Staff.Staff]],
 					sections: [{}]
 				},
 				{
 					name: "Entrance to LightFoot Village Fuel Cells",
 					sections: [
-						{id: 124, name: "Right", fallback: [vars.Staff.Staff]},
-						{id: 125, name: "Left", fallback: [vars.Staff.Staff]}
+						{id: 124, name: "Right", fallback: [[vars.Staff.Staff]]},
+						{id: 125, name: "Left", fallback: [[vars.Staff.Staff]]}
 					],
 					map_locations: [
 						{
@@ -406,8 +570,8 @@ function tth() {
 				},
 				{
 					name: "Dig BafomDad in Entrance to LightFoot Village",
-					access_rules: ["@ThornTail Hollow/LightFoot Village Entrance/"],
-					sections: [{id: 306, fallback: [vars.Tricky.Find]}],
+					access_rules: [["@ThornTail Hollow/LightFoot Village Entrance/"]],
+					sections: [{id: 306, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.TTH,
@@ -418,7 +582,7 @@ function tth() {
 				},
 				// {
 				// 	name: "Light the Torches",
-				// 	access_rules: [vars.Tricky.Flame],
+				// 	access_rules: [[vars.Tricky.Flame]],
 				// 	sections: [{}], // fire weed? spellstone?
 				// 	map_locations: [
 				// 		{
@@ -498,7 +662,7 @@ function tth() {
 		},
 		{
 			name: "Ancient Well",
-			access_rules: [and("@ThornTail Hollow/Reach Area/", vars.Tricky.Find)],
+			access_rules: [["@ThornTail Hollow/Reach Area/", vars.Tricky.Find]],
 			children: [
 				{
 					name: "Reach Area",
@@ -506,7 +670,7 @@ function tth() {
 				},
 				{
 					name: "Staff Booster Upgrade",
-					sections: [{id: 2, fallback: [luaFunc.CanExplodeBombPlant]}],
+					sections: [{id: 2, fallback: [[luaFunc.CanExplodeBombPlant]]}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -518,8 +682,8 @@ function tth() {
 				{
 					name: "Fuel Cells",
 					sections: [
-						{id: 128, name: "Left", fallback: [luaFunc.HasBooster]},
-						{id: 129, name: "Right", fallback: [luaFunc.HasBooster]}
+						{id: 128, name: "Left", fallback: [[luaFunc.HasBooster]]},
+						{id: 129, name: "Right", fallback: [[luaFunc.HasBooster]]}
 					],
 					map_locations: [
 						{
@@ -533,7 +697,7 @@ function tth() {
 		},
 		{
 			name: "Dark Ancient Well",
-			access_rules: [and("@Ancient Well/Reach Area/", luaFunc.HasBooster, vars.Inventory.FireFlyLantern, luaFunc.CanExplodeBombPlant)],
+			access_rules: [["@Ancient Well/Reach Area/", luaFunc.HasBooster, vars.Inventory.FireFlyLantern, luaFunc.CanExplodeBombPlant]],
 			children: [
 				{
 					name: "White GrubTub 1",
@@ -559,7 +723,7 @@ function tth() {
 				},
 				{
 					name: "White GrubTub 3",
-					sections: [{id: 26, fallback: [luaFunc.CanExplodeBombPlant]}],
+					sections: [{id: 26, fallback: [[luaFunc.CanExplodeBombPlant]]}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -570,7 +734,7 @@ function tth() {
 				},
 				{
 					name: "White GrubTub 4",
-					sections: [{id: 27, fallback: [luaFunc.HasBooster]}],
+					sections: [{id: 27, fallback: [[luaFunc.HasBooster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.Well,
@@ -582,8 +746,8 @@ function tth() {
 				{
 					name: "White GrubTubs",
 					sections: [
-						{id: 28, name: "5", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]},
-						{id: 29, name: "6", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]}
+						{id: 28, name: "5", fallback: [[vars.Staff.FireBlaster, luaFunc.HasBooster]]},
+						{id: 29, name: "6", fallback: [[vars.Staff.FireBlaster, luaFunc.HasBooster]]}
 					],
 					map_locations: [
 						{
@@ -604,7 +768,7 @@ function kp() {
 	let locs: Parent[] = [
 		{
 			name: "Krazoa Palace Entrance",
-			access_rules: [and("@ThornTail Hollow/Reach Area/", vars.Inventory.RockCandy, vars.Inventory.KrazoaSpirit2)],
+			access_rules: [["@ThornTail Hollow/Reach Area/", vars.Inventory.RockCandy, vars.Inventory.KrazoaSpirit2]],
 			children: [
 				{
 					name: "Reach Area",
@@ -612,17 +776,17 @@ function kp() {
 				},
 				{
 					name: "Dark Room BafomDad",
-					sections: [{id: 319, fallback: [luaFunc.CanTraverseDark], preferFallback: true}] // ool rules
+					sections: [{id: 319, fallback: [[luaFunc.CanTraverseDark]], preferFallback: true}] // ool rules
 				}
 			]
 		},
 		{
 			name: "Krazoa Palace Main",
-			access_rules: [and("@Krazoa Palace Entrance/Reach Area/", vars.Staff.FireBlaster, luaFunc.CanTraverseDark)],
+			access_rules: [["@Krazoa Palace Entrance/Reach Area/", vars.Staff.FireBlaster, luaFunc.CanTraverseDark]],
 			children: [
 				{
 					name: "Release Spirit 2",
-					sections: [{id: 43, fallback: [vars.Inventory.KrazoaSpirit2]}]
+					sections: [{id: 43, fallback: [[vars.Inventory.KrazoaSpirit2]]}]
 				}
 			]
 		},
@@ -635,7 +799,7 @@ function shw() {
 	let locs: Parent[] = [
 		{
 			name: "Ice Mountain",
-			access_rules: [and("@ThornTail Hollow/Reach Area/", vars.Inventory.RockCandy)],
+			access_rules: [["@ThornTail Hollow/Reach Area/", vars.Inventory.RockCandy]],
 			children: [
 				{
 					name: "Reach Area",
@@ -660,7 +824,7 @@ function shw() {
 		},
 		{
 			name: "SnowHorn Wastes Water Spout",
-			access_rules: [and("@Ice Mountain/Reach Area/", vars.Tricky.Tricky)],
+			access_rules: [["@Ice Mountain/Reach Area/", vars.Tricky.Tricky]],
 			children: [
 				{
 					name: "Reach Area",
@@ -668,7 +832,7 @@ function shw() {
 				},
 				{
 					name: "Magic Upgrade",
-					sections: [{id: 20, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 20, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -680,8 +844,8 @@ function shw() {
 				{
 					name: "Feed Alpine Root",
 					sections: [
-						{id: 21, name: "1", fallback: [has(vars.Inventory.AlpineSHW)]},
-						{id: 22, name: "2", fallback: [has(vars.Inventory.AlpineSHW, 2)]}
+						{id: 21, name: "1", fallback: [[has(vars.Inventory.AlpineSHW)]]},
+						{id: 22, name: "2", fallback: [[has(vars.Inventory.AlpineSHW, 2)]]}
 					],
 					map_locations: [
 						{
@@ -707,7 +871,7 @@ function shw() {
 				},
 				{
 					name: "Dig Alpine Root near Campfire",
-					sections: [{id: 300, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 300, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -718,7 +882,7 @@ function shw() {
 				},
 				{
 					name: "Dig Alpine Root near Fallen Tree",
-					sections: [{id: 301, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 301, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -729,7 +893,7 @@ function shw() {
 				},
 				{
 					name: "Dig Egg near Water Spout",
-					sections: [{id: 302, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 302, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -742,7 +906,7 @@ function shw() {
 		},
 		{
 			name: "SnowHorn Wastes Entrance",
-			access_rules: ["@SnowHorn Wastes Water Spout/Reach Area/"], // requires alpine_root_shw:2 when SW isn't open
+			access_rules: [["@SnowHorn Wastes Water Spout/Reach Area/"]], // requires alpine_root_shw:2 when SW isn't open
 			children: [
 				{
 					name: "Reach Area",
@@ -751,8 +915,8 @@ function shw() {
 				{
 					name: "Water Platform Fuel Cells",
 					sections: [
-						{id: 119, name: "Left", fallback: [vars.Staff.Staff]},
-						{id: 120, name: "Right (Also Dig Cave Right)", fallback: [vars.Staff.Staff]}
+						{id: 119, name: "Left", fallback: [[vars.Staff.Staff]]},
+						{id: 120, name: "Right (Also Dig Cave Right)", fallback: [[vars.Staff.Staff]]}
 					],
 					map_locations: [
 						{
@@ -765,12 +929,12 @@ function shw() {
 				{
 					name: "Dig Cave near Entrance",
 					sections: [
-						{id: 121, name: "Fuel Cell Left", fallback: [vars.Tricky.Find]},
+						{id: 121, name: "Fuel Cell Left", fallback: [[vars.Tricky.Find]]},
 						{
 							name: "Fuel Cell Right (Also Water Platform Right)",
 							ref: "SnowHorn Wastes Entrance/Water Platform Fuel Cells/Right (Also Dig Cave Right)" // vanilla links these on accident
 						},
-						{id: 310, name: "BafomDad", fallback: [vars.Tricky.Find]}
+						{id: 310, name: "BafomDad", fallback: [[vars.Tricky.Find]]}
 					],
 					map_locations: [
 						{
@@ -783,8 +947,8 @@ function shw() {
 				{
 					name: "Path to TTH Booster Fuel Cells",
 					sections: [
-						{id: 122, name: "Left", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]},
-						{id: 123, name: "Right", fallback: [and(vars.Staff.FireBlaster, luaFunc.HasBooster)]}
+						{id: 122, name: "Left", fallback: [[vars.Staff.FireBlaster, luaFunc.HasBooster]]},
+						{id: 123, name: "Right", fallback: [[vars.Staff.FireBlaster, luaFunc.HasBooster]]}
 					],
 					map_locations: [
 						{
@@ -796,7 +960,7 @@ function shw() {
 				},
 				{
 					name: "Dig BafomDad near Entrance",
-					sections: [{id: 303, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 303, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -809,7 +973,7 @@ function shw() {
 		},
 		{
 			name: "SnowHorn Wastes Behind Gate",
-			access_rules: [and("@SnowHorn Wastes Entrance/Reach Area/", `[${vars.Inventory.GateKey}]`)], // shield hover
+			access_rules: [["@SnowHorn Wastes Entrance/Reach Area/", `[${vars.Inventory.GateKey}]`]], // shield hover
 			children: [
 				{
 					name: "Rescue GateKeeper",
@@ -825,9 +989,9 @@ function shw() {
 				{
 					name: "Blast Tree past Gate",
 					sections: [
-						{id: 133, name: "Fuel Cell Left", fallback: [luaFunc.HasBlaster]},
-						{id: 134, name: "Fuel Cell Right", fallback: [luaFunc.HasBlaster]},
-						{id: 311, name: "BafomDad", fallback: [luaFunc.HasBlaster]}
+						{id: 133, name: "Fuel Cell Left", fallback: [[luaFunc.HasBlaster]]},
+						{id: 134, name: "Fuel Cell Right", fallback: [[luaFunc.HasBlaster]]},
+						{id: 311, name: "BafomDad", fallback: [[luaFunc.HasBlaster]]}
 					],
 					map_locations: [
 						{
@@ -852,8 +1016,8 @@ function shw() {
 					name: "River Ledge past Gate Fuel Cells",
 					sections: [
 						{id: 136, name: "Center"},
-						{id: 137, name: "Right (Use Blaster in Nearby Cave)", fallback: [luaFunc.HasBlaster]},
-						{id: 138, name: "Left (Use Blaster in Nearby Cave)", fallback: [luaFunc.HasBlaster]}
+						{id: 137, name: "Right (Use Blaster in Nearby Cave)", fallback: [[luaFunc.HasBlaster]]},
+						{id: 138, name: "Left (Use Blaster in Nearby Cave)", fallback: [[luaFunc.HasBlaster]]}
 					],
 					map_locations: [
 						{
@@ -865,7 +1029,7 @@ function shw() {
 				},
 				{
 					name: "Dig in Cave past Gate",
-					sections: [{id: 307, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 307, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.SHW,
@@ -885,7 +1049,7 @@ function dim() {
 	let locs: Parent[] = [
 		{
 			name: "DarkIce Mines Entrance",
-			access_rules: [vars.Planet.DarkIceAccess],
+			access_rules: [[vars.Planet.DarkIceAccess]],
 			children: [
 				{
 					name: "Reach Area",
@@ -893,7 +1057,7 @@ function dim() {
 				},
 				// {
 				// 	name: "Shackle Key",
-				// 	access_rules: ["staff, tricky"],
+				// 	access_rules: [["staff, tricky"]],
 				// 	sections: [{}],
 				// 	map_locations: [
 				// 		{
@@ -905,7 +1069,7 @@ function dim() {
 				// },
 				{
 					name: "Release Entrance SnowHorn",
-					sections: [{id: 32, fallback: [vars.Tricky.Find]}], // should be Shackle Key, but not rando'd
+					sections: [{id: 32, fallback: [[vars.Tricky.Find]]}], // should be Shackle Key, but not rando'd
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -916,7 +1080,7 @@ function dim() {
 				},
 				{
 					name: "Dig Alpine Root in Entrance Hut",
-					sections: [{id: 308, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 308, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -929,7 +1093,7 @@ function dim() {
 		},
 		{
 			name: "DarkIce Mines Past First Bridge",
-			access_rules: [and("@DarkIce Mines Entrance/Reach Area/", vars.Inventory.EntranceCog)],
+			access_rules: [["@DarkIce Mines Entrance/Reach Area/", vars.Inventory.EntranceCog]],
 			children: [
 				{
 					name: "Reach Area",
@@ -939,7 +1103,7 @@ function dim() {
 					name: "Injured SnowHorn",
 					sections: [
 						{id: 33, name: "Rescue"},
-						{id: 34, name: "Feed", fallback: [has(vars.Inventory.AlpineDIM, 2)]}
+						{id: 34, name: "Feed", fallback: [[has(vars.Inventory.AlpineDIM, 2)]]}
 					],
 					map_locations: [
 						{
@@ -951,7 +1115,7 @@ function dim() {
 				},
 				{
 					name: "Dig Alpine Root in Boulder Path",
-					sections: [{id: 309, fallback: [vars.Tricky.Flame], preferFallback: true}], // apworld hasn't fixed this yet
+					sections: [{id: 309, fallback: [[vars.Tricky.Flame]], preferFallback: true}], // apworld hasn't fixed this yet
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -964,7 +1128,7 @@ function dim() {
 		},
 		{
 			name: "DarkIce Mines Past Gate",
-			access_rules: [and("@DarkIce Mines Past First Bridge/Reach Area/", has(vars.Inventory.AlpineDIM, 2), vars.Tricky.Flame)],
+			access_rules: [["@DarkIce Mines Past First Bridge/Reach Area/", has(vars.Inventory.AlpineDIM, 2), vars.Tricky.Flame]],
 			children: [
 				{
 					name: "Reach Area",
@@ -972,7 +1136,7 @@ function dim() {
 				},
 				{
 					name: "Enemy Gate Cog Chest",
-					sections: [{id: 35, fallback: [luaFunc.HasBooster]}],
+					sections: [{id: 35, fallback: [[luaFunc.HasBooster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -983,7 +1147,7 @@ function dim() {
 				},
 				{
 					name: "Hut Cog Chest",
-					sections: [{id: 36, fallback: [luaFunc.HasBooster]}],
+					sections: [{id: 36, fallback: [[luaFunc.HasBooster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -994,7 +1158,7 @@ function dim() {
 				},
 				{
 					name: "Ice Cog Chest",
-					sections: [{id: 37, fallback: [and(vars.Tricky.Flame, luaFunc.HasBooster)]}],
+					sections: [{id: 37, fallback: [[vars.Tricky.Flame, luaFunc.HasBooster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -1005,7 +1169,7 @@ function dim() {
 				},
 				{
 					name: "Fire Puzzle Reward",
-					sections: [{id: 38, fallback: [and(vars.Tricky.Flame, has(vars.Inventory.SharpClawCogs, 3), luaFunc.HasBlaster)]}],
+					sections: [{id: 38, fallback: [[vars.Tricky.Flame, has(vars.Inventory.SharpClawCogs, 3), luaFunc.HasBlaster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -1018,7 +1182,7 @@ function dim() {
 		},
 		{
 			name: "DarkIce Mines Dungeon",
-			access_rules: [and("@DarkIce Mines Past Gate/Reach Area/", vars.Inventory.DinosaurHorn, luaFunc.HasBooster)],
+			access_rules: [["@DarkIce Mines Past Gate/Reach Area/", vars.Inventory.DinosaurHorn, luaFunc.HasBooster]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1026,7 +1190,7 @@ function dim() {
 				},
 				// {
 				// 	name: "Fire Wall Chest",
-				// 	sections: [{access_rules: ["$HasBlaster"]}],
+				// 	sections: [{access_rules: [["$HasBlaster"]]}],
 				// 	map_locations: [
 				// 		{
 				// 			map: vars.Maps.DIM,
@@ -1037,7 +1201,7 @@ function dim() {
 				// },
 				// {
 				// 	name: "Ice Wall Chest",
-				// 	access_rules: ["flame, @DarkIce Mines Dungeon/Fire Wall Chest/"],
+				// 	access_rules: [["flame, @DarkIce Mines Dungeon/Fire Wall Chest/"]],
 				// 	sections: [{}],
 				// 	map_locations: [
 				// 		{
@@ -1049,7 +1213,7 @@ function dim() {
 				// },
 				{
 					name: "Boss Galdon",
-					sections: [{id: 40, fallback: [and(vars.Tricky.Flame, luaFunc.HasBlaster)]}],
+					sections: [{id: 40, fallback: [[vars.Tricky.Flame, luaFunc.HasBlaster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.DIM,
@@ -1069,7 +1233,7 @@ function mmp() {
 	let locs: Parent[] = [
 		{
 			name: "Moon Mountain Pass",
-			access_rules: [and("@ThornTail Hollow/Reach Area/", luaFunc.CanExplodeBombPlant)],
+			access_rules: [["@ThornTail Hollow/Reach Area/", luaFunc.CanExplodeBombPlant]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1112,7 +1276,7 @@ function mmp() {
 		},
 		{
 			name: "Moon Mountain Pass Past Gate",
-			access_rules: [and("@Moon Mountain Pass/Reach Area/", vars.Inventory.MoonPassKey)],
+			access_rules: [["@Moon Mountain Pass/Reach Area/", vars.Inventory.MoonPassKey]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1120,7 +1284,7 @@ function mmp() {
 				},
 				{
 					name: "Behind Fort Fuel Cell",
-					sections: [{id: 139, fallback: [vars.Staff.Staff]}],
+					sections: [{id: 139, fallback: [[vars.Staff.Staff]]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1131,7 +1295,7 @@ function mmp() {
 				},
 				{
 					name: "Ground Quake Upgrade",
-					sections: [{id: 4, fallback: [vars.Inventory.MoonPassKey]}],
+					sections: [{id: 4, fallback: [[vars.Inventory.MoonPassKey]]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1142,7 +1306,7 @@ function mmp() {
 				},
 				{
 					name: "BafomDad Ledge near Fort",
-					sections: [{id: 315, fallback: [luaFunc.CanGrowMoonSeed]}],
+					sections: [{id: 315, fallback: [[luaFunc.CanGrowMoonSeed]]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1153,7 +1317,7 @@ function mmp() {
 				},
 				{
 					name: "BafomDad in Moon Seed Zone",
-					sections: [{id: 316, fallback: [luaFunc.CanGrowMoonSeed]}],
+					sections: [{id: 316, fallback: [[luaFunc.CanGrowMoonSeed]]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1166,11 +1330,11 @@ function mmp() {
 		},
 		{
 			name: "Moon Mountain Pass Middle",
-			access_rules: [and("@Moon Mountain Pass Past Gate/Reach Area/", luaFunc.CanExplodeBombPlant, luaFunc.CanGrowMoonSeed)],
+			access_rules: [["@Moon Mountain Pass Past Gate/Reach Area/", luaFunc.CanExplodeBombPlant, luaFunc.CanGrowMoonSeed]],
 			children: [
 				{
 					name: "Test of Combat",
-					sections: [{id: 42, fallback: [and(vars.Tricky.Flame, vars.Staff.FireBlaster, vars.Staff.FreezeBlast)]}],
+					sections: [{id: 42, fallback: [[vars.Tricky.Flame, vars.Staff.FireBlaster, vars.Staff.FreezeBlast]]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1196,8 +1360,8 @@ function mmp() {
 				{
 					name: "Cheat Well near Combat Shrine",
 					sections: [
-						{id: 150, name: "Fuel Cell", fallback: [luaFunc.CanGrowMoonSeed]},
-						{id: 318, name: "BafomDad", fallback: [luaFunc.CanGrowMoonSeed]}
+						{id: 150, name: "Fuel Cell", fallback: [[luaFunc.CanGrowMoonSeed]]},
+						{id: 318, name: "BafomDad", fallback: [[luaFunc.CanGrowMoonSeed]]}
 					],
 					map_locations: [
 						{
@@ -1222,7 +1386,7 @@ function mmp() {
 		},
 		{
 			name: "Volcano Force Point Temple Entrance",
-			access_rules: ["@Moon Mountain Pass Past Gate/Reach Area/"],
+			access_rules: [["@Moon Mountain Pass Past Gate/Reach Area/"]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1230,7 +1394,7 @@ function mmp() {
 				},
 				{
 					name: "BafomDad Cell",
-					sections: [{id: 312, fallback: [luaFunc.HasBooster]}],
+					sections: [{id: 312, fallback: [[luaFunc.HasBooster]]}],
 					map_locations: [
 						{
 							map: vars.Maps.MMP,
@@ -1242,9 +1406,9 @@ function mmp() {
 				// {
 				// 	name: "Disguise Alcove",
 				// 	sections: [
-				// 		{id: 142, name: "Fuel Cell Left", fallback: [and(vars.Staff.Disguise, luaFunc.HasBooster)]},
-				// 		{id: 143, name: "Fuel Cell Right", fallback: [and(vars.Staff.Disguise, luaFunc.HasBooster)]},
-				// 		{id: 313, name: "BafomDad", fallback: [and(vars.Staff.Disguise, luaFunc.HasBooster)]}
+				// 		{id: 142, name: "Fuel Cell Left", fallback: [[vars.Staff.Disguise, luaFunc.HasBooster]]},
+				// 		{id: 143, name: "Fuel Cell Right", fallback: [[vars.Staff.Disguise, luaFunc.HasBooster]]},
+				// 		{id: 313, name: "BafomDad", fallback: [[vars.Staff.Disguise, luaFunc.HasBooster]]}
 				// 	],
 				// 	map_locations: [
 				// 		{
@@ -1257,8 +1421,8 @@ function mmp() {
 				{
 					name: "Freeze Blast Alcove Fuel Cells",
 					sections: [
-						{id: 140, name: "Left", fallback: [and(vars.Staff.FreezeBlast, luaFunc.HasBooster)]},
-						{id: 141, name: "Right", fallback: [and(vars.Staff.FreezeBlast, luaFunc.HasBooster)]}
+						{id: 140, name: "Left", fallback: [[vars.Staff.FreezeBlast, luaFunc.HasBooster]]},
+						{id: 141, name: "Right", fallback: [[vars.Staff.FreezeBlast, luaFunc.HasBooster]]}
 					],
 					map_locations: [
 						{
@@ -1283,7 +1447,7 @@ function mmp() {
 		},
 		{
 			name: "Volcano Force Point Temple",
-			access_rules: [and("@Volcano Force Point Temple Entrance/Reach Area/", vars.Inventory.FireSpellstone1)],
+			access_rules: [["@Volcano Force Point Temple Entrance/Reach Area/", vars.Inventory.FireSpellstone1]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1292,9 +1456,9 @@ function mmp() {
 				{
 					name: "Cheat Well",
 					sections: [
-						{id: 145, name: "Fuel Cell Left", fallback: [luaFunc.CanGrowMoonSeed]},
-						{id: 146, name: "Fuel Cell Right", fallback: [luaFunc.CanGrowMoonSeed]},
-						{id: 314, name: "BafomDad", fallback: [luaFunc.CanGrowMoonSeed]},
+						{id: 145, name: "Fuel Cell Left", fallback: [[luaFunc.CanGrowMoonSeed]]},
+						{id: 146, name: "Fuel Cell Right", fallback: [[luaFunc.CanGrowMoonSeed]]},
+						{id: 314, name: "BafomDad", fallback: [[luaFunc.CanGrowMoonSeed]]},
 					],
 					map_locations: [
 						{
@@ -1319,7 +1483,7 @@ function mmp() {
 		},
 		{
 			name: "Volcano Force Point Temple Warp Room",
-			access_rules: [and("@Volcano Force Point Temple Entrance/Reach Area/", vars.Staff.FreezeBlast, vars.Tricky.Flame, luaFunc.HasBlaster)],
+			access_rules: [["@Volcano Force Point Temple Entrance/Reach Area/", vars.Staff.FreezeBlast, vars.Tricky.Flame, luaFunc.HasBlaster]],
 			children: [
 				{
 					name: "Round Room Ledge Fuel Cell",
@@ -1345,7 +1509,7 @@ function mmp() {
 				},
 				{
 					name: "Insert Fire SpellStone 1",
-					sections: [{id: 41, fallback: [vars.Inventory.FireSpellstone1]}],
+					sections: [{id: 41, fallback: [[vars.Inventory.FireSpellstone1]]}],
 					map_locations: [
 						{
 							map: vars.Maps.VFP,
@@ -1365,7 +1529,7 @@ function lfv() {
 	let locs: Parent[] = [
 		{
 			name: "LightFoot Village",
-			access_rules: [and("@ThornTail Hollow/Reach Area/", vars.Staff.Staff)],
+			access_rules: [["@ThornTail Hollow/Reach Area/", vars.Staff.Staff]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1374,9 +1538,9 @@ function lfv() {
 				{
 					name: "Entrance Booster Ledge",
 					sections: [
-						{id: 126, name: "Fuel Cell Right", fallback: [luaFunc.HasBooster]},
-						{id: 127, name: "Fuel Cell Left", fallback: [luaFunc.HasBooster]},
-						{id: 320, name: "BafomDad", fallback: [luaFunc.HasBooster]},
+						{id: 126, name: "Fuel Cell Right", fallback: [[luaFunc.HasBooster]]},
+						{id: 127, name: "Fuel Cell Left", fallback: [[luaFunc.HasBooster]]},
+						{id: 320, name: "BafomDad", fallback: [[luaFunc.HasBooster]]},
 					],
 					map_locations: [
 						{
@@ -1397,7 +1561,7 @@ function cc() {
 	let locs: Parent[] = [
 		{
 			name: "Cape Claw Transition Area",
-			access_rules: [and("@LightFoot Village/Reach Area/", luaFunc.CanBuy(60))],
+			access_rules: [["@LightFoot Village/Reach Area/", luaFunc.CanBuy(60)]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1405,7 +1569,7 @@ function cc() {
 				},
 				{
 					name: "Transition Bottom Platform Fuel Cell",
-					sections: [{id: 152, fallback: [`[${vars.Staff.RocketBoost}]`], preferFallback: true}], // OoL rules
+					sections: [{id: 152, fallback: [[`[${vars.Staff.RocketBoost}]`]], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1416,7 +1580,7 @@ function cc() {
 				},
 				{
 					name: "Transition Bottom Waterfall Fuel Cell",
-					sections: [{id: 153, fallback: [`[${vars.Staff.RocketBoost}]`], preferFallback: true}], // OoL rules
+					sections: [{id: 153, fallback: [[`[${vars.Staff.RocketBoost}]`]], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1427,7 +1591,7 @@ function cc() {
 				},
 				{
 					name: "Transition Bottom Weeds Fuel Cell",
-					sections: [{id: 154, fallback: [`[${vars.Staff.RocketBoost}]`], preferFallback: true}], // OoL rules
+					sections: [{id: 154, fallback: [[`[${vars.Staff.RocketBoost}]`]], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1440,14 +1604,14 @@ function cc() {
 		},
 		{
 			name: "Cape Claw Open Area",
-			access_rules: ["@Cape Claw Transition Area/Reach Area/"],
+			access_rules: [["@Cape Claw Transition Area/Reach Area/"]],
 			children: [
 				{
 					name: "Give HighTop Gold Bars",
 					sections: [
 						{
 							id: 44,
-							fallback: [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)],
+							fallback: [[has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)], [has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost]],
 						}
 					],
 					map_locations: [
@@ -1463,7 +1627,7 @@ function cc() {
 					sections: [
 						{
 							id: 45,
-							fallback: [and(has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)), and(has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost)]
+							fallback: [[has(vars.Inventory.GoldBar, 4), luaFunc.CanBuy(25)], [has(vars.Inventory.GoldBar, 4), vars.Staff.RocketBoost]]
 						}
 					],
 					map_locations: [
@@ -1498,7 +1662,7 @@ function cc() {
 				},
 				{
 					name: "Dig in Back Cave Fuel Cell",
-					sections: [{id: 157, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 157, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1509,7 +1673,7 @@ function cc() {
 				},
 				{
 					name: "Dig BafomDad middle of Water",
-					sections: [{id: 321, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 321, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1520,7 +1684,7 @@ function cc() {
 				},
 				{
 					name: "Dig Gold Bar near HighTop",
-					sections: [{id: 322, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 322, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1531,7 +1695,7 @@ function cc() {
 				},
 				{
 					name: "Dig Gold Bar behind Bramble",
-					sections: [{id: 323, fallback: [vars.Tricky.Flame]}],
+					sections: [{id: 323, fallback: [[vars.Tricky.Flame]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1542,7 +1706,7 @@ function cc() {
 				},
 				{
 					name: "Dig Gold Bar before Bramble",
-					sections: [{id: 324, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 324, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1553,7 +1717,7 @@ function cc() {
 				},
 				{
 					name: "Dig Gold Bar near CloudRunner Cell",
-					sections: [{id: 325, fallback: [vars.Tricky.Find]}],
+					sections: [{id: 325, fallback: [[vars.Tricky.Find]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CC,
@@ -1573,7 +1737,7 @@ function crf() {
 	let locs: Parent[] = [
 		{
 			name: "CloudRunner Fortress Landing",
-			access_rules: [vars.Planet.CloudRunnerAccess],
+			access_rules: [[vars.Planet.CloudRunnerAccess]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1594,7 +1758,7 @@ function crf() {
 		},
 		{
 			name: "CloudRunner Fortress Main",
-			access_rules: [and("@CloudRunner Fortress Landing/Reach Area/", vars.Staff.FireBlaster)],
+			access_rules: [["@CloudRunner Fortress Landing/Reach Area/", vars.Staff.FireBlaster]],
 			children: [
 				{
 					name: "Reach Area",
@@ -1613,7 +1777,7 @@ function crf() {
 				},
 				{
 					name: "Rescue Gradabug",
-					sections: [{id: 48, fallback: [vars.Staff.Staff]}],
+					sections: [{id: 48, fallback: [[vars.Staff.Staff]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1624,7 +1788,7 @@ function crf() {
 				},
 				{
 					name: "Red Crystal Chest",
-					sections: [{id: 49, fallback: [vars.Staff.Staff]}],
+					sections: [{id: 49, fallback: [[vars.Staff.Staff]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1635,7 +1799,7 @@ function crf() {
 				},
 				{
 					name: "Green Crystal Chest",
-					sections: [{id: 50, fallback: [luaFunc.HasIceBlast]}],
+					sections: [{id: 50, fallback: [[luaFunc.HasIceBlast]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1646,7 +1810,7 @@ function crf() {
 				},
 				{
 					name: "Blue Crystal Chest",
-					sections: [{id: 51, fallback: [and(luaFunc.HasIceBlast, vars.Staff.RocketBoost)]}],
+					sections: [{id: 51, fallback: [[luaFunc.HasIceBlast, vars.Staff.RocketBoost]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1681,11 +1845,11 @@ function crf() {
 		},
 		{
 			name: "CloudRunner Fortress Powered",
-			access_rules: [and("@CloudRunner Fortress Main/Reach Area/", vars.Inventory.PowerKey, vars.Inventory.RedCrystal, vars.Inventory.GreenCrystal, vars.Inventory.BlueCrystal, vars.Staff.Disguise)],
+			access_rules: [["@CloudRunner Fortress Main/Reach Area/", vars.Inventory.PowerKey, vars.Inventory.RedCrystal, vars.Inventory.GreenCrystal, vars.Inventory.BlueCrystal, vars.Staff.Disguise]],
 			children: [
 				{
 					name: "Rescue Queen CloudRunner",
-					sections: [{id: 52, fallback: [vars.Staff.Disguise]}],
+					sections: [{id: 52, fallback: [[vars.Staff.Disguise]]}],
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1718,7 +1882,7 @@ function crf() {
 				},
 				{
 					name: "BafomDad in Dark Room",
-					sections: [{id: 330, fallback: [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], preferFallback: true}], // OoL rules
+					sections: [{id: 330, fallback: [[luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark]], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CRF,
@@ -1729,7 +1893,7 @@ function crf() {
 				},
 				{
 					name: "Defeat Boss SharpClaw Race",
-					sections: [{id: 53, fallback: [and(luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark)], preferFallback: true}], // OoL rules
+					sections: [{id: 53, fallback: [[luaFunc.HasBlaster, vars.Staff.RocketBoost, vars.Inventory.CloudRunnerFlute, luaFunc.CanTraverseDark]], preferFallback: true}], // OoL rules
 					map_locations: [
 						{
 							map: vars.Maps.CRF,

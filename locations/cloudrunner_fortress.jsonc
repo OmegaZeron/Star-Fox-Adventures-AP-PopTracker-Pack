@@ -1,7 +1,7 @@
 [
 	{
 		"name": "CloudRunner Fortress Landing",
-		"access_rules": ["cloudRunnerAccess"],
+		"access_rules": [["cloudRunnerAccess"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -22,7 +22,7 @@
 	},
 	{
 		"name": "CloudRunner Fortress Main",
-		"access_rules": ["@CloudRunner Fortress Landing/Reach Area/, fireBlaster"],
+		"access_rules": [["@CloudRunner Fortress Landing/Reach Area/", "fireBlaster"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -42,7 +42,7 @@
 			{
 				"name": "Rescue Gradabug",
 				"sections": [
-					{"access_rules": ["staff"]}
+					{"access_rules": [["staff"]]}
 				],
 				"map_locations": [
 					{
@@ -66,7 +66,7 @@
 			{
 				"name": "Green Crystal Chest",
 				"sections": [
-					{"access_rules": ["freezeBlast"]}
+					{"access_rules": [["freezeBlast"]]}
 				],
 				"map_locations": [
 					{
@@ -79,7 +79,7 @@
 			{
 				"name": "Blue Crystal Chest",
 				"sections": [
-					{"access_rules": ["freezeBlast, rocketBoost"]}
+					{"access_rules": [["freezeBlast", "rocketBoost"]]}
 				],
 				"map_locations": [
 					{
@@ -115,12 +115,12 @@
 	},
 	{
 		"name": "CloudRunner Fortress Powered",
-		"access_rules": ["@CloudRunner Fortress Main/Reach Area/, powerKey, crystalRed, crystalGreen, crystalBlue, disguise"],
+		"access_rules": [["@CloudRunner Fortress Main/Reach Area/", "powerKey", "crystalRed", "crystalGreen", "crystalBlue", "disguise"]],
 		"children": [
 			{
 				"name": "Rescue Queen CloudRunner",
 				"sections": [
-					{"access_rules": ["disguise"]}
+					{"access_rules": [["disguise"]]}
 				],
 				"map_locations": [
 					{
@@ -155,7 +155,7 @@
 			{
 				"name": "BafomDad in Dark Room",
 				"sections": [
-					{"access_rules": ["$HasBlaster, rocketBoost, cloudRunnerFlute, ^$CanTraverseDark"]}
+					{"access_rules": [["$HasBlaster", "rocketBoost", "cloudRunnerFlute", "^$CanTraverseDark"]]}
 				],
 				"map_locations": [
 					{
@@ -168,7 +168,7 @@
 			{
 				"name": "Defeat Boss SharpClaw Race",
 				"sections": [
-					{"access_rules": ["$HasBlaster, rocketBoost, cloudRunnerFlute, ^$CanTraverseDark"]}
+					{"access_rules": [["$HasBlaster", "rocketBoost", "cloudRunnerFlute", "^$CanTraverseDark"]]}
 				],
 				"map_locations": [
 					{

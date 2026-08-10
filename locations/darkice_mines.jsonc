@@ -1,7 +1,7 @@
 [
 	{
 		"name": "DarkIce Mines Entrance",
-		"access_rules": ["darkIceAccess"],
+		"access_rules": [["darkIceAccess"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -10,7 +10,7 @@
 			{
 				"name": "Release Entrance SnowHorn",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
@@ -23,7 +23,7 @@
 			{
 				"name": "Dig Alpine Root in Entrance Hut",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
@@ -37,7 +37,7 @@
 	},
 	{
 		"name": "DarkIce Mines Past First Bridge",
-		"access_rules": ["@DarkIce Mines Entrance/Reach Area/, entranceCog"],
+		"access_rules": [["@DarkIce Mines Entrance/Reach Area/", "entranceCog"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -48,11 +48,11 @@
 				"sections": [
 					{
 						"name": "Rescue",
-						"access_rules": ["entranceCog"]
+						"access_rules": [["entranceCog"]]
 					},
 					{
 						"name": "Feed",
-						"access_rules": ["alpineDIM:2, entranceCog"]
+						"access_rules": [["alpineDIM:2", "entranceCog"]]
 					}
 				],
 				"map_locations": [
@@ -66,7 +66,7 @@
 			{
 				"name": "Dig Alpine Root in Boulder Path",
 				"sections": [
-					{"access_rules": ["flame"]}
+					{"access_rules": [["flame"]]}
 				],
 				"map_locations": [
 					{
@@ -80,7 +80,7 @@
 	},
 	{
 		"name": "DarkIce Mines Past Gate",
-		"access_rules": ["@DarkIce Mines Past First Bridge/Reach Area/, alpineDIM:2, flame"],
+		"access_rules": [["@DarkIce Mines Past First Bridge/Reach Area/", "alpineDIM:2", "flame"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -89,7 +89,7 @@
 			{
 				"name": "Enemy Gate Cog Chest",
 				"sections": [
-					{"access_rules": ["rocketBoost"]}
+					{"access_rules": [["rocketBoost"]]}
 				],
 				"map_locations": [
 					{
@@ -102,7 +102,7 @@
 			{
 				"name": "Hut Cog Chest",
 				"sections": [
-					{"access_rules": ["rocketBoost"]}
+					{"access_rules": [["rocketBoost"]]}
 				],
 				"map_locations": [
 					{
@@ -115,7 +115,7 @@
 			{
 				"name": "Ice Cog Chest",
 				"sections": [
-					{"access_rules": ["rocketBoost, flame"]}
+					{"access_rules": [["rocketBoost", "flame"]]}
 				],
 				"map_locations": [
 					{
@@ -128,7 +128,7 @@
 			{
 				"name": "Fire Puzzle Reward",
 				"sections": [
-					{"access_rules": ["fireBlaster, sharpClawCogs:3, flame"]}
+					{"access_rules": [["fireBlaster", "sharpClawCogs:3", "flame"]]}
 				],
 				"map_locations": [
 					{
@@ -142,7 +142,7 @@
 	},
 	{
 		"name": "DarkIce Mines Dungeon",
-		"access_rules": ["@DarkIce Mines Past Gate/Reach Area/, dinosaurHorn, $HasBooster"],
+		"access_rules": [["@DarkIce Mines Past Gate/Reach Area/", "dinosaurHorn", "$HasBooster"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -151,7 +151,7 @@
 			{
 				"name": "Boss Galdon",
 				"sections": [
-					{"access_rules": ["fireBlaster, flame"]}
+					{"access_rules": [["fireBlaster", "flame"]]}
 				],
 				"map_locations": [
 					{

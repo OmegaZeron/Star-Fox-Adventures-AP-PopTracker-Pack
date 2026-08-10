@@ -1,7 +1,7 @@
 [
 	{
 		"name": "LightFoot Village",
-		"access_rules": ["@ThornTail Hollow/Reach Area/, staff"],
+		"access_rules": [["@ThornTail Hollow/Reach Area/", "staff"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -12,15 +12,15 @@
 				"sections": [
 					{
 						"name": "Fuel Cell Right",
-						"access_rules": ["rocketBoost"]
+						"access_rules": [["rocketBoost"]]
 					},
 					{
 						"name": "Fuel Cell Left",
-						"access_rules": ["rocketBoost"]
+						"access_rules": [["rocketBoost"]]
 					},
 					{
 						"name": "BafomDad",
-						"access_rules": ["rocketBoost"]
+						"access_rules": [["rocketBoost"]]
 					}
 				],
 				"map_locations": [

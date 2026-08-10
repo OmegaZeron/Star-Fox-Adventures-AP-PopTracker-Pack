@@ -1,7 +1,7 @@
 [
 	{
 		"name": "Moon Mountain Pass",
-		"access_rules": ["@ThornTail Hollow/Reach Area/, ^$CanExplodeBombPlant"],
+		"access_rules": [["@ThornTail Hollow/Reach Area/", "^$CanExplodeBombPlant"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -44,7 +44,7 @@
 	},
 	{
 		"name": "Moon Mountain Pass Past Gate",
-		"access_rules": ["@Moon Mountain Pass/Reach Area/, moonPassKey"],
+		"access_rules": [["@Moon Mountain Pass/Reach Area/", "moonPassKey"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -53,7 +53,7 @@
 			{
 				"name": "Behind Fort Fuel Cell",
 				"sections": [
-					{"access_rules": ["moonPassKey"]}
+					{"access_rules": [["moonPassKey"]]}
 				],
 				"map_locations": [
 					{
@@ -66,7 +66,7 @@
 			{
 				"name": "Ground Quake Upgrade",
 				"sections": [
-					{"access_rules": ["moonPassKey"]}
+					{"access_rules": [["moonPassKey"]]}
 				],
 				"map_locations": [
 					{
@@ -79,7 +79,7 @@
 			{
 				"name": "BafomDad Ledge near Fort",
 				"sections": [
-					{"access_rules": ["^$CanGrowMoonSeed"]}
+					{"access_rules": [["^$CanGrowMoonSeed"]]}
 				],
 				"map_locations": [
 					{
@@ -92,7 +92,7 @@
 			{
 				"name": "BafomDad in Moon Seed Zone",
 				"sections": [
-					{"access_rules": ["^$CanGrowMoonSeed"]}
+					{"access_rules": [["^$CanGrowMoonSeed"]]}
 				],
 				"map_locations": [
 					{
@@ -106,12 +106,12 @@
 	},
 	{
 		"name": "Moon Mountain Pass Middle",
-		"access_rules": ["@Moon Mountain Pass Past Gate/Reach Area/, ^$CanExplodeBombPlant, ^$CanGrowMoonSeed"],
+		"access_rules": [["@Moon Mountain Pass Past Gate/Reach Area/", "^$CanExplodeBombPlant", "^$CanGrowMoonSeed"]],
 		"children": [
 			{
 				"name": "Test of Combat",
 				"sections": [
-					{"access_rules": ["freezeBlast, flame, fireBlaster"]}
+					{"access_rules": [["freezeBlast", "flame", "fireBlaster"]]}
 				],
 				"map_locations": [
 					{
@@ -140,11 +140,11 @@
 				"sections": [
 					{
 						"name": "Fuel Cell",
-						"access_rules": ["^$CanGrowMoonSeed"]
+						"access_rules": [["^$CanGrowMoonSeed"]]
 					},
 					{
 						"name": "BafomDad",
-						"access_rules": ["^$CanGrowMoonSeed"]
+						"access_rules": [["^$CanGrowMoonSeed"]]
 					}
 				],
 				"map_locations": [
@@ -170,7 +170,7 @@
 	},
 	{
 		"name": "Volcano Force Point Temple Entrance",
-		"access_rules": ["@Moon Mountain Pass Past Gate/Reach Area/"],
+		"access_rules": [["@Moon Mountain Pass Past Gate/Reach Area/"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -179,7 +179,7 @@
 			{
 				"name": "BafomDad Cell",
 				"sections": [
-					{"access_rules": ["rocketBoost"]}
+					{"access_rules": [["rocketBoost"]]}
 				],
 				"map_locations": [
 					{
@@ -194,11 +194,11 @@
 				"sections": [
 					{
 						"name": "Left",
-						"access_rules": ["rocketBoost, freezeBlast"]
+						"access_rules": [["rocketBoost", "freezeBlast"]]
 					},
 					{
 						"name": "Right",
-						"access_rules": ["rocketBoost, freezeBlast"]
+						"access_rules": [["rocketBoost", "freezeBlast"]]
 					}
 				],
 				"map_locations": [
@@ -224,7 +224,7 @@
 	},
 	{
 		"name": "Volcano Force Point Temple",
-		"access_rules": ["@Volcano Force Point Temple Entrance/Reach Area/, fireSpellstone1"],
+		"access_rules": [["@Volcano Force Point Temple Entrance/Reach Area/", "fireSpellstone1"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -235,15 +235,15 @@
 				"sections": [
 					{
 						"name": "Fuel Cell Left",
-						"access_rules": ["^$CanGrowMoonSeed"]
+						"access_rules": [["^$CanGrowMoonSeed"]]
 					},
 					{
 						"name": "Fuel Cell Right",
-						"access_rules": ["^$CanGrowMoonSeed"]
+						"access_rules": [["^$CanGrowMoonSeed"]]
 					},
 					{
 						"name": "BafomDad",
-						"access_rules": ["^$CanGrowMoonSeed"]
+						"access_rules": [["^$CanGrowMoonSeed"]]
 					}
 				],
 				"map_locations": [
@@ -257,7 +257,7 @@
 			{
 				"name": "Freeze Blast Upgrade",
 				"sections": [
-					{"access_rules": ["fireBlaster, fireSpellstone1, flame"]}
+					{"access_rules": [["fireBlaster", "fireSpellstone1", "flame"]]}
 				],
 				"map_locations": [
 					{
@@ -271,7 +271,7 @@
 	},
 	{
 		"name": "Volcano Force Point Temple Warp Room",
-		"access_rules": ["@Volcano Force Point Temple Entrance/Reach Area/, freezeBlast, flame, $HasBlaster"],
+		"access_rules": [["@Volcano Force Point Temple Entrance/Reach Area/", "freezeBlast", "flame", "$HasBlaster"]],
 		"children": [
 			{
 				"name": "Round Room Ledge Fuel Cell",
@@ -298,7 +298,7 @@
 			{
 				"name": "Insert Fire SpellStone 1",
 				"sections": [
-					{"access_rules": ["fireSpellstone1"]}
+					{"access_rules": [["fireSpellstone1"]]}
 				],
 				"map_locations": [
 					{

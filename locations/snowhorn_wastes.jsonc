@@ -1,7 +1,7 @@
 [
 	{
 		"name": "Ice Mountain",
-		"access_rules": ["@ThornTail Hollow/Reach Area/, rockCandy"],
+		"access_rules": [["@ThornTail Hollow/Reach Area/", "rockCandy"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -26,7 +26,7 @@
 	},
 	{
 		"name": "SnowHorn Wastes Water Spout",
-		"access_rules": ["@Ice Mountain/Reach Area/, tricky"],
+		"access_rules": [["@Ice Mountain/Reach Area/", "tricky"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -35,7 +35,7 @@
 			{
 				"name": "Magic Upgrade",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
@@ -50,11 +50,11 @@
 				"sections": [
 					{
 						"name": "1",
-						"access_rules": ["alpineSHW"]
+						"access_rules": [["alpineSHW"]]
 					},
 					{
 						"name": "2",
-						"access_rules": ["alpineSHW:2"]
+						"access_rules": [["alpineSHW:2"]]
 					}
 				],
 				"map_locations": [
@@ -82,7 +82,7 @@
 			{
 				"name": "Dig Alpine Root near Campfire",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
@@ -95,7 +95,7 @@
 			{
 				"name": "Dig Alpine Root near Fallen Tree",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
@@ -108,7 +108,7 @@
 			{
 				"name": "Dig Egg near Water Spout",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
@@ -122,7 +122,7 @@
 	},
 	{
 		"name": "SnowHorn Wastes Entrance",
-		"access_rules": ["@SnowHorn Wastes Water Spout/Reach Area/"],
+		"access_rules": [["@SnowHorn Wastes Water Spout/Reach Area/"]],
 		"children": [
 			{
 				"name": "Reach Area",
@@ -133,11 +133,11 @@
 				"sections": [
 					{
 						"name": "Left",
-						"access_rules": ["staff"]
+						"access_rules": [["staff"]]
 					},
 					{
 						"name": "Right (Also Dig Cave Right)",
-						"access_rules": ["staff"]
+						"access_rules": [["staff"]]
 					}
 				],
 				"map_locations": [
@@ -153,7 +153,7 @@
 				"sections": [
 					{
 						"name": "Fuel Cell Left",
-						"access_rules": ["tricky"]
+						"access_rules": [["tricky"]]
 					},
 					{
 						"name": "Fuel Cell Right (Also Water Platform Right)",
@@ -161,7 +161,7 @@
 					},
 					{
 						"name": "BafomDad",
-						"access_rules": ["tricky"]
+						"access_rules": [["tricky"]]
 					}
 				],
 				"map_locations": [
@@ -177,11 +177,11 @@
 				"sections": [
 					{
 						"name": "Left",
-						"access_rules": ["fireBlaster, rocketBoost"]
+						"access_rules": [["fireBlaster", "rocketBoost"]]
 					},
 					{
 						"name": "Right",
-						"access_rules": ["fireBlaster, rocketBoost"]
+						"access_rules": [["fireBlaster", "rocketBoost"]]
 					}
 				],
 				"map_locations": [
@@ -195,7 +195,7 @@
 			{
 				"name": "Dig BafomDad near Entrance",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
@@ -209,7 +209,7 @@
 	},
 	{
 		"name": "SnowHorn Wastes Behind Gate",
-		"access_rules": ["@SnowHorn Wastes Entrance/Reach Area/, [gateKey]"],
+		"access_rules": [["@SnowHorn Wastes Entrance/Reach Area/", "[gateKey]"]],
 		"children": [
 			{
 				"name": "Rescue GateKeeper",
@@ -227,15 +227,15 @@
 				"sections": [
 					{
 						"name": "Fuel Cell Left",
-						"access_rules": ["fireBlaster"]
+						"access_rules": [["fireBlaster"]]
 					},
 					{
 						"name": "Fuel Cell Right",
-						"access_rules": ["fireBlaster"]
+						"access_rules": [["fireBlaster"]]
 					},
 					{
 						"name": "BafomDad",
-						"access_rules": ["fireBlaster"]
+						"access_rules": [["fireBlaster"]]
 					}
 				],
 				"map_locations": [
@@ -263,11 +263,11 @@
 					{"name": "Center"},
 					{
 						"name": "Right (Use Blaster in Nearby Cave)",
-						"access_rules": ["fireBlaster"]
+						"access_rules": [["fireBlaster"]]
 					},
 					{
 						"name": "Left (Use Blaster in Nearby Cave)",
-						"access_rules": ["fireBlaster"]
+						"access_rules": [["fireBlaster"]]
 					}
 				],
 				"map_locations": [
@@ -281,7 +281,7 @@
 			{
 				"name": "Dig in Cave past Gate",
 				"sections": [
-					{"access_rules": ["tricky"]}
+					{"access_rules": [["tricky"]]}
 				],
 				"map_locations": [
 					{
