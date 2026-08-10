@@ -31,11 +31,6 @@
 				"name": "Ground Quake",
 				"img": "images/items/groundQuake.png",
 				"codes": "groundQuake"
-			},
-			{
-				"name": "Super Quake",
-				"img": "images/items/superQuake.png",
-				"codes": "superQuake"
 			}
 		]
 	},
@@ -206,6 +201,48 @@
 		"type": "toggle",
 		"img": "images/items/cloudRunnerFlute.png",
 		"codes": "cloudRunnerFlute"
+	},
+	{
+		"name": "Water Spellstone 1",
+		"type": "toggle",
+		"img": "images/items/waterSpellstone1.png",
+		"codes": "waterSpellstone1"
+	},
+	{
+		"name": "Fire Gem",
+		"type": "toggle",
+		"img": "images/items/fireGem.png",
+		"codes": "fireGem"
+	},
+	{
+		"name": "LightFoot Village Gate",
+		"type": "toggle",
+		"img": "images/items/lfvGate.png",
+		"codes": "lfvGate"
+	},
+	{
+		"name": "Triangle Block Platforms",
+		"type": "toggle",
+		"img": "images/items/triPlatform.png",
+		"codes": "triPlatform"
+	},
+	{
+		"name": "Square Block Platforms",
+		"type": "toggle",
+		"img": "images/items/squarePlatform.png",
+		"codes": "squarePlatform"
+	},
+	{
+		"name": "Circle Block Platforms",
+		"type": "toggle",
+		"img": "images/items/circlePlatform.png",
+		"codes": "circlePlatform"
+	},
+	{
+		"name": "Krazoa Spirit 3",
+		"type": "toggle",
+		"img": "images/items/krazoa3.png",
+		"codes": "krazoa3"
 	},
 	{
 		"name": "Rock Candy",

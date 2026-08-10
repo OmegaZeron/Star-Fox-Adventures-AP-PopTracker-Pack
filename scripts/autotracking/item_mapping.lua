@@ -26,6 +26,13 @@ ITEM_MAPPING = {
 	[118] = {"powerKey", "toggle"},
 	[119] = {"lightGems", "consumable"},
 	[122] = {"cloudRunnerFlute", "toggle"},
+	[123] = {"waterSpellstone1", "toggle"},
+	[124] = {"fireGem", "toggle"},
+	[125] = {"lfvGate", "toggle"},
+	[126] = {"triPlatform", "toggle"},
+	[127] = {"squarePlatform", "toggle"},
+	[128] = {"circlePlatform", "toggle"},
+	[129] = {"krazoa3", "toggle"},
 	[200] = {"rockCandy", "toggle"},
 	[204] = {"fireFlyLantern", "toggle"},
 }

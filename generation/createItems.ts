@@ -68,7 +68,7 @@ const itemData = [
 	generic(4, "Freeze Blast", "toggle", vars.Staff.FreezeBlast, vars.Staff.FreezeBlast, [vars.Staff.FreezeBlast]),
 	progressive(5, "Ground Quake", vars.Staff.GroundQuake, [
 		new Stage("Ground Quake", vars.Staff.GroundQuake, [vars.Staff.GroundQuake]),
-		new Stage("Super Quake", vars.Staff.SuperQuake, [vars.Staff.SuperQuake]),
+		// new Stage("Super Quake", vars.Staff.SuperQuake, [vars.Staff.SuperQuake]),
 	]),
 	generic(6, "SharpClaw Disguise", "toggle", vars.Staff.Disguise, vars.Staff.Disguise, [vars.Staff.Disguise]),
 	// tricky
@@ -80,6 +80,8 @@ const itemData = [
 	generic(50, "Dinosaur Planet Access", "toggle", vars.Planet.DinoPlanetAccess, vars.Planet.DinoPlanetAccess, [vars.Planet.DinoPlanetAccess]),
 	generic(51, "DarkIce Mines Access", "toggle", vars.Planet.DarkIceAccess, vars.Planet.DarkIceAccess, [vars.Planet.DarkIceAccess]),
 	generic(52, "CloudRunner Fortress Access", "toggle", vars.Planet.CloudRunnerAccess, vars.Planet.CloudRunnerAccess, [vars.Planet.CloudRunnerAccess]),
+	// generic(53, "Walled City Access", "toggle", vars.Planet.WalledCityAccess, vars.Planet.WalledCityAccess, [vars.Planet.WalledCityAccess]),
+	// generic(54, "Dragon Rock Access", "toggle", vars.Planet.DragonRockAccess, vars.Planet.DragonRockAccess, [vars.Planet.DragonRockAccess]),
 	// inventory
 	progressive(100, "Scarab Bag", vars.Inventory.ScarabBag, [
 		new Stage("Pockets", vars.Inventory.ScarabBag, [vars.Inventory.ScarabBag]),
@@ -101,6 +103,7 @@ const itemData = [
 	generic(114, "Moon Pass Key", "toggle", vars.Inventory.MoonPassKey, vars.Inventory.MoonPassKey, [vars.Inventory.MoonPassKey]),
 	generic(115, "Moon Seed", "toggle", vars.Inventory.MoonSeed, vars.Inventory.MoonSeed, [vars.Inventory.MoonSeed]),
 	generic(116, "Krazoa Spirit 2", "toggle", vars.Inventory.KrazoaSpirit2, vars.Inventory.KrazoaSpirit2, [vars.Inventory.KrazoaSpirit2]),
+	generic(129, "Krazoa Spirit 3", "toggle", vars.Inventory.KrazoaSpirit3, vars.Inventory.KrazoaSpirit3, [vars.Inventory.KrazoaSpirit3]),
 	consumable(117, "Gold Bar", vars.Inventory.GoldBar, 4, [vars.Inventory.GoldBar]),
 	generic(118, "Power Key", "toggle", vars.Inventory.PowerKey, vars.Inventory.PowerKey, [vars.Inventory.PowerKey]),
 	consumable(119, "Light Gems", vars.Inventory.LightGems, 3, [vars.Inventory.LightGems]),
@@ -108,11 +111,17 @@ const itemData = [
 	// generic(120, "Green Crystal", "toggle", vars.Inventory.GreenCrystal, vars.Inventory.GreenCrystal, [vars.Inventory.GreenCrystal]),
 	// generic(121, "Blue Crystal", "toggle", vars.Inventory.BlueCrystal, vars.Inventory.BlueCrystal, [vars.Inventory.BlueCrystal]),
 	generic(122, "CloudRunner Flute", "toggle", vars.Inventory.CloudRunnerFlute, vars.Inventory.CloudRunnerFlute, [vars.Inventory.CloudRunnerFlute]),
+	generic(123, "Water Spellstone 1", "toggle", vars.Inventory.WaterSpellstone1, vars.Inventory.WaterSpellstone1, [vars.Inventory.WaterSpellstone1]),
+	generic(124, "Fire Gem", "toggle", vars.Inventory.FireGem, vars.Inventory.FireGem, [vars.Inventory.FireGem]),
+	generic(125, "LightFoot Village Gate", "toggle", vars.Inventory.LFVGate, vars.Inventory.LFVGate, [vars.Inventory.LFVGate]),
+	generic(126, "Triangle Block Platforms", "toggle", vars.Inventory.TriPlatform, vars.Inventory.TriPlatform, [vars.Inventory.TriPlatform]),
+	generic(127, "Square Block Platforms", "toggle", vars.Inventory.SquarePlatform, vars.Inventory.SquarePlatform, [vars.Inventory.SquarePlatform]),
+	generic(128, "Circle Block Platforms", "toggle", vars.Inventory.CirclePlatform, vars.Inventory.CirclePlatform, [vars.Inventory.CirclePlatform]),
 	// shop
 	generic(200, "Rock Candy", "toggle", vars.Inventory.RockCandy, vars.Inventory.RockCandy, [vars.Inventory.RockCandy]),
 	// generic(201, "Hi-Tech Display Device", "toggle", vars.Inventory.HiTechDisplay, [vars.Inventory.HiTechDisplay]),
 	generic(204, "FireFly Lantern", "toggle", vars.Inventory.FireFlyLantern, vars.Inventory.FireFlyLantern, [vars.Inventory.FireFlyLantern]),
-	// generic(205, "SnowHorn Artifact", "toggle", vars.Inventory.SnowHornArtifact, [vars.Inventory.SnowHornArtifact]),
+	// generic(205, "SnowHorn Artifact", "toggle", vars.Inventory.SnowHornArtifact, vars.Inventory.SnowHornArtifact, [vars.Inventory.SnowHornArtifact]),
 ]
 const settingData = [
 	progressive(-1, "Store Setting", vars.Settings.ShopSetting, [

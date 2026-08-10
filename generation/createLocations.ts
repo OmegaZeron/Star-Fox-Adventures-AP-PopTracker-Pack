@@ -102,7 +102,13 @@ const itemDict: Record<string, ItemMapData> = Object.freeze({
 	"Moon Seed": {item: vars.Inventory.MoonSeed, type: "toggle"},
 	"Moon Pass Key": {item: vars.Inventory.MoonPassKey, type: "toggle"},
 	"Krazoa Spirit 2": {item: vars.Inventory.KrazoaSpirit2, type: "toggle"},
-	"Gold Bars": {item: vars.Inventory.GoldBar, type: "consumable"}
+	"Gold Bars": {item: vars.Inventory.GoldBar, type: "consumable"},
+	"CloudRunner Flute": {item: vars.Inventory.CloudRunnerFlute, type: "toggle"},
+	"Water Spellstone 1": {item: vars.Inventory.WaterSpellstone1, type: "toggle"},
+	"Triangle Block Platforms": {item: vars.Inventory.TriPlatform, type: "toggle"},
+	"Square Block Platforms": {item: vars.Inventory.SquarePlatform, type: "toggle"},
+	"Circle Block Platforms": {item: vars.Inventory.CirclePlatform, type: "toggle"},
+	"Krazoa Spirit 3": {item: vars.Inventory.KrazoaSpirit3, type: "toggle"},
 })
 
 function luaRuleWrapper(ruleStr: string) {
